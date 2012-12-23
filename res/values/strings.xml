@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Perspective Live Wallpaper</string>
+    <string name="service_label">Perspective Live Wallpaper</string>
+    <string name="choose_this_wallpaper">Choose "Perspective Live Wallpaper"</string>
+    <string name="wallpaper_settings">Wallpaper Settings</string>
+    <string name="description">Your image floats behind the screen.</string>
+    <string name="choose_image">Choose image</string>
+    <string name="fps">Max frame rate:</string>
+    <string name="invert_sensors">Invert movement</string>
+    <string name="licenses">Open Source Licenses</string>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical">
+	
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="112dp"
+	    android:layout_marginTop="20dp"
+	    android:orientation="horizontal" >
+
+		<Button
+		    android:id="@+id/chooseImageButton"
+		    android:layout_width="0dp"
+		    android:layout_height="match_parent"
+		    android:layout_weight="1.11"
+		    android:drawableTop="@android:drawable/ic_menu_gallery"
+		    android:text="@string/choose_image" />
+
+		<!--  <ImageView android:id="@+id/imageDisplay"
+			android:layout_width="0dp" android:layout_height="match_parent"
+			android:layout_weight="1.12" android:src="@drawable/water" />-->
+
+	</LinearLayout>
+	
+	<ImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@android:drawable/divider_horizontal_dark"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scaleType="fitXY"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp" />
+	
+	<TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:text="@string/fps"
+	    android:textAppearance="?android:attr/textAppearanceMedium" />
+	
+	<SeekBar
+	    android:id="@+id/seekBar2"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content" />
+
+	<CheckBox
+	    android:id="@+id/checkBox1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:text="@string/invert_sensors"
+	    android:textAppearance="?android:attr/textAppearanceMedium"  />
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+	    android:layout_weight="1"
+	    android:gravity="bottom|center"
+	    android:orientation="vertical" >
+	
+	<Button
+	    android:id="@+id/licenseButton"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginBottom="30dp"
+	    android:text="@string/licenses" />
+
+	</LinearLayout>
+	
+</LinearLayout>
