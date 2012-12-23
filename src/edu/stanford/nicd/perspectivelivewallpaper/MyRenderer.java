@@ -34,7 +34,7 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	public void onDrawFrame(GL10 unused) {
 		mTriangle.draw();
 		try {
-			Thread.sleep(200);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,6 @@ class Triangle {
 	private final FloatBuffer vertexBuffer;
 	private final int mProgram;
 	private int mPositionHandle;
-	private int mColorHandle;
 	private int mTimeHandle;
 
 	private int frameNum = 0;
@@ -94,8 +93,6 @@ class Triangle {
 		// set the buffer to read the first coordinate
 		vertexBuffer.position(0);
 
-		// prepare shaders and OpenGL program
-
 		// Compile the shader programs.
 		final String vertexShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.standard_vertex);   		
 		final int vertexShaderHandle = ShaderHelper.compileShader(GLES20.GL_VERTEX_SHADER, vertexShader);
@@ -125,15 +122,10 @@ class Triangle {
 				GLES20.GL_FLOAT, false,
 				vertexStride, vertexBuffer);
 
-		// get handle to fragment shader's vColor member
-		mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
 		mTimeHandle = GLES20.glGetUniformLocation(mProgram, "u_Time");
-
-		// Set color for drawing the triangle
-		GLES20.glUniform4fv(mColorHandle, 1, color, 0);
 		GLES20.glUniform1i(mTimeHandle, frameNum++);
 
-		// Draw the triangle
+		// Draw the triangles
 		GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
 
 		// Disable vertex array
