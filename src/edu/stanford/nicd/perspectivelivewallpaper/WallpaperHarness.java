@@ -1,93 +1,81 @@
 package edu.stanford.nicd.perspectivelivewallpaper;
 
+import javax.microedition.khronos.opengles.GL10;
+
 import android.opengl.GLSurfaceView;
-import android.opengl.GLSurfaceView.Renderer;
 import android.os.Bundle;
+import android.util.Log;
 import android.app.Activity;
+import android.content.Context;
 
 public class WallpaperHarness extends Activity {
 
-	private GLSurfaceView surface;
-	private MyRenderer renderer;
+    private GLSurfaceView mGLView;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		surface = new GLSurfaceView(getApplicationContext());
-		renderer = new MyRenderer(getApplicationContext());
-		surface.setRenderer((Renderer) renderer);
-		setContentView(surface);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Create a GLSurfaceView instance and set it
+        // as the ContentView for this Activity
+        mGLView = new MyGLSurfaceView(this);
+        setContentView(mGLView);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // The following call pauses the rendering thread.
+        // If your OpenGL application is memory intensive,
+        // you should consider de-allocating objects that
+        // consume significant memory here.
+        mGLView.onPause();
+    }
+    
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // The following call resumes a paused rendering thread.
+        // If you de-allocated graphic objects for onPause()
+        // this is a good place to re-allocate them.
+        mGLView.onResume();
+    }
+}
+
+class MyGLSurfaceView extends GLSurfaceView {
+
+    public MyGLSurfaceView(Context context) {
+        super(context);
+
+        // Create an OpenGL ES 2.0 context.
+        setEGLContextClientVersion(2);
+
+        // Set the Renderer for drawing on the GLSurfaceView
+        setRenderer(new MyTestRenderer(context));
+
+        // Render the view only when there is a change in the drawing data
+        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+    }
+}
+
+class MyTestRenderer extends MyRenderer implements GLSurfaceView.Renderer {
+	private long lastMeterTime = 0;
+	private int lastMeterFrame = 0;
+	
+	public MyTestRenderer(Context context) {
+		super(context);
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
-		surface.onResume();
-		//renderer.onResume();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		surface.onPause();
-		//renderer.onPause();
-	}
-
-	/*@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected (MenuItem item) {
-		Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-		intent.setType("image/*");
-		startActivityForResult(intent, 0);
-		return true;
-	}
-
-	// http://stackoverflow.com/questions/2507898/how-to-pick-a-image-from-gallery-sd-card-for-my-app-in-android
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if(resultCode != RESULT_OK) return;
-
-		MyRenderer.myBitmap.recycle();
-		MyRenderer.myBitmap = null;
-
-		Uri imageUri = data.getData();
-		
-		// Decode image size
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        try {
-			BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri), null, options);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void onDrawFrame(GL10 unused) {
+		lastMeterFrame++;
+		if(System.currentTimeMillis() - lastMeterTime >= 1000) {
+			float FramesPerSecond = lastMeterFrame / ((System.currentTimeMillis() - lastMeterTime) / 1000.0f);
+			Log.i("WallpaperHarness", "FPS: " + FramesPerSecond);
+			lastMeterTime = System.currentTimeMillis();
+			lastMeterFrame = 0;
 		}
-
-        // Find the correct scale value. It should be the power of 2.
-        int width_tmp = options.outWidth;
-        int height_tmp = options.outHeight;
-        int scale = 1;
-        while (width_tmp / 2 >= 1.2 * screenDimensions[0] && height_tmp / 2 >= 1.2 * screenDimensions[1]) {
-            width_tmp /= 2;
-            height_tmp /= 2;
-            scale *= 2;
-        }
-
-        // Decode with inSampleSize
-        options = new BitmapFactory.Options();
-        options.inSampleSize = scale;
-        try {
-        	_renderer.loadBitmap(BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri), null, options));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}*/
+		mTriangle.draw();
+	}
+	
 }
