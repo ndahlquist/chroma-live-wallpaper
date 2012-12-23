@@ -52,6 +52,7 @@ class Triangle {
 	private int mPositionHandle;
 	private int mTimeHandle;
 	private int mColorSwathHandle;
+	private int mNoiseHandle;
 
 	private int frameNum = 0;
 
@@ -96,38 +97,57 @@ class Triangle {
 		final String fragmentShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_fragment);
 		final int fragmentShaderHandle = ShaderHelper.compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShader);	
 
-		mProgramHandle = GLES20.glCreateProgram();             // create empty OpenGL Program
-		GLES20.glAttachShader(mProgramHandle, vertexShaderHandle);   // add the vertex shader to program
-		GLES20.glAttachShader(mProgramHandle, fragmentShaderHandle); // add the fragment shader to program
-		GLES20.glLinkProgram(mProgramHandle);                  // create OpenGL program executables
+		//mProgramHandle = GLES20.glCreateProgram();             // create empty OpenGL Program
+		//GLES20.glAttachShader(mProgramHandle, vertexShaderHandle);   // add the vertex shader to program
+		//GLES20.glAttachShader(mProgramHandle, fragmentShaderHandle); // add the fragment shader to program
+		//GLES20.glLinkProgram(mProgramHandle);                  // create OpenGL program executables
 
-		mColorSwathHandle = TextureHelper.loadTexture(context, R.drawable.chromaswath);
-		GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);			
+		mProgramHandle = ShaderHelper.createAndLinkProgram(vertexShaderHandle, fragmentShaderHandle,
+				new String[] {"u_Time",  "vPosition", "u_ColorSwath", "u_Noise"});
+		
+		//int[] textureHandles = new int[2];
+		//GLES20.glGenTextures(2, textureHandles, 0);
 
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);	// TODO	
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);		
+		
+		mColorSwathHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_ColorSwath");
+		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+		TextureHelper.loadTexture(context, R.drawable.chromaswath, mColorSwathHandle);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);		
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR_MIPMAP_LINEAR);
+	
+		mNoiseHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Noise");
+		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
+		TextureHelper.loadTexture(context, R.drawable.noise, mNoiseHandle);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 	}
 
 	public void draw() {
+		
+		GLES20.glEnable(GLES20.GL_DITHER);
+		GLES20.glEnable(GLES20.GL_TEXTURE_2D);
+		
 		// Add program to OpenGL environment
 		GLES20.glUseProgram(mProgramHandle);
 
 		// Pass the current frame number
-		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time");
+		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time"); // TODO
 		GLES20.glUniform1i(mTimeHandle, frameNum++);
 
 		// Pass in the texture information
-		// Set the active texture unit to texture unit 0.
-		GLES20.glActiveTexture(GLES20.GL_TEXTURE0); // TODO
-
-		// Pass the color swath
-		GLES20.glBindTexture(GL10.GL_TEXTURE_2D, mColorSwathHandle);
+		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
+		GLES20.glUniform1i(mColorSwathHandle, 0);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
+		
+		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
+		GLES20.glUniform1i(mNoiseHandle, 1);
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
 
 		// get handle to vertex shader's vPosition member
-		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "vPosition");
+		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "vPosition"); // TODO
 
 		// Enable a handle to the triangle vertices
 		GLES20.glEnableVertexAttribArray(mPositionHandle);
