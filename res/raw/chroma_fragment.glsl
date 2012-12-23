@@ -1,12 +1,13 @@
-precision mediump float;
+precision mediump float; // TODO
 
 uniform vec4 vColor;
-varying vec2 v_Position;       // XY position, from 0.0 to 1.0
+varying vec2 v_Position;  // XY position, from 0.0 to 1.0
+uniform int u_Time;       // The current time
 
 void main() {
 
-    float topCurve = .8+.2*sin(v_Position.x*2.1+6.8);
-    float bottomCurve = .1+.1*sin(v_Position.x*4.6);
+    float topCurve = .85+.1*sin(v_Position.x*2.1 + float(u_Time) / 104.0);
+    float bottomCurve = .15+.1*sin(v_Position.x*4.6 - float(u_Time) / 63.0);
     float barCurve = 1.0;
     //if(barCurve <= 0.0)
     //    barCurve = 0.0;

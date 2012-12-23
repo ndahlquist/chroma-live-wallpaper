@@ -27,21 +27,20 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 		GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		mTriangle = new Triangle(context);
+		if(mTriangle == null)
+			mTriangle = new Triangle(context);
 	}
 
 	public void onDrawFrame(GL10 unused) {
-
-		// Draw background color
-		GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
-
-		// Draw triangle
 		mTriangle.draw();
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onSurfaceChanged(GL10 unused, int width, int height) {
-		// Adjust the viewport based on geometry changes,
-		// such as screen rotation
 		GLES20.glViewport(0, 0, width, height);
 	}
 
@@ -53,6 +52,9 @@ class Triangle {
 	private final int mProgram;
 	private int mPositionHandle;
 	private int mColorHandle;
+	private int mTimeHandle;
+	
+	private int frameNum = 0;
 
 	// number of coordinates per vertex in this array
 	static final int COORDS_PER_VERTEX = 3;
@@ -119,10 +121,12 @@ class Triangle {
 
 		// get handle to fragment shader's vColor member
 		mColorHandle = GLES20.glGetUniformLocation(mProgram, "vColor");
+		mTimeHandle = GLES20.glGetUniformLocation(mProgram, "u_Time");
 
 		// Set color for drawing the triangle
 		GLES20.glUniform4fv(mColorHandle, 1, color, 0);
-
+		GLES20.glUniform1i(mTimeHandle, frameNum++);
+		
 		// Draw the triangle
 		GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
 
