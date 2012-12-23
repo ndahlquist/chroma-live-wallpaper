@@ -9,13 +9,12 @@ import javax.microedition.khronos.opengles.GL10;
 
 import com.learnopengles.android.common.RawResourceReader;
 import com.learnopengles.android.common.ShaderHelper;
+import com.learnopengles.android.common.TextureHelper;
 
 import net.rbgrn.android.glwallpaperservice.*;
 import android.content.Context;
 import android.opengl.GLES20;
 
-// Original code provided by Robert Green
-// http://www.rbgrn.net/content/354-glsurfaceview-adapted-3d-live-wallpapers
 public class MyRenderer implements GLWallpaperService.Renderer {
 
 	private Context context;
@@ -49,20 +48,19 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 class Triangle {
 
 	private final FloatBuffer vertexBuffer;
-	private final int mProgram;
+	private final int mProgramHandle;
 	private int mPositionHandle;
 	private int mTimeHandle;
+	private int mColorSwathHandle;
 
 	private int frameNum = 0;
 
 	// number of coordinates per vertex in this array
 	static final int COORDS_PER_VERTEX = 3;
 	static final int TESSELATION_FACTOR = 10;
+	static final int BYTES_PER_FLOAT = 4;
 	private final int vertexCount;
-	private final int vertexStride = COORDS_PER_VERTEX * 4; // bytes per vertex
-
-	// Set color with red, green, blue and alpha (opacity) values
-	float color[] = { 0.63671875f, 0.76953125f, 0.22265625f, 1.0f };
+	private final int vertexStride = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
 
 	public Triangle(Context context) {
 
@@ -80,9 +78,7 @@ class Triangle {
 		}
 		vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
 		// initialize vertex byte buffer for shape coordinates
-		ByteBuffer bb = ByteBuffer.allocateDirect(
-				// (number of coordinate values * 4 bytes per float)
-				triangleCoords.length * 4);
+		ByteBuffer bb = ByteBuffer.allocateDirect(triangleCoords.length * BYTES_PER_FLOAT);
 		// use the device hardware's native byte order
 		bb.order(ByteOrder.nativeOrder());
 
@@ -100,19 +96,38 @@ class Triangle {
 		final String fragmentShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_fragment);
 		final int fragmentShaderHandle = ShaderHelper.compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShader);	
 
-		mProgram = GLES20.glCreateProgram();             // create empty OpenGL Program
-		GLES20.glAttachShader(mProgram, vertexShaderHandle);   // add the vertex shader to program
-		GLES20.glAttachShader(mProgram, fragmentShaderHandle); // add the fragment shader to program
-		GLES20.glLinkProgram(mProgram);                  // create OpenGL program executables
+		mProgramHandle = GLES20.glCreateProgram();             // create empty OpenGL Program
+		GLES20.glAttachShader(mProgramHandle, vertexShaderHandle);   // add the vertex shader to program
+		GLES20.glAttachShader(mProgramHandle, fragmentShaderHandle); // add the fragment shader to program
+		GLES20.glLinkProgram(mProgramHandle);                  // create OpenGL program executables
 
+		mColorSwathHandle = TextureHelper.loadTexture(context, R.drawable.chromaswath);
+		GLES20.glGenerateMipmap(GLES20.GL_TEXTURE_2D);			
+
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);	// TODO	
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);		
+
+		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);		
+		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR_MIPMAP_LINEAR);
 	}
 
 	public void draw() {
 		// Add program to OpenGL environment
-		GLES20.glUseProgram(mProgram);
+		GLES20.glUseProgram(mProgramHandle);
+
+		// Pass the current frame number
+		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time");
+		GLES20.glUniform1i(mTimeHandle, frameNum++);
+
+		// Pass in the texture information
+		// Set the active texture unit to texture unit 0.
+		GLES20.glActiveTexture(GLES20.GL_TEXTURE0); // TODO
+
+		// Pass the color swath
+		GLES20.glBindTexture(GL10.GL_TEXTURE_2D, mColorSwathHandle);
 
 		// get handle to vertex shader's vPosition member
-		mPositionHandle = GLES20.glGetAttribLocation(mProgram, "vPosition");
+		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "vPosition");
 
 		// Enable a handle to the triangle vertices
 		GLES20.glEnableVertexAttribArray(mPositionHandle);
@@ -121,9 +136,6 @@ class Triangle {
 		GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX,
 				GLES20.GL_FLOAT, false,
 				vertexStride, vertexBuffer);
-
-		mTimeHandle = GLES20.glGetUniformLocation(mProgram, "u_Time");
-		GLES20.glUniform1i(mTimeHandle, frameNum++);
 
 		// Draw the triangles
 		GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
