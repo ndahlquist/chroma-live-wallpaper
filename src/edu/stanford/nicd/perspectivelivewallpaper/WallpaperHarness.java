@@ -75,7 +75,7 @@ class MyTestRenderer extends MyRenderer implements GLSurfaceView.Renderer {
 			lastMeterTime = System.currentTimeMillis();
 			lastMeterFrame = 0;
 		}
-		mTriangle.draw();
+		mBackground.draw();
 	}
 	
 }

@@ -9,15 +9,16 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import net.rbgrn.android.glwallpaperservice.*;
 
 // Original code provided by Robert Green
 // http://www.rbgrn.net/content/354-glsurfaceview-adapted-3d-live-wallpapers
 public class MyWallpaperService extends GLWallpaperService {
-	private static String TAG = "BlurredLinesLive";
+	private static String TAG = "ChromaLW";
 	private static final boolean DEBUG = false;
-	public static final String SHARED_PREFS_NAME = "blurredlinessettings";
+	public static final String SHARED_PREFS_NAME = "ChromaLWSettings";
 
 	private static class ContextFactory implements EGLContextFactory {
 		private static int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
@@ -219,16 +220,22 @@ public class MyWallpaperService extends GLWallpaperService {
 	}
 
 	class WallpaperEngine extends GLWallpaperService.GLEngine {
+		MyRenderer renderer;
 		public WallpaperEngine(SharedPreferences preferences) {
 			super();
 
 			setEGLContextFactory(new ContextFactory());
 			setEGLConfigChooser(new ConfigChooser(5, 6, 5, 0, 16, 0));
 
-			MyRenderer renderer = new MyRenderer(getBaseContext());
+			renderer = new MyRenderer(getBaseContext());
 			//renderer.setSharedPreferences(preferences);
 			setRenderer(renderer);
 			setRenderMode(RENDERMODE_CONTINUOUSLY); // TODO
+		}
+
+		public void onTouchEvent(MotionEvent event) {
+			if(renderer != null)
+				renderer.onTouchEvent(event);
 		}
 	}
 
