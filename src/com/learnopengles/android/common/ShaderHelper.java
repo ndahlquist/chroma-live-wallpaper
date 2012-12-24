@@ -3,50 +3,43 @@ package com.learnopengles.android.common;
 import android.opengl.GLES20;
 import android.util.Log;
 
-public class ShaderHelper
-{
+public class ShaderHelper {
+
 	private static final String TAG = "ShaderHelper";
-	
-	/** 
+
+	/**
 	 * Helper function to compile a shader.
-	 * 
+	 *
 	 * @param shaderType The shader type.
 	 * @param shaderSource The shader source code.
 	 * @return An OpenGL handle to the shader.
 	 */
-	public static int compileShader(final int shaderType, final String shaderSource) 
-	{
+	public static int compileShader(final int shaderType, final String shaderSource) {
+
 		int shaderHandle = GLES20.glCreateShader(shaderType);
-
-		if (shaderHandle != 0) 
-		{
-			// Pass in the shader source.
-			GLES20.glShaderSource(shaderHandle, shaderSource);
-
-			// Compile the shader.
-			GLES20.glCompileShader(shaderHandle);
-
-			// Get the compilation status.
-			final int[] compileStatus = new int[1];
-			GLES20.glGetShaderiv(shaderHandle, GLES20.GL_COMPILE_STATUS, compileStatus, 0);
-
-			// If the compilation failed, delete the shader.
-			if (compileStatus[0] == 0) 
-			{
-				Log.e(TAG, "Error compiling shader: " + GLES20.glGetShaderInfoLog(shaderHandle));
-				GLES20.glDeleteShader(shaderHandle);
-				shaderHandle = 0;
-			}
-		}
-
 		if (shaderHandle == 0)
-		{			
-			throw new RuntimeException("Error creating shader.");
+			throw new RuntimeException("Error creating GLSL shader: GLES20.glCreateShader() failed.");
+
+		// Pass in the shader source.
+		GLES20.glShaderSource(shaderHandle, shaderSource);
+
+		// Compile the shader.
+		GLES20.glCompileShader(shaderHandle);
+
+		// Get the compilation status.
+		final int[] compileStatus = new int[1];
+		GLES20.glGetShaderiv(shaderHandle, GLES20.GL_COMPILE_STATUS, compileStatus, 0);
+
+		// If the compilation failed, delete the shader.
+		if (compileStatus[0] == 0) {
+			Log.e(TAG, "Error compiling GLSL shader: " + GLES20.glGetShaderInfoLog(shaderHandle));
+			GLES20.glDeleteShader(shaderHandle);
+			shaderHandle = 0;
 		}
-		
+
 		return shaderHandle;
 	}
-	
+
 	/**
 	 * Helper function to compile and link a program.
 	 * 
@@ -55,49 +48,38 @@ public class ShaderHelper
 	 * @param attributes Attributes that need to be bound to the program.
 	 * @return An OpenGL handle to the program.
 	 */
-	public static int createAndLinkProgram(final int vertexShaderHandle, final int fragmentShaderHandle, final String[] attributes) 
-	{
+	public static int createAndLinkProgram(final int vertexShaderHandle, final int fragmentShaderHandle, final String[] attributes) {
+
 		int programHandle = GLES20.glCreateProgram();
-		
-		if (programHandle != 0) 
-		{
-			// Bind the vertex shader to the program.
-			GLES20.glAttachShader(programHandle, vertexShaderHandle);			
+		if(programHandle == 0)
+			throw new RuntimeException("Error creating GLSL program: GLES20.glCreateProgram() failed.");
 
-			// Bind the fragment shader to the program.
-			GLES20.glAttachShader(programHandle, fragmentShaderHandle);
-			
-			// Bind attributes
-			if (attributes != null)
-			{
-				final int size = attributes.length;
-				for (int i = 0; i < size; i++)
-				{
-					GLES20.glBindAttribLocation(programHandle, i, attributes[i]);
-				}						
-			}
-			
-			// Link the two shaders together into a program.
-			GLES20.glLinkProgram(programHandle);
+		// Bind the vertex shader to the program.
+		GLES20.glAttachShader(programHandle, vertexShaderHandle);			
 
-			// Get the link status.
-			final int[] linkStatus = new int[1];
-			GLES20.glGetProgramiv(programHandle, GLES20.GL_LINK_STATUS, linkStatus, 0);
+		// Bind the fragment shader to the program.
+		GLES20.glAttachShader(programHandle, fragmentShaderHandle);
 
-			// If the link failed, delete the program.
-			if (linkStatus[0] == 0) 
-			{				
-				Log.e(TAG, "Error compiling program: " + GLES20.glGetProgramInfoLog(programHandle));
-				GLES20.glDeleteProgram(programHandle);
-				programHandle = 0;
-			}
+		// Bind attributes
+		if(attributes != null) {
+			for(int i = 0; i < attributes.length; i++)
+				GLES20.glBindAttribLocation(programHandle, i, attributes[i]);
 		}
-		
-		if (programHandle == 0)
-		{
-			throw new RuntimeException("Error creating program.");
+
+		// Link the two shaders together into a program.
+		GLES20.glLinkProgram(programHandle);
+
+		// Get the link status.
+		final int[] linkStatus = new int[1];
+		GLES20.glGetProgramiv(programHandle, GLES20.GL_LINK_STATUS, linkStatus, 0);
+
+		// If the link failed, delete the program.
+		if (linkStatus[0] == 0) {				
+			Log.e(TAG, "Error linking GLSL program: " + GLES20.glGetProgramInfoLog(programHandle));
+			GLES20.glDeleteProgram(programHandle);
+			programHandle = 0;
 		}
-		
+
 		return programHandle;
 	}
 }

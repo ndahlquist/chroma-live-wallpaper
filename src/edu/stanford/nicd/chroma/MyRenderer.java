@@ -19,6 +19,7 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	private Context context;
 	protected ChromaBackground mBackground;
 	private Sprite mSprites;
+	public static int FPS_THROTTLE = 60;
 
 	public MyRenderer(Context context) {
 		this.context = context;
@@ -36,7 +37,7 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 		mBackground.draw();
 		mSprites.draw();
 		try {
-			Thread.sleep(60);
+			Thread.sleep(FPS_THROTTLE);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -48,8 +49,8 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	}
 
 	public void onTouchEvent(MotionEvent event) {
-		// TODO: possible null pointer bug
-		mBackground.motionEvent = event;
+		if(mBackground != null)
+			mBackground.motionEvent = event;
 	}
 
 }

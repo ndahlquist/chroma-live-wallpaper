@@ -3,10 +3,7 @@
     <string name="app_name">Chroma Live Wallpaper</string>
     <string name="service_label">Chroma Live Wallpaper</string>
     <string name="choose_this_wallpaper">Choose "Chroma Live Wallpaper"</string>
-    <string name="wallpaper_settings">Wallpaper Settings</string>
+    <string name="wallpaper_settings">Preferences</string>
     <string name="description">A Nexus of colors.</string>
-    <string name="choose_image">Choose image</string>
-    <string name="fps">Max frame rate:</string>
-    <string name="invert_sensors">Invert movement</string>
-    <string name="licenses">Open Source Licenses</string>
+    <string name="fps">Wallpaper speed:</string>
 </resources>

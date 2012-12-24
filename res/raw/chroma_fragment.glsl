@@ -1,6 +1,6 @@
 precision mediump float;
 
-uniform int u_Time;
+uniform mediump int u_Time;
 uniform sampler2D u_ColorSwath;
 uniform sampler2D u_Noise;
 uniform vec4 u_Touch; // xposition[0, 1]
