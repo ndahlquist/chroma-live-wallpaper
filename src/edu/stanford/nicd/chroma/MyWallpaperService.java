@@ -1,4 +1,4 @@
-package edu.stanford.nicd.perspectivelivewallpaper;
+package edu.stanford.nicd.chroma;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;

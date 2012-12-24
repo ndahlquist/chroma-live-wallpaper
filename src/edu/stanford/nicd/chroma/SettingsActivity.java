@@ -1,4 +1,4 @@
-package edu.stanford.nicd.perspectivelivewallpaper;
+package edu.stanford.nicd.chroma;
 
 import android.app.Activity;
 import android.content.Intent;

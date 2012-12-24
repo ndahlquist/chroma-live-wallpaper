@@ -1,4 +1,4 @@
-package edu.stanford.nicd.perspectivelivewallpaper;
+package edu.stanford.nicd.chroma;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
