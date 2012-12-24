@@ -19,7 +19,6 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	private Context context;
 	protected ChromaBackground mBackground;
 	private Sprite mSprites;
-	public static int FPS_THROTTLE = 60;
 
 	public MyRenderer(Context context) {
 		this.context = context;
@@ -36,11 +35,6 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	public void onDrawFrame(GL10 unused) {
 		mBackground.draw();
 		mSprites.draw();
-		try {
-			Thread.sleep(FPS_THROTTLE);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void onSurfaceChanged(GL10 unused, int width, int height) {

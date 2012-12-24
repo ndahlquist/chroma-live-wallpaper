@@ -14,7 +14,7 @@ public class SettingsActivity extends Activity  {
 		SeekBar seekBarSpeed = (SeekBar) findViewById(R.id.seekBarThrottle);
 		seekBarSpeed.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {       
-				MyRenderer.FPS_THROTTLE = 100 - progress;
+				//MyRenderer.FPS_THROTTLE = 100 - progress;
 			}
 			public void onStartTrackingTouch(SeekBar seekBar) {}
 			public void onStopTrackingTouch(SeekBar seekBar) {}  

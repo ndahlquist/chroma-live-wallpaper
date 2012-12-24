@@ -220,7 +220,10 @@ public class MyWallpaperService extends GLWallpaperService {
 	}
 
 	class WallpaperEngine extends GLWallpaperService.GLEngine {
+
 		MyRenderer renderer;
+		WatcherThread watcher;
+
 		public WallpaperEngine(SharedPreferences preferences) {
 			super();
 
@@ -230,12 +233,53 @@ public class MyWallpaperService extends GLWallpaperService {
 			renderer = new MyRenderer(getBaseContext());
 			//renderer.setSharedPreferences(preferences);
 			setRenderer(renderer);
-			setRenderMode(RENDERMODE_CONTINUOUSLY); // TODO
+			setRenderMode(RENDERMODE_WHEN_DIRTY);
+		}
+
+		public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset, int yPixelOffset) {
+			// TODO renderer.onOffsetsChanged(xOffset, yOffset, xOffsetStep, yOffsetStep, xPixelOffset, yPixelOffset);
+			requestRender();
 		}
 
 		public void onTouchEvent(MotionEvent event) {
 			if(renderer != null)
 				renderer.onTouchEvent(event);
+			requestRender();
+		}
+
+		public void onResume() {
+			super.onResume();
+			requestRender();
+			//renderer.onResume();
+			watcher = new WatcherThread();
+			watcher.start();
+		}
+
+		public void onPause() {
+			super.onPause();
+			//renderer.onPause();
+			requestRender();
+			watcher.kill = true;
+		}
+
+		class WatcherThread extends Thread {
+			
+			public boolean kill = false;
+			private final int FPS_THROTTLE = 80;
+			
+			@Override
+			public void run() {
+				while(true) {
+					if(kill)
+						return;
+					requestRender();
+					try {
+						sleep(FPS_THROTTLE);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
 		}
 	}
 
