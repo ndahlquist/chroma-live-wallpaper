@@ -17,9 +17,10 @@ void main() {
 
 	vec4 color = texture2D(u_ColorSwath, vec2(v_Position.x, v_Position.y));
 	
-	float noise0 = texture2D(u_Noise,vec2(v_Position.x, fract(float(u_Time) / 100.0))).r;
-	float noise1 = texture2D(u_Noise,vec2(v_Position.x, fract(float(u_Time) / 658.0))).b;
+	float noise0 = texture2D(u_Noise,vec2(v_Position.x, fract(float(u_Time) / 353.0))).r;
+	float noise1 = texture2D(u_Noise,vec2(v_Position.x, fract(float(u_Time) / 258.0))).b;
+	float combinedNoise = .24+1.2*pow(noise0 * noise1, 1.5);
 	
-	gl_FragColor = min(max(.3, sqrt(noise0 * noise1)) * value, 1.0) * color;
+	gl_FragColor = min(combinedNoise * value, 1.0) * color;
  
 }
