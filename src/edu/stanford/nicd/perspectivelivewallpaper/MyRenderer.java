@@ -7,20 +7,12 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import com.learnopengles.android.common.RawResourceReader;
-import com.learnopengles.android.common.ShaderHelper;
-import com.learnopengles.android.common.TextureHelper;
-
+import com.learnopengles.android.common.*;
 import net.rbgrn.android.glwallpaperservice.*;
-import android.app.Activity;
+
 import android.content.Context;
-import android.graphics.Point;
 import android.opengl.GLES20;
-import android.os.Build;
-import android.util.Log;
-import android.view.Display;
 import android.view.MotionEvent;
-import android.view.WindowManager;
 
 public class MyRenderer implements GLWallpaperService.Renderer {
 
@@ -44,7 +36,7 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 		mBackground.draw();
 		mSprites.draw();
 		try {
-			Thread.sleep(20); // TODO
+			Thread.sleep(60);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -52,6 +44,7 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 
 	public void onSurfaceChanged(GL10 unused, int width, int height) {
 		GLES20.glViewport(0, 0, width, height);
+		mBackground.displayWidth = width;
 	}
 
 	public void onTouchEvent(MotionEvent event) {
@@ -83,7 +76,7 @@ class ChromaBackground {
 	private int mNoiseHandle;
 	public MotionEvent motionEvent;
 	private int frameNum = 0;
-	private int displayWidth;
+	public int displayWidth;
 
 	static final int COORDS_PER_VERTEX = 3;
 	static final int TESSELATION_FACTOR = 10;
@@ -91,7 +84,6 @@ class ChromaBackground {
 	private final int vertexCount;
 	private final int vertexStride = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
 
-	@SuppressWarnings("deprecation")
 	public ChromaBackground(Context context) {
 
 		float[] triangleCoords = new float[2*TESSELATION_FACTOR*COORDS_PER_VERTEX];
@@ -143,16 +135,6 @@ class ChromaBackground {
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
-		// Measure the screen size
-		WindowManager w = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-		if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-			Point size = new Point();
-			w.getDefaultDisplay().getSize(size);
-			displayWidth = size.x;
-		}else{
-			Display d = w.getDefaultDisplay(); 
-			displayWidth = d.getWidth();
-		}
 	}
 
 	public void draw() {
@@ -168,17 +150,26 @@ class ChromaBackground {
 		GLES20.glUniform1i(mTimeHandle, frameNum++);
 
 		// Pass in touches
-		int mTouch0Handle = GLES20.glGetUniformLocation(mProgramHandle, "u_Touch0");
+		int mTouchHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Touch");
 		if(motionEvent == null) {
-			GLES20.glUniform2f(mTouch0Handle, -1.0f, -1.0f);
+			GLES20.glUniform4f(mTouchHandle, -1.0f, -1.0f, -1.0f, -1.0f);
 		} else if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
 				motionEvent = null;
-				GLES20.glUniform2f(mTouch0Handle, -1.0f, -1.0f);
-		} else {//for(int p = 0; p < motionEvent.getPointerCount(); p++)
-			//switch(motionEvent.getPointerCount()) {
-			//case 1:
-				GLES20.glUniform2f(mTouch0Handle, motionEvent.getX(0) / displayWidth, 0.0f);
-			//}
+				GLES20.glUniform4f(mTouchHandle, -1.0f, -1.0f, -1.0f, -1.0f);
+		} else {
+			switch(motionEvent.getPointerCount()) {
+			case 1:	GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth, -1.0f, -1.0f, -1.0f);
+					break;
+			case 2:	GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth,
+						motionEvent.getX(1) / displayWidth, -1.0f, -1.0f);
+					break;
+			case 3: GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth,
+					motionEvent.getX(1) / displayWidth, motionEvent.getX(2) / displayWidth, -1.0f);
+				break;
+			default: GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth,
+					motionEvent.getX(1) / displayWidth, motionEvent.getX(2) / displayWidth,
+					motionEvent.getX(3) / displayWidth);
+			}
 		}
 
 		// Pass in the texture information

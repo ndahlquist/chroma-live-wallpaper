@@ -3,8 +3,7 @@ precision mediump float;
 uniform int u_Time;
 uniform sampler2D u_ColorSwath;
 uniform sampler2D u_Noise;
-uniform vec2 u_Touch0; // xposition[0, 1] and down time.
-//uniform vec2 u_Touch1;
+uniform vec4 u_Touch; // xposition[0, 1]
 
 varying vec2 v_Position;  // XY position, from 0.0 to 1.0
 varying float v_TopCurve;
@@ -13,11 +12,16 @@ varying float v_Vignette;
 
 void main() {
    
-     float TouchMultiplier;
-     if(v_Position.x == -1.0)
-     	TouchMultiplier = 1.0;
-     else
-     	TouchMultiplier = 1.0 + .01 / abs(u_Touch0.x - v_Position.x);
+     float TouchMultiplier = 1.0;
+     if(u_Touch.x != -1.0) {
+     	TouchMultiplier += .01 / abs(u_Touch.x - v_Position.x);
+     if(u_Touch.y != -1.0) {
+     	TouchMultiplier += .01 / abs(u_Touch.y - v_Position.x);
+     if(u_Touch.z != -1.0) {
+     	TouchMultiplier += .01 / abs(u_Touch.z - v_Position.x);
+     if(u_Touch.w != -1.0)
+     	TouchMultiplier += .01 / abs(u_Touch.w - v_Position.x);
+     } } }
 	
 	float noise0 = texture2D(u_Noise,vec2(v_Position.x, fract(float(u_Time) / 153.0))).r;
 	float noise1 = texture2D(u_Noise,vec2(v_Position.x, fract(float(u_Time) / 378.0))).b;
