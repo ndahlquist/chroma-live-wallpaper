@@ -2,7 +2,7 @@ precision highp float;
 
 attribute vec4 vPosition;
 
-uniform mediump int u_Time;
+uniform highp int u_Time;
 
 varying vec2 v_Position;
 varying float v_TopCurve;

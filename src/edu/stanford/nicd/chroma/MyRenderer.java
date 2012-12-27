@@ -70,7 +70,7 @@ class ChromaBackground {
 	private int mColorSwathHandle;
 	private int mNoiseHandle;
 	public MotionEvent motionEvent;
-	private int frameNum = 0;
+	private int frameNum;
 	public int displayWidth;
 
 	static final int COORDS_PER_VERTEX = 3;
@@ -142,7 +142,9 @@ class ChromaBackground {
 
 		// Pass the current frame number
 		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time"); // TODO
-		GLES20.glUniform1i(mTimeHandle, frameNum++);
+		if(++frameNum >= 65535) // GLSL highp int
+		frameNum = -65535;
+		GLES20.glUniform1i(mTimeHandle, frameNum);
 
 		// Pass in touches
 		int mTouchHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Touch");

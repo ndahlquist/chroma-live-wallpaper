@@ -265,7 +265,7 @@ public class MyWallpaperService extends GLWallpaperService {
 		class WatcherThread extends Thread {
 			
 			public boolean kill = false;
-			private final int FPS_THROTTLE = 80;
+			private final int FPS_THROTTLE = 100;
 			
 			@Override
 			public void run() {
@@ -274,7 +274,7 @@ public class MyWallpaperService extends GLWallpaperService {
 						return;
 					requestRender();
 					try {
-						sleep(FPS_THROTTLE);
+						Thread.sleep(FPS_THROTTLE);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
