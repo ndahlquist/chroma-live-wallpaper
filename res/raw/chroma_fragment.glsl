@@ -23,8 +23,8 @@ void main() {
      	TouchMultiplier += .01 / abs(u_Touch.w - v_Position.x);
      } } }
 	
-	float noise0 = texture2D(u_Noise,vec2(v_Position.x, fract(highp float(u_Time) / 153.0))).r;
-	float noise1 = texture2D(u_Noise,vec2(v_Position.x, fract(highp float(u_Time) / 378.0))).b;
+	float noise0 = texture2D(u_Noise,vec2(v_Position.x, fract(highp float(u_Time) / 313.0))).r;
+	float noise1 = texture2D(u_Noise,vec2(v_Position.x, fract(highp float(u_Time) / 458.0))).b;
 	float combinedNoise = .24 + noise0 * noise1;
 	
 	float value = 10.0 * (v_TopCurve-v_Position.y) * (v_Position.y-v_BottomCurve) * v_Vignette;

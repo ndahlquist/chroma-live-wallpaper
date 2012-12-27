@@ -1,0 +1,17 @@
+edu.stanford.nicd.chroma.MyWallpaperService
+edu.stanford.nicd.chroma.MyWallpaperService: MyWallpaperService()
+edu.stanford.nicd.chroma.R$drawable: int chromaswath
+edu.stanford.nicd.chroma.R$drawable: int icon
+edu.stanford.nicd.chroma.R$drawable: int noise
+edu.stanford.nicd.chroma.R$id: int seekBarThrottle
+edu.stanford.nicd.chroma.R$layout: int settings_layout
+edu.stanford.nicd.chroma.R$raw: int chroma_fragment
+edu.stanford.nicd.chroma.R$raw: int chroma_vertex
+edu.stanford.nicd.chroma.R$string: int app_name
+edu.stanford.nicd.chroma.R$string: int choose_this_wallpaper
+edu.stanford.nicd.chroma.R$string: int description
+edu.stanford.nicd.chroma.R$string: int fps
+edu.stanford.nicd.chroma.R$string: int service_label
+edu.stanford.nicd.chroma.R$string: int wallpaper_settings
+edu.stanford.nicd.chroma.R$xml: int myglwallpaper
+net.rbgrn.android.glwallpaperservice.GLWallpaperService: GLWallpaperService()

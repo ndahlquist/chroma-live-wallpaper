@@ -27,7 +27,11 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
 		GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		if(mBackground == null)
-			mBackground = new ChromaBackground(context);
+			try {
+				mBackground = new ChromaBackground(context);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		if(mSprites == null)
 			mSprites = new Sprite(context);
 	}
@@ -79,7 +83,7 @@ class ChromaBackground {
 	private final int vertexCount;
 	private final int vertexStride = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
 
-	public ChromaBackground(Context context) {
+	public ChromaBackground(Context context) throws Exception {
 
 		float[] triangleCoords = new float[2*TESSELATION_FACTOR*COORDS_PER_VERTEX];
 		for(int i=0; i<TESSELATION_FACTOR; i++) {
@@ -109,13 +113,19 @@ class ChromaBackground {
 		// Compile the shader programs.
 		final String vertexShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_vertex);   		
 		final int vertexShaderHandle = ShaderHelper.compileShader(GLES20.GL_VERTEX_SHADER, vertexShader);
-
+		if(vertexShaderHandle == 0) // Shader compilation failed.
+			throw new Exception("Vertex shader compilation failed.", null);
+		
 		final String fragmentShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_fragment);
 		final int fragmentShaderHandle = ShaderHelper.compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShader);	
-
+		if(fragmentShaderHandle == 0) // Shader compilation failed.
+			throw new Exception("Fragment shader compilation failed.", null);
+		
 		mProgramHandle = ShaderHelper.createAndLinkProgram(vertexShaderHandle, fragmentShaderHandle,
 				new String[] {"u_Time",  "vPosition", "u_ColorSwath", "u_Noise"});
-
+		if(mProgramHandle == 0) // Shader compilation failed.
+			throw new Exception("Shader compilation failed during linking.", null);
+		
 		mColorSwathHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_ColorSwath");
 		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 		TextureHelper.loadTexture(context, R.drawable.chromaswath, mColorSwathHandle);
