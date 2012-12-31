@@ -111,18 +111,18 @@ class ChromaBackground {
 		vertexBuffer.position(0);
 
 		// Compile the shader programs.
-		final String vertexShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_vertex);   		
+		final String vertexShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_v);   		
 		final int vertexShaderHandle = ShaderHelper.compileShader(GLES20.GL_VERTEX_SHADER, vertexShader);
 		if(vertexShaderHandle == 0) // Shader compilation failed.
 			throw new Exception("Vertex shader compilation failed.", null);
 		
-		final String fragmentShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_fragment);
+		final String fragmentShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_f);
 		final int fragmentShaderHandle = ShaderHelper.compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShader);	
 		if(fragmentShaderHandle == 0) // Shader compilation failed.
 			throw new Exception("Fragment shader compilation failed.", null);
 		
 		mProgramHandle = ShaderHelper.createAndLinkProgram(vertexShaderHandle, fragmentShaderHandle,
-				new String[] {"u_Time",  "vPosition", "u_ColorSwath", "u_Noise"});
+				new String[] {"u_Time",  "a_Position", "u_ColorSwath", "u_Noise"});
 		if(mProgramHandle == 0) // Shader compilation failed.
 			throw new Exception("Shader compilation failed during linking.", null);
 		
@@ -140,6 +140,7 @@ class ChromaBackground {
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
+		frameNum = (int) (65535.0 * Math.random());
 	}
 
 	public void draw() {
@@ -188,8 +189,8 @@ class ChromaBackground {
 		GLES20.glUniform1i(mNoiseHandle, 1);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
 
-		// get handle to vertex shader's vPosition member
-		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "vPosition"); // TODO
+		// get handle to vertex shader's a_Position member
+		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "a_Position"); // TODO
 
 		// Enable a handle to the ChromaBackground vertices
 		GLES20.glEnableVertexAttribArray(mPositionHandle);

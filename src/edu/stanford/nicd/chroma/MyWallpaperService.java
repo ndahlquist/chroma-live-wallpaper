@@ -265,7 +265,7 @@ public class MyWallpaperService extends GLWallpaperService {
 		class WatcherThread extends Thread {
 			
 			public boolean kill = false;
-			private final int FPS_THROTTLE = 100;
+			private final int FPS_THROTTLE = 60;
 			
 			@Override
 			public void run() {
