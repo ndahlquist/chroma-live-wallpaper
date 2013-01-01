@@ -8,6 +8,7 @@ import javax.microedition.khronos.egl.EGLDisplay;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MotionEvent;
 
@@ -18,7 +19,7 @@ import net.rbgrn.android.glwallpaperservice.*;
 public class MyWallpaperService extends GLWallpaperService {
 	private static String TAG = "ChromaLW";
 	private static final boolean DEBUG = false;
-	public static final String SHARED_PREFS_NAME = "ChromaLWSettings";
+	public static final String SHARED_PREFS_NAME = "edu.stanford.nicd"; // TODO
 
 	private static class ContextFactory implements EGLContextFactory {
 		private static int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
@@ -223,6 +224,7 @@ public class MyWallpaperService extends GLWallpaperService {
 
 		MyRenderer renderer;
 		WatcherThread watcher;
+		int fpsThrottle;
 
 		public WallpaperEngine(SharedPreferences preferences) {
 			super();
@@ -231,9 +233,10 @@ public class MyWallpaperService extends GLWallpaperService {
 			setEGLConfigChooser(new ConfigChooser(5, 6, 5, 0, 16, 0));
 
 			renderer = new MyRenderer(getBaseContext());
-			//renderer.setSharedPreferences(preferences);
 			setRenderer(renderer);
 			setRenderMode(RENDERMODE_WHEN_DIRTY);
+
+			
 		}
 
 		public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset, int yPixelOffset) {
@@ -265,7 +268,6 @@ public class MyWallpaperService extends GLWallpaperService {
 		class WatcherThread extends Thread {
 			
 			public boolean kill = false;
-			private final int FPS_THROTTLE = 60;
 			
 			@Override
 			public void run() {
@@ -273,8 +275,10 @@ public class MyWallpaperService extends GLWallpaperService {
 					if(kill)
 						return;
 					requestRender();
+					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+					fpsThrottle = prefs.getInt("fpsThrottle", 40);
 					try {
-						Thread.sleep(FPS_THROTTLE);
+						Thread.sleep(fpsThrottle);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -286,6 +290,6 @@ public class MyWallpaperService extends GLWallpaperService {
 	@Override
 	public Engine onCreateEngine() {
 		return new WallpaperEngine(this.getSharedPreferences(SHARED_PREFS_NAME,
-				Context.MODE_PRIVATE));
+				Context.MODE_MULTI_PROCESS));
 	}
 }
