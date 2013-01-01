@@ -54,7 +54,8 @@ public class SettingsActivity extends Activity  {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		mRenderer.close();
+		if(mRenderer != null)
+			mRenderer.close();
 		mGLView.onPause();
 	}
 
@@ -72,12 +73,13 @@ public class SettingsActivity extends Activity  {
 
 		WatcherThread watcher;
 		
-		public void start() { // TODO
+		public void start() {
 			watcher = new WatcherThread();
 			watcher.start();
 		}
 		
 		public void close() {
+			super.close();
 			watcher.kill = true;
 		}
 

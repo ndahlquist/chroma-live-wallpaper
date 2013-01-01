@@ -11,7 +11,9 @@ import com.learnopengles.android.common.*;
 import net.rbgrn.android.glwallpaperservice.*;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.opengl.GLES20;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 
 public class MyRenderer implements GLWallpaperService.Renderer {
@@ -22,6 +24,11 @@ public class MyRenderer implements GLWallpaperService.Renderer {
 
 	public MyRenderer(Context context) {
 		this.context = context;
+	}
+	
+	public void close() {
+		if(mBackground != null)
+			mBackground.close(context);
 	}
 
 	public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -82,7 +89,7 @@ class ChromaBackground {
 	static final int BYTES_PER_FLOAT = 4;
 	private final int vertexCount;
 	private final int vertexStride = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
-
+	
 	public ChromaBackground(Context context) throws Exception {
 
 		float[] triangleCoords = new float[2*TESSELATION_FACTOR*COORDS_PER_VERTEX];
@@ -140,7 +147,15 @@ class ChromaBackground {
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
-		frameNum = (int) (65535.0 * Math.random());
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		frameNum = prefs.getInt("frameNum", (int) (65535.0 * Math.random()));
+	}
+	
+	public void close(Context context) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putInt("frameNum", frameNum);
+		editor.commit();
 	}
 
 	public void draw() {

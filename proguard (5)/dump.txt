@@ -527,7 +527,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 191):
+Constant Pool (count = 227):
   + Integer [-65535]
   + Integer [12]
   + Integer [33984]
@@ -544,23 +544,29 @@ Constant Pool (count = 191):
   + String [Fragment shader compilation failed.]
   + String [Shader compilation failed during linking.]
   + String [Vertex shader compilation failed.]
+  + String [a_Position]
+  + String [frameNum]
   + String [u_ColorSwath]
   + String [u_Noise]
   + String [u_Time]
   + String [u_Touch]
-  + String [vPosition]
   + Class [a/a/a/a/a]
   + Class [a/a/a/a/b]
   + Class [a/a/a/a/c]
+  + Class [android/content/SharedPreferences]
+  + Class [android/content/SharedPreferences$Editor]
   + Class [android/opengl/GLES20]
+  + Class [android/preference/PreferenceManager]
   + Class [android/view/MotionEvent]
   + Class [edu/stanford/nicd/chroma/a]
   + Class [java/lang/Exception]
+  + Class [java/lang/Math]
   + Class [java/lang/Object]
   + Class [java/lang/String]
   + Class [java/nio/ByteBuffer]
   + Class [java/nio/ByteOrder]
   + Class [java/nio/FloatBuffer]
+  + Double [65535.0]
   + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
   + Fieldref [edu/stanford/nicd/chroma/a.b I]
   + Fieldref [edu/stanford/nicd/chroma/a.c Ljava/nio/FloatBuffer;]
@@ -589,10 +595,12 @@ Constant Pool (count = 191):
   + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
   + Methodref [android/opengl/GLES20.glUseProgram (I)V]
   + Methodref [android/opengl/GLES20.glVertexAttribPointer (IIIZILjava/nio/Buffer;)V]
+  + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
   + Methodref [android/view/MotionEvent.getAction ()I]
   + Methodref [android/view/MotionEvent.getPointerCount ()I]
   + Methodref [android/view/MotionEvent.getX (I)F]
   + Methodref [java/lang/Exception.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V]
+  + Methodref [java/lang/Math.random ()D]
   + Methodref [java/lang/Object.<init> ()V]
   + Methodref [java/nio/ByteBuffer.allocateDirect (I)Ljava/nio/ByteBuffer;]
   + Methodref [java/nio/ByteBuffer.asFloatBuffer ()Ljava/nio/FloatBuffer;]
@@ -600,6 +608,10 @@ Constant Pool (count = 191):
   + Methodref [java/nio/ByteOrder.nativeOrder ()Ljava/nio/ByteOrder;]
   + Methodref [java/nio/FloatBuffer.position (I)Ljava/nio/Buffer;]
   + Methodref [java/nio/FloatBuffer.put ([F)Ljava/nio/FloatBuffer;]
+  + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
+  + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+  + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
+  + InterfaceMethodref [android/content/SharedPreferences$Editor.putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Ljava/lang/String;Ljava/lang/Throwable;)V]
   + NameAndType [a (II[Ljava/lang/String;)I]
@@ -611,11 +623,15 @@ Constant Pool (count = 191):
   + NameAndType [asFloatBuffer ()Ljava/nio/FloatBuffer;]
   + NameAndType [b I]
   + NameAndType [c Ljava/nio/FloatBuffer;]
+  + NameAndType [commit ()Z]
   + NameAndType [d I]
   + NameAndType [e I]
+  + NameAndType [edit ()Landroid/content/SharedPreferences$Editor;]
   + NameAndType [f I]
   + NameAndType [g I]
   + NameAndType [getAction ()I]
+  + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + NameAndType [getInt (Ljava/lang/String;I)I]
   + NameAndType [getPointerCount ()I]
   + NameAndType [getX (I)F]
   + NameAndType [glActiveTexture (I)V]
@@ -639,10 +655,15 @@ Constant Pool (count = 191):
   + NameAndType [order (Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;]
   + NameAndType [position (I)Ljava/nio/Buffer;]
   + NameAndType [put ([F)Ljava/nio/FloatBuffer;]
+  + NameAndType [putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
+  + NameAndType [random ()D]
+  + Utf8 [()D]
   + Utf8 [()I]
+  + Utf8 [()Landroid/content/SharedPreferences$Editor;]
   + Utf8 [()Ljava/nio/ByteOrder;]
   + Utf8 [()Ljava/nio/FloatBuffer;]
   + Utf8 [()V]
+  + Utf8 [()Z]
   + Utf8 [(I)F]
   + Utf8 [(I)Ljava/nio/Buffer;]
   + Utf8 [(I)Ljava/nio/ByteBuffer;]
@@ -653,9 +674,12 @@ Constant Pool (count = 191):
   + Utf8 [(IIIZILjava/nio/Buffer;)V]
   + Utf8 [(II[Ljava/lang/String;)I]
   + Utf8 [(ILjava/lang/String;)I]
+  + Utf8 [(Landroid/content/Context;)Landroid/content/SharedPreferences;]
   + Utf8 [(Landroid/content/Context;)V]
   + Utf8 [(Landroid/content/Context;I)Ljava/lang/String;]
   + Utf8 [(Landroid/content/Context;II)V]
+  + Utf8 [(Ljava/lang/String;I)I]
+  + Utf8 [(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
   + Utf8 [(Ljava/lang/String;Ljava/lang/Throwable;)V]
   + Utf8 [(Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;]
   + Utf8 [([F)Ljava/nio/FloatBuffer;]
@@ -672,18 +696,27 @@ Constant Pool (count = 191):
   + Utf8 [a/a/a/a/a]
   + Utf8 [a/a/a/a/b]
   + Utf8 [a/a/a/a/c]
+  + Utf8 [a_Position]
   + Utf8 [allocateDirect]
+  + Utf8 [android/content/SharedPreferences]
+  + Utf8 [android/content/SharedPreferences$Editor]
   + Utf8 [android/opengl/GLES20]
+  + Utf8 [android/preference/PreferenceManager]
   + Utf8 [android/view/MotionEvent]
   + Utf8 [asFloatBuffer]
   + Utf8 [b]
   + Utf8 [c]
+  + Utf8 [commit]
   + Utf8 [d]
   + Utf8 [e]
+  + Utf8 [edit]
   + Utf8 [edu/stanford/nicd/chroma/a]
   + Utf8 [f]
+  + Utf8 [frameNum]
   + Utf8 [g]
   + Utf8 [getAction]
+  + Utf8 [getDefaultSharedPreferences]
+  + Utf8 [getInt]
   + Utf8 [getPointerCount]
   + Utf8 [getX]
   + Utf8 [glActiveTexture]
@@ -703,6 +736,7 @@ Constant Pool (count = 191):
   + Utf8 [i]
   + Utf8 [j]
   + Utf8 [java/lang/Exception]
+  + Utf8 [java/lang/Math]
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/String]
   + Utf8 [java/nio/ByteBuffer]
@@ -713,11 +747,12 @@ Constant Pool (count = 191):
   + Utf8 [order]
   + Utf8 [position]
   + Utf8 [put]
+  + Utf8 [putInt]
+  + Utf8 [random]
   + Utf8 [u_ColorSwath]
   + Utf8 [u_Noise]
   + Utf8 [u_Time]
   + Utf8 [u_Touch]
-  + Utf8 [vPosition]
 
 Fields (count = 11):
   + Field:        c Ljava/nio/FloatBuffer;
@@ -757,18 +792,18 @@ Fields (count = 11):
     + Constant value attribute:
     + Integer [12]
 
-Methods (count = 2):
+Methods (count = 3):
   - Method:       <init>(Landroid/content/Context;)V
     Access flags: 0x1
       = public a(android.content.Context)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 394, locals = 8, stack = 7):
+    + Code attribute instructions (code length = 421, locals = 9, stack = 7):
       [0] aload_0 v0
-      [1] invokespecial #66
+      [1] invokespecial #75
         + Methodref [java/lang/Object.<init> ()V]
       [4] aload_0 v0
       [5] bipush 12
-      [7] putfield #44
+      [7] putfield #51
         + Fieldref [edu/stanford/nicd/chroma/a.k I]
       [10] bipush 60
       [12] newarray 6
@@ -850,207 +885,254 @@ Methods (count = 2):
       [102] arraylength
       [103] iconst_3
       [104] idiv
-      [105] putfield #43
+      [105] putfield #50
         + Fieldref [edu/stanford/nicd/chroma/a.j I]
       [108] aload_2 v2
       [109] arraylength
       [110] iconst_4
       [111] imul
-      [112] invokestatic #67
+      [112] invokestatic #76
         + Methodref [java/nio/ByteBuffer.allocateDirect (I)Ljava/nio/ByteBuffer;]
       [115] astore_3 v3
       [116] aload_3 v3
-      [117] invokestatic #70
+      [117] invokestatic #79
         + Methodref [java/nio/ByteOrder.nativeOrder ()Ljava/nio/ByteOrder;]
-      [120] invokevirtual #69
+      [120] invokevirtual #78
         + Methodref [java/nio/ByteBuffer.order (Ljava/nio/ByteOrder;)Ljava/nio/ByteBuffer;]
       [123] pop
       [124] aload_0 v0
       [125] aload_3 v3
-      [126] invokevirtual #68
+      [126] invokevirtual #77
         + Methodref [java/nio/ByteBuffer.asFloatBuffer ()Ljava/nio/FloatBuffer;]
-      [129] putfield #36
+      [129] putfield #43
         + Fieldref [edu/stanford/nicd/chroma/a.c Ljava/nio/FloatBuffer;]
       [132] aload_0 v0
-      [133] getfield #36
+      [133] getfield #43
         + Fieldref [edu/stanford/nicd/chroma/a.c Ljava/nio/FloatBuffer;]
       [136] aload_2 v2
-      [137] invokevirtual #72
+      [137] invokevirtual #81
         + Methodref [java/nio/FloatBuffer.put ([F)Ljava/nio/FloatBuffer;]
       [140] pop
       [141] aload_0 v0
-      [142] getfield #36
+      [142] getfield #43
         + Fieldref [edu/stanford/nicd/chroma/a.c Ljava/nio/FloatBuffer;]
       [145] iconst_0
-      [146] invokevirtual #71
+      [146] invokevirtual #80
         + Methodref [java/nio/FloatBuffer.position (I)Ljava/nio/Buffer;]
       [149] pop
       [150] aload_1 v1
       [151] ldc #11
         + Integer [2131034113]
-      [153] invokestatic #45
+      [153] invokestatic #52
         + Methodref [a/a/a/a/a.a (Landroid/content/Context;I)Ljava/lang/String;]
       [156] astore v4
       [158] ldc #6
         + Integer [35633]
       [160] aload v4
-      [162] invokestatic #47
+      [162] invokestatic #54
         + Methodref [a/a/a/a/b.a (ILjava/lang/String;)I]
       [165] istore v5
       [167] iload v5
       [169] ifne +14 (target=183)
-      [172] new #28
+      [172] new #32
         + Class [java/lang/Exception]
       [175] dup
       [176] ldc #16
         + String [Vertex shader compilation failed.]
       [178] aconst_null
-      [179] invokespecial #65
+      [179] invokespecial #73
         + Methodref [java/lang/Exception.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V]
       [182] athrow
       [183] aload_1 v1
       [184] ldc #10
         + Integer [2131034112]
-      [186] invokestatic #45
+      [186] invokestatic #52
         + Methodref [a/a/a/a/a.a (Landroid/content/Context;I)Ljava/lang/String;]
       [189] astore v6
       [191] ldc #5
         + Integer [35632]
       [193] aload v6
-      [195] invokestatic #47
+      [195] invokestatic #54
         + Methodref [a/a/a/a/b.a (ILjava/lang/String;)I]
       [198] istore v7
       [200] iload v7
       [202] ifne +14 (target=216)
-      [205] new #28
+      [205] new #32
         + Class [java/lang/Exception]
       [208] dup
       [209] ldc #14
         + String [Fragment shader compilation failed.]
       [211] aconst_null
-      [212] invokespecial #65
+      [212] invokespecial #73
         + Methodref [java/lang/Exception.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V]
       [215] athrow
       [216] aload_0 v0
       [217] iload v5
       [219] iload v7
       [221] iconst_4
-      [222] anewarray #30
+      [222] anewarray #35
         + Class [java/lang/String]
       [225] dup
       [226] iconst_0
-      [227] ldc #19
+      [227] ldc #21
         + String [u_Time]
       [229] aastore
       [230] dup
       [231] iconst_1
-      [232] ldc #21
-        + String [vPosition]
+      [232] ldc #17
+        + String [a_Position]
       [234] aastore
       [235] dup
       [236] iconst_2
-      [237] ldc #17
+      [237] ldc #19
         + String [u_ColorSwath]
       [239] aastore
       [240] dup
       [241] iconst_3
-      [242] ldc #18
+      [242] ldc #20
         + String [u_Noise]
       [244] aastore
-      [245] invokestatic #46
+      [245] invokestatic #53
         + Methodref [a/a/a/a/b.a (II[Ljava/lang/String;)I]
-      [248] putfield #37
+      [248] putfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
       [251] aload_0 v0
-      [252] getfield #37
+      [252] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
       [255] ifne +14 (target=269)
-      [258] new #28
+      [258] new #32
         + Class [java/lang/Exception]
       [261] dup
       [262] ldc #15
         + String [Shader compilation failed during linking.]
       [264] aconst_null
-      [265] invokespecial #65
+      [265] invokespecial #73
         + Methodref [java/lang/Exception.<init> (Ljava/lang/String;Ljava/lang/Throwable;)V]
       [268] athrow
       [269] aload_0 v0
       [270] aload_0 v0
-      [271] getfield #37
+      [271] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
-      [274] ldc #17
+      [274] ldc #19
         + String [u_ColorSwath]
-      [276] invokestatic #56
+      [276] invokestatic #63
         + Methodref [android/opengl/GLES20.glGetUniformLocation (ILjava/lang/String;)I]
-      [279] putfield #40
+      [279] putfield #47
         + Fieldref [edu/stanford/nicd/chroma/a.g I]
       [282] ldc #3
         + Integer [33984]
-      [284] invokestatic #49
+      [284] invokestatic #56
         + Methodref [android/opengl/GLES20.glActiveTexture (I)V]
       [287] aload_1 v1
       [288] ldc #8
         + Integer [2130837504]
       [290] aload_0 v0
-      [291] getfield #40
+      [291] getfield #47
         + Fieldref [edu/stanford/nicd/chroma/a.g I]
-      [294] invokestatic #48
+      [294] invokestatic #55
         + Methodref [a/a/a/a/c.a (Landroid/content/Context;II)V]
       [297] sipush 3553
       [300] aload_0 v0
-      [301] getfield #40
+      [301] getfield #47
         + Fieldref [edu/stanford/nicd/chroma/a.g I]
-      [304] invokestatic #50
+      [304] invokestatic #57
         + Methodref [android/opengl/GLES20.glBindTexture (II)V]
       [307] sipush 3553
       [310] sipush 10240
       [313] sipush 9729
-      [316] invokestatic #57
+      [316] invokestatic #64
         + Methodref [android/opengl/GLES20.glTexParameteri (III)V]
       [319] sipush 3553
       [322] sipush 10241
       [325] sipush 9729
-      [328] invokestatic #57
+      [328] invokestatic #64
         + Methodref [android/opengl/GLES20.glTexParameteri (III)V]
       [331] aload_0 v0
       [332] aload_0 v0
-      [333] getfield #37
+      [333] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
-      [336] ldc #18
+      [336] ldc #20
         + String [u_Noise]
-      [338] invokestatic #56
+      [338] invokestatic #63
         + Methodref [android/opengl/GLES20.glGetUniformLocation (ILjava/lang/String;)I]
-      [341] putfield #41
+      [341] putfield #48
         + Fieldref [edu/stanford/nicd/chroma/a.h I]
       [344] ldc #4
         + Integer [33985]
-      [346] invokestatic #49
+      [346] invokestatic #56
         + Methodref [android/opengl/GLES20.glActiveTexture (I)V]
       [349] aload_1 v1
       [350] ldc #9
         + Integer [2130837506]
       [352] aload_0 v0
-      [353] getfield #41
+      [353] getfield #48
         + Fieldref [edu/stanford/nicd/chroma/a.h I]
-      [356] invokestatic #48
+      [356] invokestatic #55
         + Methodref [a/a/a/a/c.a (Landroid/content/Context;II)V]
       [359] sipush 3553
       [362] aload_0 v0
-      [363] getfield #41
+      [363] getfield #48
         + Fieldref [edu/stanford/nicd/chroma/a.h I]
-      [366] invokestatic #50
+      [366] invokestatic #57
         + Methodref [android/opengl/GLES20.glBindTexture (II)V]
       [369] sipush 3553
       [372] sipush 10240
       [375] sipush 9729
-      [378] invokestatic #57
+      [378] invokestatic #64
         + Methodref [android/opengl/GLES20.glTexParameteri (III)V]
       [381] sipush 3553
       [384] sipush 10241
       [387] sipush 9729
-      [390] invokestatic #57
+      [390] invokestatic #64
         + Methodref [android/opengl/GLES20.glTexParameteri (III)V]
-      [393] return
+      [393] aload_1 v1
+      [394] invokestatic #69
+        + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+      [397] astore v8
+      [399] aload_0 v0
+      [400] aload v8
+      [402] ldc #18
+        + String [frameNum]
+      [404] ldc2_w #39
+        + Double [65535.0]
+      [407] invokestatic #74
+        + Methodref [java/lang/Math.random ()D]
+      [410] dmul
+      [411] d2i
+      [412] invokeinterface #83
+        + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+      [417] putfield #49
+        + Fieldref [edu/stanford/nicd/chroma/a.i I]
+      [420] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       a(Landroid/content/Context;)V
+    Access flags: 0x1
+      = public void a(android.content.Context)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 33, locals = 4, stack = 3):
+      [0] aload_1 v1
+      [1] invokestatic #69
+        + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+      [4] astore_2 v2
+      [5] aload_2 v2
+      [6] invokeinterface #82
+        + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
+      [11] astore_3 v3
+      [12] aload_3 v3
+      [13] ldc #18
+        + String [frameNum]
+      [15] aload_0 v0
+      [16] getfield #49
+        + Fieldref [edu/stanford/nicd/chroma/a.i I]
+      [19] invokeinterface #85
+        + InterfaceMethodref [android/content/SharedPreferences$Editor.putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
+      [24] pop
+      [25] aload_3 v3
+      [26] invokeinterface #84
+        + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
+      [31] pop
+      [32] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a()V
@@ -1059,34 +1141,34 @@ Methods (count = 2):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 438, locals = 2, stack = 6):
       [0] sipush 3024
-      [3] invokestatic #53
+      [3] invokestatic #60
         + Methodref [android/opengl/GLES20.glEnable (I)V]
       [6] sipush 3553
-      [9] invokestatic #53
+      [9] invokestatic #60
         + Methodref [android/opengl/GLES20.glEnable (I)V]
       [12] aload_0 v0
-      [13] getfield #37
+      [13] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
-      [16] invokestatic #60
+      [16] invokestatic #67
         + Methodref [android/opengl/GLES20.glUseProgram (I)V]
       [19] aload_0 v0
       [20] aload_0 v0
-      [21] getfield #37
+      [21] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
-      [24] ldc #19
+      [24] ldc #21
         + String [u_Time]
-      [26] invokestatic #56
+      [26] invokestatic #63
         + Methodref [android/opengl/GLES20.glGetUniformLocation (ILjava/lang/String;)I]
-      [29] putfield #39
+      [29] putfield #46
         + Fieldref [edu/stanford/nicd/chroma/a.f I]
       [32] aload_0 v0
       [33] dup
-      [34] getfield #42
+      [34] getfield #49
         + Fieldref [edu/stanford/nicd/chroma/a.i I]
       [37] iconst_1
       [38] iadd
       [39] dup_x1
-      [40] putfield #42
+      [40] putfield #49
         + Fieldref [edu/stanford/nicd/chroma/a.i I]
       [43] ldc #7
         + Integer [65535]
@@ -1094,26 +1176,26 @@ Methods (count = 2):
       [48] aload_0 v0
       [49] ldc #1
         + Integer [-65535]
-      [51] putfield #42
+      [51] putfield #49
         + Fieldref [edu/stanford/nicd/chroma/a.i I]
       [54] aload_0 v0
-      [55] getfield #39
+      [55] getfield #46
         + Fieldref [edu/stanford/nicd/chroma/a.f I]
       [58] aload_0 v0
-      [59] getfield #42
+      [59] getfield #49
         + Fieldref [edu/stanford/nicd/chroma/a.i I]
-      [62] invokestatic #58
+      [62] invokestatic #65
         + Methodref [android/opengl/GLES20.glUniform1i (II)V]
       [65] aload_0 v0
-      [66] getfield #37
+      [66] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
-      [69] ldc #20
+      [69] ldc #22
         + String [u_Touch]
-      [71] invokestatic #56
+      [71] invokestatic #63
         + Methodref [android/opengl/GLES20.glGetUniformLocation (ILjava/lang/String;)I]
       [74] istore_1 v1
       [75] aload_0 v0
-      [76] getfield #34
+      [76] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [79] ifnonnull +18 (target=97)
       [82] iload_1 v1
@@ -1125,19 +1207,19 @@ Methods (count = 2):
         + Float [-1.0]
       [89] ldc #12
         + Float [-1.0]
-      [91] invokestatic #59
+      [91] invokestatic #66
         + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
       [94] goto +243 (target=337)
       [97] aload_0 v0
-      [98] getfield #34
+      [98] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
-      [101] invokevirtual #62
+      [101] invokevirtual #70
         + Methodref [android/view/MotionEvent.getAction ()I]
       [104] iconst_1
       [105] ificmpne +23 (target=128)
       [108] aload_0 v0
       [109] aconst_null
-      [110] putfield #34
+      [110] putfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [113] iload_1 v1
       [114] ldc #12
@@ -1148,13 +1230,13 @@ Methods (count = 2):
         + Float [-1.0]
       [120] ldc #12
         + Float [-1.0]
-      [122] invokestatic #59
+      [122] invokestatic #66
         + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
       [125] goto +212 (target=337)
       [128] aload_0 v0
-      [129] getfield #34
+      [129] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
-      [132] invokevirtual #63
+      [132] invokevirtual #71
         + Methodref [android/view/MotionEvent.getPointerCount ()I]
       [135] tableswitch (3 offsets, default=142) (target=277)
         1: offset = 25, target = 160
@@ -1163,13 +1245,13 @@ Methods (count = 2):
         default: offset = 142, target = 277
       [160] iload_1 v1
       [161] aload_0 v0
-      [162] getfield #34
+      [162] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [165] iconst_0
-      [166] invokevirtual #64
+      [166] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [169] aload_0 v0
-      [170] getfield #35
+      [170] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [173] i2f
       [174] fdiv
@@ -1179,29 +1261,29 @@ Methods (count = 2):
         + Float [-1.0]
       [179] ldc #12
         + Float [-1.0]
-      [181] invokestatic #59
+      [181] invokestatic #66
         + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
       [184] goto +153 (target=337)
       [187] iload_1 v1
       [188] aload_0 v0
-      [189] getfield #34
+      [189] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [192] iconst_0
-      [193] invokevirtual #64
+      [193] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [196] aload_0 v0
-      [197] getfield #35
+      [197] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [200] i2f
       [201] fdiv
       [202] aload_0 v0
-      [203] getfield #34
+      [203] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [206] iconst_1
-      [207] invokevirtual #64
+      [207] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [210] aload_0 v0
-      [211] getfield #35
+      [211] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [214] i2f
       [215] fdiv
@@ -1209,167 +1291,275 @@ Methods (count = 2):
         + Float [-1.0]
       [218] ldc #12
         + Float [-1.0]
-      [220] invokestatic #59
+      [220] invokestatic #66
         + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
       [223] goto +114 (target=337)
       [226] iload_1 v1
       [227] aload_0 v0
-      [228] getfield #34
+      [228] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [231] iconst_0
-      [232] invokevirtual #64
+      [232] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [235] aload_0 v0
-      [236] getfield #35
+      [236] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [239] i2f
       [240] fdiv
       [241] aload_0 v0
-      [242] getfield #34
+      [242] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [245] iconst_1
-      [246] invokevirtual #64
+      [246] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [249] aload_0 v0
-      [250] getfield #35
+      [250] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [253] i2f
       [254] fdiv
       [255] aload_0 v0
-      [256] getfield #34
+      [256] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [259] iconst_2
-      [260] invokevirtual #64
+      [260] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [263] aload_0 v0
-      [264] getfield #35
+      [264] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [267] i2f
       [268] fdiv
       [269] ldc #12
         + Float [-1.0]
-      [271] invokestatic #59
+      [271] invokestatic #66
         + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
       [274] goto +63 (target=337)
       [277] iload_1 v1
       [278] aload_0 v0
-      [279] getfield #34
+      [279] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [282] iconst_0
-      [283] invokevirtual #64
+      [283] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [286] aload_0 v0
-      [287] getfield #35
+      [287] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [290] i2f
       [291] fdiv
       [292] aload_0 v0
-      [293] getfield #34
+      [293] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [296] iconst_1
-      [297] invokevirtual #64
+      [297] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [300] aload_0 v0
-      [301] getfield #35
+      [301] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [304] i2f
       [305] fdiv
       [306] aload_0 v0
-      [307] getfield #34
+      [307] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [310] iconst_2
-      [311] invokevirtual #64
+      [311] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [314] aload_0 v0
-      [315] getfield #35
+      [315] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [318] i2f
       [319] fdiv
       [320] aload_0 v0
-      [321] getfield #34
+      [321] getfield #41
         + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
       [324] iconst_3
-      [325] invokevirtual #64
+      [325] invokevirtual #72
         + Methodref [android/view/MotionEvent.getX (I)F]
       [328] aload_0 v0
-      [329] getfield #35
+      [329] getfield #42
         + Fieldref [edu/stanford/nicd/chroma/a.b I]
       [332] i2f
       [333] fdiv
-      [334] invokestatic #59
+      [334] invokestatic #66
         + Methodref [android/opengl/GLES20.glUniform4f (IFFFF)V]
       [337] ldc #3
         + Integer [33984]
-      [339] invokestatic #49
+      [339] invokestatic #56
         + Methodref [android/opengl/GLES20.glActiveTexture (I)V]
       [342] aload_0 v0
-      [343] getfield #40
+      [343] getfield #47
         + Fieldref [edu/stanford/nicd/chroma/a.g I]
       [346] iconst_0
-      [347] invokestatic #58
+      [347] invokestatic #65
         + Methodref [android/opengl/GLES20.glUniform1i (II)V]
       [350] sipush 3553
       [353] aload_0 v0
-      [354] getfield #40
+      [354] getfield #47
         + Fieldref [edu/stanford/nicd/chroma/a.g I]
-      [357] invokestatic #50
+      [357] invokestatic #57
         + Methodref [android/opengl/GLES20.glBindTexture (II)V]
       [360] ldc #4
         + Integer [33985]
-      [362] invokestatic #49
+      [362] invokestatic #56
         + Methodref [android/opengl/GLES20.glActiveTexture (I)V]
       [365] aload_0 v0
-      [366] getfield #41
+      [366] getfield #48
         + Fieldref [edu/stanford/nicd/chroma/a.h I]
       [369] iconst_1
-      [370] invokestatic #58
+      [370] invokestatic #65
         + Methodref [android/opengl/GLES20.glUniform1i (II)V]
       [373] sipush 3553
       [376] aload_0 v0
-      [377] getfield #41
+      [377] getfield #48
         + Fieldref [edu/stanford/nicd/chroma/a.h I]
-      [380] invokestatic #50
+      [380] invokestatic #57
         + Methodref [android/opengl/GLES20.glBindTexture (II)V]
       [383] aload_0 v0
       [384] aload_0 v0
-      [385] getfield #37
+      [385] getfield #44
         + Fieldref [edu/stanford/nicd/chroma/a.d I]
-      [388] ldc #21
-        + String [vPosition]
-      [390] invokestatic #55
+      [388] ldc #17
+        + String [a_Position]
+      [390] invokestatic #62
         + Methodref [android/opengl/GLES20.glGetAttribLocation (ILjava/lang/String;)I]
-      [393] putfield #38
+      [393] putfield #45
         + Fieldref [edu/stanford/nicd/chroma/a.e I]
       [396] aload_0 v0
-      [397] getfield #38
+      [397] getfield #45
         + Fieldref [edu/stanford/nicd/chroma/a.e I]
-      [400] invokestatic #54
+      [400] invokestatic #61
         + Methodref [android/opengl/GLES20.glEnableVertexAttribArray (I)V]
       [403] aload_0 v0
-      [404] getfield #38
+      [404] getfield #45
         + Fieldref [edu/stanford/nicd/chroma/a.e I]
       [407] iconst_3
       [408] sipush 5126
       [411] iconst_0
       [412] bipush 12
       [414] aload_0 v0
-      [415] getfield #36
+      [415] getfield #43
         + Fieldref [edu/stanford/nicd/chroma/a.c Ljava/nio/FloatBuffer;]
-      [418] invokestatic #61
+      [418] invokestatic #68
         + Methodref [android/opengl/GLES20.glVertexAttribPointer (IIIZILjava/nio/Buffer;)V]
       [421] iconst_5
       [422] iconst_0
       [423] aload_0 v0
-      [424] getfield #43
+      [424] getfield #50
         + Fieldref [edu/stanford/nicd/chroma/a.j I]
-      [427] invokestatic #52
+      [427] invokestatic #59
         + Methodref [android/opengl/GLES20.glDrawArrays (III)V]
       [430] aload_0 v0
-      [431] getfield #38
+      [431] getfield #45
         + Fieldref [edu/stanford/nicd/chroma/a.e I]
-      [434] invokestatic #51
+      [434] invokestatic #58
         + Methodref [android/opengl/GLES20.glDisableVertexAttribArray (I)V]
       [437] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: edu/stanford/nicd/chroma/InfoActivity
+  Superclass:    android/app/Activity
+  Major version: 0x31
+  Minor version: 0x0
+  Access flags:  0x21
+    = public class edu.stanford.nicd.chroma.InfoActivity extends android.app.Activity
+
+Interfaces (count = 0):
+
+Constant Pool (count = 34):
+  + String [android.service.wallpaper.CHANGE_LIVE_WALLPAPER]
+  + Class [android/app/Activity]
+  + Class [android/content/Intent]
+  + Class [edu/stanford/nicd/chroma/InfoActivity]
+  + Methodref [android/app/Activity.<init> ()V]
+  + Methodref [android/app/Activity.onActivityResult (IILandroid/content/Intent;)V]
+  + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
+  + Methodref [android/content/Intent.<init> ()V]
+  + Methodref [android/content/Intent.setAction (Ljava/lang/String;)Landroid/content/Intent;]
+  + Methodref [edu/stanford/nicd/chroma/InfoActivity.finish ()V]
+  + Methodref [edu/stanford/nicd/chroma/InfoActivity.startActivityForResult (Landroid/content/Intent;I)V]
+  + NameAndType [<init> ()V]
+  + NameAndType [finish ()V]
+  + NameAndType [onActivityResult (IILandroid/content/Intent;)V]
+  + NameAndType [onCreate (Landroid/os/Bundle;)V]
+  + NameAndType [setAction (Ljava/lang/String;)Landroid/content/Intent;]
+  + NameAndType [startActivityForResult (Landroid/content/Intent;I)V]
+  + Utf8 [()V]
+  + Utf8 [(IILandroid/content/Intent;)V]
+  + Utf8 [(Landroid/content/Intent;I)V]
+  + Utf8 [(Landroid/os/Bundle;)V]
+  + Utf8 [(Ljava/lang/String;)Landroid/content/Intent;]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [android.service.wallpaper.CHANGE_LIVE_WALLPAPER]
+  + Utf8 [android/app/Activity]
+  + Utf8 [android/content/Intent]
+  + Utf8 [edu/stanford/nicd/chroma/InfoActivity]
+  + Utf8 [finish]
+  + Utf8 [onActivityResult]
+  + Utf8 [onCreate]
+  + Utf8 [setAction]
+  + Utf8 [startActivityForResult]
+
+Fields (count = 0):
+
+Methods (count = 3):
+  - Method:       <init>()V
+    Access flags: 0x1
+      = public InfoActivity()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
+      [0] aload_0 v0
+      [1] invokespecial #5
+        + Methodref [android/app/Activity.<init> ()V]
+      [4] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onCreate(Landroid/os/Bundle;)V
+    Access flags: 0x1
+      = public void onCreate(android.os.Bundle)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 27, locals = 3, stack = 3):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] invokespecial #7
+        + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
+      [5] new #3
+        + Class [android/content/Intent]
+      [8] dup
+      [9] invokespecial #8
+        + Methodref [android/content/Intent.<init> ()V]
+      [12] astore_2 v2
+      [13] aload_2 v2
+      [14] ldc #1
+        + String [android.service.wallpaper.CHANGE_LIVE_WALLPAPER]
+      [16] invokevirtual #9
+        + Methodref [android/content/Intent.setAction (Ljava/lang/String;)Landroid/content/Intent;]
+      [19] pop
+      [20] aload_0 v0
+      [21] aload_2 v2
+      [22] iconst_0
+      [23] invokevirtual #11
+        + Methodref [edu/stanford/nicd/chroma/InfoActivity.startActivityForResult (Landroid/content/Intent;I)V]
+      [26] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onActivityResult(IILandroid/content/Intent;)V
+    Access flags: 0x4
+      = protected void onActivityResult(int,int,android.content.Intent)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 12, locals = 4, stack = 4):
+      [0] aload_0 v0
+      [1] iload_1 v1
+      [2] iload_2 v2
+      [3] aload_3 v3
+      [4] invokespecial #6
+        + Methodref [android/app/Activity.onActivityResult (IILandroid/content/Intent;)V]
+      [7] aload_0 v0
+      [8] invokevirtual #10
+        + Methodref [edu/stanford/nicd/chroma/InfoActivity.finish ()V]
+      [11] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
@@ -1386,35 +1576,37 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [b/a/a/a/o]
 
-Constant Pool (count = 60):
+Constant Pool (count = 65):
   + Class [android/opengl/GLES20]
   + Class [b/a/a/a/o]
   + Class [edu/stanford/nicd/chroma/a]
   + Class [edu/stanford/nicd/chroma/b]
-  + Class [edu/stanford/nicd/chroma/h]
+  + Class [edu/stanford/nicd/chroma/k]
   + Class [java/lang/Exception]
   + Class [java/lang/Object]
   + Fieldref [edu/stanford/nicd/chroma/a.a Landroid/view/MotionEvent;]
   + Fieldref [edu/stanford/nicd/chroma/a.b I]
   + Fieldref [edu/stanford/nicd/chroma/b.a Ledu/stanford/nicd/chroma/a;]
   + Fieldref [edu/stanford/nicd/chroma/b.b Landroid/content/Context;]
-  + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/h;]
+  + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/k;]
   + Methodref [android/opengl/GLES20.glClearColor (FFFF)V]
   + Methodref [android/opengl/GLES20.glViewport (IIII)V]
   + Methodref [edu/stanford/nicd/chroma/a.<init> (Landroid/content/Context;)V]
   + Methodref [edu/stanford/nicd/chroma/a.a ()V]
-  + Methodref [edu/stanford/nicd/chroma/h.<init> (Landroid/content/Context;)V]
-  + Methodref [edu/stanford/nicd/chroma/h.a ()V]
+  + Methodref [edu/stanford/nicd/chroma/a.a (Landroid/content/Context;)V]
+  + Methodref [edu/stanford/nicd/chroma/k.<init> (Landroid/content/Context;)V]
+  + Methodref [edu/stanford/nicd/chroma/k.a ()V]
   + Methodref [java/lang/Exception.printStackTrace ()V]
   + Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Landroid/content/Context;)V]
   + NameAndType [a ()V]
+  + NameAndType [a (Landroid/content/Context;)V]
   + NameAndType [a Landroid/view/MotionEvent;]
   + NameAndType [a Ledu/stanford/nicd/chroma/a;]
   + NameAndType [b I]
   + NameAndType [b Landroid/content/Context;]
-  + NameAndType [c Ledu/stanford/nicd/chroma/h;]
+  + NameAndType [c Ledu/stanford/nicd/chroma/k;]
   + NameAndType [glClearColor (FFFF)V]
   + NameAndType [glViewport (IIII)V]
   + NameAndType [printStackTrace ()V]
@@ -1432,7 +1624,7 @@ Constant Pool (count = 60):
   + Utf8 [Landroid/content/Context;]
   + Utf8 [Landroid/view/MotionEvent;]
   + Utf8 [Ledu/stanford/nicd/chroma/a;]
-  + Utf8 [Ledu/stanford/nicd/chroma/h;]
+  + Utf8 [Ledu/stanford/nicd/chroma/k;]
   + Utf8 [a]
   + Utf8 [android/opengl/GLES20]
   + Utf8 [b]
@@ -1440,11 +1632,14 @@ Constant Pool (count = 60):
   + Utf8 [c]
   + Utf8 [edu/stanford/nicd/chroma/a]
   + Utf8 [edu/stanford/nicd/chroma/b]
-  + Utf8 [edu/stanford/nicd/chroma/h]
+  + Utf8 [edu/stanford/nicd/chroma/k]
   + Utf8 [glClearColor]
   + Utf8 [glViewport]
   + Utf8 [java/lang/Exception]
   + Utf8 [java/lang/Object]
+  + Utf8 [onDrawFrame]
+  + Utf8 [onSurfaceChanged]
+  + Utf8 [onSurfaceCreated]
   + Utf8 [printStackTrace]
 
 Fields (count = 3):
@@ -1454,18 +1649,18 @@ Fields (count = 3):
   + Field:        a Ledu/stanford/nicd/chroma/a;
     Access flags: 0x4
       = protected edu.stanford.nicd.chroma.a a
-  + Field:        c Ledu/stanford/nicd/chroma/h;
+  + Field:        c Ledu/stanford/nicd/chroma/k;
     Access flags: 0x2
-      = private edu.stanford.nicd.chroma.h c
+      = private edu.stanford.nicd.chroma.k c
 
-Methods (count = 5):
+Methods (count = 6):
   - Method:       <init>(Landroid/content/Context;)V
     Access flags: 0x1
       = public b(android.content.Context)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 10, locals = 2, stack = 2):
       [0] aload_0 v0
-      [1] invokespecial #20
+      [1] invokespecial #21
         + Methodref [java/lang/Object.<init> ()V]
       [4] aload_0 v0
       [5] aload_1 v1
@@ -1474,9 +1669,29 @@ Methods (count = 5):
       [9] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       a(Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V
+  + Method:       a()V
     Access flags: 0x1
-      = public void a(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig)
+      = public void a()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 19, locals = 1, stack = 2):
+      [0] aload_0 v0
+      [1] getfield #10
+        + Fieldref [edu/stanford/nicd/chroma/b.a Ledu/stanford/nicd/chroma/a;]
+      [4] ifnull +14 (target=18)
+      [7] aload_0 v0
+      [8] getfield #10
+        + Fieldref [edu/stanford/nicd/chroma/b.a Ledu/stanford/nicd/chroma/a;]
+      [11] aload_0 v0
+      [12] getfield #11
+        + Fieldref [edu/stanford/nicd/chroma/b.b Landroid/content/Context;]
+      [15] invokevirtual #17
+        + Methodref [edu/stanford/nicd/chroma/a.a (Landroid/content/Context;)V]
+      [18] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onSurfaceCreated(Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V
+    Access flags: 0x1
+      = public void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 60, locals = 4, stack = 4):
       [0] fconst_0
@@ -1503,31 +1718,31 @@ Methods (count = 5):
       [29] goto +8 (target=37)
       [32] astore_3 v3
       [33] aload_3 v3
-      [34] invokevirtual #19
+      [34] invokevirtual #20
         + Methodref [java/lang/Exception.printStackTrace ()V]
       [37] aload_0 v0
       [38] getfield #12
-        + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/h;]
+        + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/k;]
       [41] ifnonnull +18 (target=59)
       [44] aload_0 v0
       [45] new #5
-        + Class [edu/stanford/nicd/chroma/h]
+        + Class [edu/stanford/nicd/chroma/k]
       [48] dup
       [49] aload_0 v0
       [50] getfield #11
         + Fieldref [edu/stanford/nicd/chroma/b.b Landroid/content/Context;]
-      [53] invokespecial #17
-        + Methodref [edu/stanford/nicd/chroma/h.<init> (Landroid/content/Context;)V]
+      [53] invokespecial #18
+        + Methodref [edu/stanford/nicd/chroma/k.<init> (Landroid/content/Context;)V]
       [56] putfield #12
-        + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/h;]
+        + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/k;]
       [59] return
       Code attribute exceptions (count = 1):
       - ExceptionInfo (14 -> 29: 32):
       + Class [java/lang/Exception]
       Code attribute attributes (attribute count = 0):
-  + Method:       a(Ljavax/microedition/khronos/opengles/GL10;)V
+  + Method:       onDrawFrame(Ljavax/microedition/khronos/opengles/GL10;)V
     Access flags: 0x1
-      = public void a(javax.microedition.khronos.opengles.GL10)
+      = public void onDrawFrame(javax.microedition.khronos.opengles.GL10)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 15, locals = 2, stack = 1):
       [0] aload_0 v0
@@ -1537,15 +1752,15 @@ Methods (count = 5):
         + Methodref [edu/stanford/nicd/chroma/a.a ()V]
       [7] aload_0 v0
       [8] getfield #12
-        + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/h;]
-      [11] invokevirtual #18
-        + Methodref [edu/stanford/nicd/chroma/h.a ()V]
+        + Fieldref [edu/stanford/nicd/chroma/b.c Ledu/stanford/nicd/chroma/k;]
+      [11] invokevirtual #19
+        + Methodref [edu/stanford/nicd/chroma/k.a ()V]
       [14] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
-  + Method:       a(Ljavax/microedition/khronos/opengles/GL10;II)V
+  + Method:       onSurfaceChanged(Ljavax/microedition/khronos/opengles/GL10;II)V
     Access flags: 0x1
-      = public void a(javax.microedition.khronos.opengles.GL10,int,int)
+      = public void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 16, locals = 4, stack = 4):
       [0] iconst_0
@@ -1594,10 +1809,9 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 63):
+Constant Pool (count = 56):
   + String [%s: EGL error: 0x%x]
   + String [ChromaLW]
-  + String [ChromaLWSettings]
   + Class [android/util/Log]
   + Class [b/a/a/a/m]
   + Class [edu/stanford/nicd/chroma/MyWallpaperService]
@@ -1610,35 +1824,30 @@ Constant Pool (count = 63):
   + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
   + Methodref [b/a/a/a/m.<init> ()V]
   + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.b (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
-  + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-  + Methodref [edu/stanford/nicd/chroma/f.<init> (Ledu/stanford/nicd/chroma/MyWallpaperService;Landroid/content/SharedPreferences;)V]
+  + Methodref [edu/stanford/nicd/chroma/f.<init> (Ledu/stanford/nicd/chroma/MyWallpaperService;)V]
   + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
   + Methodref [java/lang/String.format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
   + InterfaceMethodref [javax/microedition/khronos/egl/EGL10.eglGetError ()I]
   + NameAndType [<init> ()V]
-  + NameAndType [<init> (Ledu/stanford/nicd/chroma/MyWallpaperService;Landroid/content/SharedPreferences;)V]
+  + NameAndType [<init> (Ledu/stanford/nicd/chroma/MyWallpaperService;)V]
   + NameAndType [a Ljava/lang/String;]
   + NameAndType [b (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
   + NameAndType [e (Ljava/lang/String;Ljava/lang/String;)I]
   + NameAndType [eglGetError ()I]
   + NameAndType [format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
-  + NameAndType [getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
   + NameAndType [valueOf (I)Ljava/lang/Integer;]
   + Utf8 [%s: EGL error: 0x%x]
   + Utf8 [()I]
   + Utf8 [()Landroid/service/wallpaper/WallpaperService$Engine;]
-  + Utf8 [()Ljava/lang/String;]
   + Utf8 [()V]
   + Utf8 [(I)Ljava/lang/Integer;]
-  + Utf8 [(Ledu/stanford/nicd/chroma/MyWallpaperService;Landroid/content/SharedPreferences;)V]
-  + Utf8 [(Ljava/lang/String;I)Landroid/content/SharedPreferences;]
+  + Utf8 [(Ledu/stanford/nicd/chroma/MyWallpaperService;)V]
   + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
   + Utf8 [(Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
   + Utf8 [(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
   + Utf8 [<clinit>]
   + Utf8 [<init>]
   + Utf8 [ChromaLW]
-  + Utf8 [ChromaLWSettings]
   + Utf8 [Code]
   + Utf8 [Ljava/lang/String;]
   + Utf8 [a]
@@ -1650,7 +1859,6 @@ Constant Pool (count = 63):
   + Utf8 [edu/stanford/nicd/chroma/f]
   + Utf8 [eglGetError]
   + Utf8 [format]
-  + Utf8 [getSharedPreferences]
   + Utf8 [java/lang/Integer]
   + Utf8 [java/lang/Object]
   + Utf8 [java/lang/String]
@@ -1663,14 +1871,14 @@ Fields (count = 1):
     Access flags: 0xa
       = private static java.lang.String a
 
-Methods (count = 6):
+Methods (count = 5):
   - Method:       <init>()V
     Access flags: 0x1
       = public MyWallpaperService()
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #14
+      [1] invokespecial #13
         + Methodref [b/a/a/a/m.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -1681,18 +1889,18 @@ Methods (count = 6):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 45, locals = 3, stack = 6):
       [0] aload_1 v1
-      [1] invokeinterface #20
+      [1] invokeinterface #18
         + InterfaceMethodref [javax/microedition/khronos/egl/EGL10.eglGetError ()I]
       [6] dup
       [7] istore_2 v2
       [8] sipush 12288
       [11] ificmpeq +33 (target=44)
-      [14] getstatic #12
+      [14] getstatic #11
         + Fieldref [edu/stanford/nicd/chroma/MyWallpaperService.a Ljava/lang/String;]
       [17] ldc #1
         + String [%s: EGL error: 0x%x]
       [19] iconst_2
-      [20] anewarray #9
+      [20] anewarray #8
         + Class [java/lang/Object]
       [23] dup
       [24] iconst_0
@@ -1701,12 +1909,12 @@ Methods (count = 6):
       [27] dup
       [28] iconst_1
       [29] iload_2 v2
-      [30] invokestatic #18
+      [30] invokestatic #16
         + Methodref [java/lang/Integer.valueOf (I)Ljava/lang/Integer;]
       [33] aastore
-      [34] invokestatic #19
+      [34] invokestatic #17
         + Methodref [java/lang/String.format (Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;]
-      [37] invokestatic #13
+      [37] invokestatic #12
         + Methodref [android/util/Log.e (Ljava/lang/String;Ljava/lang/String;)I]
       [40] pop
       [41] goto -41 (target=0)
@@ -1717,30 +1925,14 @@ Methods (count = 6):
     Access flags: 0x1
       = public android.service.wallpaper.WallpaperService$Engine onCreateEngine()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 16, locals = 1, stack = 6):
-      [0] new #7
+    + Code attribute instructions (code length = 9, locals = 1, stack = 3):
+      [0] new #6
         + Class [edu/stanford/nicd/chroma/f]
       [3] dup
       [4] aload_0 v0
-      [5] aload_0 v0
-      [6] ldc #3
-        + String [ChromaLWSettings]
-      [8] iconst_0
-      [9] invokevirtual #16
-        + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.getSharedPreferences (Ljava/lang/String;I)Landroid/content/SharedPreferences;]
-      [12] invokespecial #17
-        + Methodref [edu/stanford/nicd/chroma/f.<init> (Ledu/stanford/nicd/chroma/MyWallpaperService;Landroid/content/SharedPreferences;)V]
-      [15] areturn
-      Code attribute exceptions (count = 0):
-      Code attribute attributes (attribute count = 0):
-  + Method:       a()Ljava/lang/String;
-    Access flags: 0x1008
-      = static synthetic java.lang.String a()
-    Class member attributes (count = 1):
-    + Code attribute instructions (code length = 4, locals = 0, stack = 1):
-      [0] getstatic #12
-        + Fieldref [edu/stanford/nicd/chroma/MyWallpaperService.a Ljava/lang/String;]
-      [3] areturn
+      [5] invokespecial #15
+        + Methodref [edu/stanford/nicd/chroma/f.<init> (Ledu/stanford/nicd/chroma/MyWallpaperService;)V]
+      [8] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a(Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V
@@ -1750,7 +1942,7 @@ Methods (count = 6):
     + Code attribute instructions (code length = 6, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] invokestatic #15
+      [2] invokestatic #14
         + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.b (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
       [5] return
       Code attribute exceptions (count = 0):
@@ -1762,7 +1954,7 @@ Methods (count = 6):
     + Code attribute instructions (code length = 6, locals = 0, stack = 1):
       [0] ldc #2
         + String [ChromaLW]
-      [2] putstatic #12
+      [2] putstatic #11
         + Fieldref [edu/stanford/nicd/chroma/MyWallpaperService.a Ljava/lang/String;]
       [5] return
       Code attribute exceptions (count = 0):
@@ -2201,11 +2393,9 @@ _____________________________________________________________________
 Interfaces (count = 1):
   + Class [b/a/a/a/g]
 
-Constant Pool (count = 55):
+Constant Pool (count = 44):
   + String [After eglCreateContext]
   + String [Before eglCreateContext]
-  + String [creating OpenGL ES 2.0 context]
-  + Class [android/util/Log]
   + Class [b/a/a/a/g]
   + Class [edu/stanford/nicd/chroma/MyWallpaperService]
   + Class [edu/stanford/nicd/chroma/e]
@@ -2213,8 +2403,6 @@ Constant Pool (count = 55):
   + Class [javax/microedition/khronos/egl/EGL10]
   + Fieldref [edu/stanford/nicd/chroma/e.a I]
   + Fieldref [javax/microedition/khronos/egl/EGL10.EGL_NO_CONTEXT Ljavax/microedition/khronos/egl/EGLContext;]
-  + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
-  + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.a ()Ljava/lang/String;]
   + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.a (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
   + Methodref [edu/stanford/nicd/chroma/e.<init> ()V]
   + Methodref [java/lang/Object.<init> ()V]
@@ -2222,16 +2410,12 @@ Constant Pool (count = 55):
   + InterfaceMethodref [javax/microedition/khronos/egl/EGL10.eglDestroyContext (Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)Z]
   + NameAndType [<init> ()V]
   + NameAndType [EGL_NO_CONTEXT Ljavax/microedition/khronos/egl/EGLContext;]
-  + NameAndType [a ()Ljava/lang/String;]
   + NameAndType [a (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
   + NameAndType [a I]
   + NameAndType [eglCreateContext (Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLConfig;Ljavax/microedition/khronos/egl/EGLContext;[I)Ljavax/microedition/khronos/egl/EGLContext;]
   + NameAndType [eglDestroyContext (Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)Z]
-  + NameAndType [w (Ljava/lang/String;Ljava/lang/String;)I]
-  + Utf8 [()Ljava/lang/String;]
   + Utf8 [()V]
   + Utf8 [(Ledu/stanford/nicd/chroma/c;)V]
-  + Utf8 [(Ljava/lang/String;Ljava/lang/String;)I]
   + Utf8 [(Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
   + Utf8 [(Ljavax/microedition/khronos/egl/EGL10;Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLConfig;)Ljavax/microedition/khronos/egl/EGLContext;]
   + Utf8 [(Ljavax/microedition/khronos/egl/EGL10;Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)V]
@@ -2246,16 +2430,13 @@ Constant Pool (count = 55):
   + Utf8 [I]
   + Utf8 [Ljavax/microedition/khronos/egl/EGLContext;]
   + Utf8 [a]
-  + Utf8 [android/util/Log]
   + Utf8 [b/a/a/a/g]
-  + Utf8 [creating OpenGL ES 2.0 context]
   + Utf8 [edu/stanford/nicd/chroma/MyWallpaperService]
   + Utf8 [edu/stanford/nicd/chroma/e]
   + Utf8 [eglCreateContext]
   + Utf8 [eglDestroyContext]
   + Utf8 [java/lang/Object]
   + Utf8 [javax/microedition/khronos/egl/EGL10]
-  + Utf8 [w]
 
 Fields (count = 1):
   + Field:        a I
@@ -2269,7 +2450,7 @@ Methods (count = 5):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 1, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #16
+      [1] invokespecial #12
         + Methodref [java/lang/Object.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -2278,51 +2459,44 @@ Methods (count = 5):
     Access flags: 0x1
       = public javax.microedition.khronos.egl.EGLContext a(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 60, locals = 6, stack = 5):
-      [0] invokestatic #13
-        + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.a ()Ljava/lang/String;]
-      [3] ldc #3
-        + String [creating OpenGL ES 2.0 context]
-      [5] invokestatic #12
-        + Methodref [android/util/Log.w (Ljava/lang/String;Ljava/lang/String;)I]
-      [8] pop
-      [9] ldc #2
+    + Code attribute instructions (code length = 51, locals = 6, stack = 5):
+      [0] ldc #2
         + String [Before eglCreateContext]
-      [11] aload_1 v1
-      [12] invokestatic #14
+      [2] aload_1 v1
+      [3] invokestatic #10
         + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.a (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
-      [15] iconst_3
-      [16] newarray 10
-      [18] dup
-      [19] iconst_0
-      [20] getstatic #10
+      [6] iconst_3
+      [7] newarray 10
+      [9] dup
+      [10] iconst_0
+      [11] getstatic #8
         + Fieldref [edu/stanford/nicd/chroma/e.a I]
-      [23] iastore
-      [24] dup
-      [25] iconst_1
-      [26] iconst_2
-      [27] iastore
-      [28] dup
-      [29] iconst_2
-      [30] sipush 12344
-      [33] iastore
-      [34] astore v4
-      [36] aload_1 v1
-      [37] aload_2 v2
-      [38] aload_3 v3
-      [39] getstatic #11
+      [14] iastore
+      [15] dup
+      [16] iconst_1
+      [17] iconst_2
+      [18] iastore
+      [19] dup
+      [20] iconst_2
+      [21] sipush 12344
+      [24] iastore
+      [25] astore v4
+      [27] aload_1 v1
+      [28] aload_2 v2
+      [29] aload_3 v3
+      [30] getstatic #9
         + Fieldref [javax/microedition/khronos/egl/EGL10.EGL_NO_CONTEXT Ljavax/microedition/khronos/egl/EGLContext;]
-      [42] aload v4
-      [44] invokeinterface #17
+      [33] aload v4
+      [35] invokeinterface #13
         + InterfaceMethodref [javax/microedition/khronos/egl/EGL10.eglCreateContext (Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLConfig;Ljavax/microedition/khronos/egl/EGLContext;[I)Ljavax/microedition/khronos/egl/EGLContext;]
-      [49] astore v5
-      [51] ldc #1
+      [40] astore v5
+      [42] ldc #1
         + String [After eglCreateContext]
-      [53] aload_1 v1
-      [54] invokestatic #14
+      [44] aload_1 v1
+      [45] invokestatic #10
         + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.a (Ljava/lang/String;Ljavax/microedition/khronos/egl/EGL10;)V]
-      [57] aload v5
-      [59] areturn
+      [48] aload v5
+      [50] areturn
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       a(Ljavax/microedition/khronos/egl/EGL10;Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)V
@@ -2333,7 +2507,7 @@ Methods (count = 5):
       [0] aload_1 v1
       [1] aload_2 v2
       [2] aload_3 v3
-      [3] invokeinterface #18
+      [3] invokeinterface #14
         + InterfaceMethodref [javax/microedition/khronos/egl/EGL10.eglDestroyContext (Ljavax/microedition/khronos/egl/EGLDisplay;Ljavax/microedition/khronos/egl/EGLContext;)Z]
       [8] pop
       [9] return
@@ -2345,7 +2519,7 @@ Methods (count = 5):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 2, stack = 1):
       [0] aload_0 v0
-      [1] invokespecial #15
+      [1] invokespecial #11
         + Methodref [edu/stanford/nicd/chroma/e.<init> ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -2356,7 +2530,7 @@ Methods (count = 5):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 7, locals = 0, stack = 1):
       [0] sipush 12440
-      [3] putstatic #10
+      [3] putstatic #8
         + Fieldref [edu/stanford/nicd/chroma/e.a I]
       [6] return
       Code attribute exceptions (count = 0):
@@ -2374,7 +2548,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 80):
+Constant Pool (count = 83):
   + Class [b/a/a/a/n]
   + Class [edu/stanford/nicd/chroma/MyWallpaperService]
   + Class [edu/stanford/nicd/chroma/b]
@@ -2384,13 +2558,14 @@ Constant Pool (count = 80):
   + Class [edu/stanford/nicd/chroma/g]
   + Fieldref [edu/stanford/nicd/chroma/f.a Ledu/stanford/nicd/chroma/b;]
   + Fieldref [edu/stanford/nicd/chroma/f.b Ledu/stanford/nicd/chroma/g;]
-  + Fieldref [edu/stanford/nicd/chroma/f.c Ledu/stanford/nicd/chroma/MyWallpaperService;]
+  + Fieldref [edu/stanford/nicd/chroma/f.d Ledu/stanford/nicd/chroma/MyWallpaperService;]
   + Fieldref [edu/stanford/nicd/chroma/g.a Z]
   + Methodref [b/a/a/a/n.<init> (Lb/a/a/a/m;)V]
   + Methodref [b/a/a/a/n.a ()V]
   + Methodref [b/a/a/a/n.b ()V]
   + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.getBaseContext ()Landroid/content/Context;]
   + Methodref [edu/stanford/nicd/chroma/b.<init> (Landroid/content/Context;)V]
+  + Methodref [edu/stanford/nicd/chroma/b.a ()V]
   + Methodref [edu/stanford/nicd/chroma/b.a (Landroid/view/MotionEvent;)V]
   + Methodref [edu/stanford/nicd/chroma/d.<init> (IIIIII)V]
   + Methodref [edu/stanford/nicd/chroma/e.<init> (Ledu/stanford/nicd/chroma/c;)V]
@@ -2417,7 +2592,7 @@ Constant Pool (count = 80):
   + NameAndType [b ()V]
   + NameAndType [b Ledu/stanford/nicd/chroma/g;]
   + NameAndType [c ()V]
-  + NameAndType [c Ledu/stanford/nicd/chroma/MyWallpaperService;]
+  + NameAndType [d Ledu/stanford/nicd/chroma/MyWallpaperService;]
   + NameAndType [getBaseContext ()Landroid/content/Context;]
   + NameAndType [start ()V]
   + Utf8 [()Landroid/content/Context;]
@@ -2431,11 +2606,12 @@ Constant Pool (count = 80):
   + Utf8 [(Lb/a/a/a/g;)V]
   + Utf8 [(Lb/a/a/a/m;)V]
   + Utf8 [(Lb/a/a/a/o;)V]
-  + Utf8 [(Ledu/stanford/nicd/chroma/MyWallpaperService;Landroid/content/SharedPreferences;)V]
+  + Utf8 [(Ledu/stanford/nicd/chroma/MyWallpaperService;)V]
   + Utf8 [(Ledu/stanford/nicd/chroma/c;)V]
   + Utf8 [(Ledu/stanford/nicd/chroma/f;)V]
   + Utf8 [<init>]
   + Utf8 [Code]
+  + Utf8 [I]
   + Utf8 [Ledu/stanford/nicd/chroma/MyWallpaperService;]
   + Utf8 [Ledu/stanford/nicd/chroma/b;]
   + Utf8 [Ledu/stanford/nicd/chroma/g;]
@@ -2444,6 +2620,7 @@ Constant Pool (count = 80):
   + Utf8 [b]
   + Utf8 [b/a/a/a/n]
   + Utf8 [c]
+  + Utf8 [d]
   + Utf8 [edu/stanford/nicd/chroma/MyWallpaperService]
   + Utf8 [edu/stanford/nicd/chroma/b]
   + Utf8 [edu/stanford/nicd/chroma/d]
@@ -2455,27 +2632,30 @@ Constant Pool (count = 80):
   + Utf8 [onTouchEvent]
   + Utf8 [start]
 
-Fields (count = 3):
+Fields (count = 4):
   + Field:        a Ledu/stanford/nicd/chroma/b;
     Access flags: 0x0
       = edu.stanford.nicd.chroma.b a
   + Field:        b Ledu/stanford/nicd/chroma/g;
     Access flags: 0x0
       = edu.stanford.nicd.chroma.g b
-  + Field:        c Ledu/stanford/nicd/chroma/MyWallpaperService;
+  + Field:        c I
+    Access flags: 0x0
+      = int c
+  + Field:        d Ledu/stanford/nicd/chroma/MyWallpaperService;
     Access flags: 0x1010
-      = final synthetic edu.stanford.nicd.chroma.MyWallpaperService c
+      = final synthetic edu.stanford.nicd.chroma.MyWallpaperService d
 
 Methods (count = 5):
-  - Method:       <init>(Ledu/stanford/nicd/chroma/MyWallpaperService;Landroid/content/SharedPreferences;)V
+  - Method:       <init>(Ledu/stanford/nicd/chroma/MyWallpaperService;)V
     Access flags: 0x1
-      = public f(edu.stanford.nicd.chroma.MyWallpaperService,android.content.SharedPreferences)
+      = public f(edu.stanford.nicd.chroma.MyWallpaperService)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 70, locals = 3, stack = 9):
+    + Code attribute instructions (code length = 70, locals = 2, stack = 9):
       [0] aload_0 v0
       [1] aload_1 v1
       [2] putfield #10
-        + Fieldref [edu/stanford/nicd/chroma/f.c Ledu/stanford/nicd/chroma/MyWallpaperService;]
+        + Fieldref [edu/stanford/nicd/chroma/f.d Ledu/stanford/nicd/chroma/MyWallpaperService;]
       [5] aload_0 v0
       [6] aload_1 v1
       [7] invokespecial #12
@@ -2485,9 +2665,9 @@ Methods (count = 5):
         + Class [edu/stanford/nicd/chroma/e]
       [14] dup
       [15] aconst_null
-      [16] invokespecial #19
+      [16] invokespecial #20
         + Methodref [edu/stanford/nicd/chroma/e.<init> (Ledu/stanford/nicd/chroma/c;)V]
-      [19] invokevirtual #22
+      [19] invokevirtual #23
         + Methodref [edu/stanford/nicd/chroma/f.a (Lb/a/a/a/g;)V]
       [22] aload_0 v0
       [23] new #4
@@ -2499,9 +2679,9 @@ Methods (count = 5):
       [31] iconst_0
       [32] bipush 16
       [34] iconst_0
-      [35] invokespecial #18
+      [35] invokespecial #19
         + Methodref [edu/stanford/nicd/chroma/d.<init> (IIIIII)V]
-      [38] invokevirtual #21
+      [38] invokevirtual #22
         + Methodref [edu/stanford/nicd/chroma/f.a (Lb/a/a/a/f;)V]
       [41] aload_0 v0
       [42] new #3
@@ -2518,11 +2698,11 @@ Methods (count = 5):
       [57] aload_0 v0
       [58] getfield #8
         + Fieldref [edu/stanford/nicd/chroma/f.a Ledu/stanford/nicd/chroma/b;]
-      [61] invokevirtual #23
+      [61] invokevirtual #24
         + Methodref [edu/stanford/nicd/chroma/f.a (Lb/a/a/a/o;)V]
       [64] aload_0 v0
       [65] iconst_0
-      [66] invokevirtual #20
+      [66] invokevirtual #21
         + Methodref [edu/stanford/nicd/chroma/f.a (I)V]
       [69] return
       Code attribute exceptions (count = 0):
@@ -2533,7 +2713,7 @@ Methods (count = 5):
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 7, stack = 1):
       [0] aload_0 v0
-      [1] invokevirtual #24
+      [1] invokevirtual #25
         + Methodref [edu/stanford/nicd/chroma/f.c ()V]
       [4] return
       Code attribute exceptions (count = 0):
@@ -2551,10 +2731,10 @@ Methods (count = 5):
       [8] getfield #8
         + Fieldref [edu/stanford/nicd/chroma/f.a Ledu/stanford/nicd/chroma/b;]
       [11] aload_1 v1
-      [12] invokevirtual #17
+      [12] invokevirtual #18
         + Methodref [edu/stanford/nicd/chroma/b.a (Landroid/view/MotionEvent;)V]
       [15] aload_0 v0
-      [16] invokevirtual #24
+      [16] invokevirtual #25
         + Methodref [edu/stanford/nicd/chroma/f.c ()V]
       [19] return
       Code attribute exceptions (count = 0):
@@ -2568,21 +2748,21 @@ Methods (count = 5):
       [1] invokespecial #13
         + Methodref [b/a/a/a/n.a ()V]
       [4] aload_0 v0
-      [5] invokevirtual #24
+      [5] invokevirtual #25
         + Methodref [edu/stanford/nicd/chroma/f.c ()V]
       [8] aload_0 v0
       [9] new #7
         + Class [edu/stanford/nicd/chroma/g]
       [12] dup
       [13] aload_0 v0
-      [14] invokespecial #25
+      [14] invokespecial #26
         + Methodref [edu/stanford/nicd/chroma/g.<init> (Ledu/stanford/nicd/chroma/f;)V]
       [17] putfield #9
         + Fieldref [edu/stanford/nicd/chroma/f.b Ledu/stanford/nicd/chroma/g;]
       [20] aload_0 v0
       [21] getfield #9
         + Fieldref [edu/stanford/nicd/chroma/f.b Ledu/stanford/nicd/chroma/g;]
-      [24] invokevirtual #26
+      [24] invokevirtual #27
         + Methodref [edu/stanford/nicd/chroma/g.start ()V]
       [27] return
       Code attribute exceptions (count = 0):
@@ -2591,20 +2771,22 @@ Methods (count = 5):
     Access flags: 0x1
       = public void b()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 17, locals = 1, stack = 2):
+    + Code attribute instructions (code length = 20, locals = 1, stack = 2):
       [0] aload_0 v0
       [1] invokespecial #14
         + Methodref [b/a/a/a/n.b ()V]
       [4] aload_0 v0
-      [5] invokevirtual #24
-        + Methodref [edu/stanford/nicd/chroma/f.c ()V]
-      [8] aload_0 v0
-      [9] getfield #9
+      [5] getfield #8
+        + Fieldref [edu/stanford/nicd/chroma/f.a Ledu/stanford/nicd/chroma/b;]
+      [8] invokevirtual #17
+        + Methodref [edu/stanford/nicd/chroma/b.a ()V]
+      [11] aload_0 v0
+      [12] getfield #9
         + Fieldref [edu/stanford/nicd/chroma/f.b Ledu/stanford/nicd/chroma/g;]
-      [12] iconst_1
-      [13] putfield #11
+      [15] iconst_1
+      [16] putfield #11
         + Fieldref [edu/stanford/nicd/chroma/g.a Z]
-      [16] return
+      [19] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
@@ -2620,57 +2802,72 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 41):
-  + Integer [100]
+Constant Pool (count = 61):
+  + String [fpsThrottle]
+  + Class [android/content/SharedPreferences]
+  + Class [android/preference/PreferenceManager]
+  + Class [edu/stanford/nicd/chroma/MyWallpaperService]
   + Class [edu/stanford/nicd/chroma/f]
   + Class [edu/stanford/nicd/chroma/g]
   + Class [java/lang/InterruptedException]
   + Class [java/lang/Thread]
-  + Long [100]
+  + Fieldref [edu/stanford/nicd/chroma/f.c I]
+  + Fieldref [edu/stanford/nicd/chroma/f.d Ledu/stanford/nicd/chroma/MyWallpaperService;]
   + Fieldref [edu/stanford/nicd/chroma/g.a Z]
   + Fieldref [edu/stanford/nicd/chroma/g.b Ledu/stanford/nicd/chroma/f;]
-  + Fieldref [edu/stanford/nicd/chroma/g.c I]
+  + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.getBaseContext ()Landroid/content/Context;]
   + Methodref [edu/stanford/nicd/chroma/f.c ()V]
   + Methodref [java/lang/InterruptedException.printStackTrace ()V]
   + Methodref [java/lang/Thread.<init> ()V]
   + Methodref [java/lang/Thread.sleep (J)V]
+  + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
   + NameAndType [<init> ()V]
   + NameAndType [a Z]
   + NameAndType [b Ledu/stanford/nicd/chroma/f;]
   + NameAndType [c ()V]
   + NameAndType [c I]
+  + NameAndType [d Ledu/stanford/nicd/chroma/MyWallpaperService;]
+  + NameAndType [getBaseContext ()Landroid/content/Context;]
+  + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + NameAndType [getInt (Ljava/lang/String;I)I]
   + NameAndType [printStackTrace ()V]
   + NameAndType [sleep (J)V]
+  + Utf8 [()Landroid/content/Context;]
   + Utf8 [()V]
   + Utf8 [(J)V]
+  + Utf8 [(Landroid/content/Context;)Landroid/content/SharedPreferences;]
   + Utf8 [(Ledu/stanford/nicd/chroma/f;)V]
+  + Utf8 [(Ljava/lang/String;I)I]
   + Utf8 [<init>]
   + Utf8 [Code]
-  + Utf8 [ConstantValue]
   + Utf8 [I]
+  + Utf8 [Ledu/stanford/nicd/chroma/MyWallpaperService;]
   + Utf8 [Ledu/stanford/nicd/chroma/f;]
   + Utf8 [Z]
   + Utf8 [a]
+  + Utf8 [android/content/SharedPreferences]
+  + Utf8 [android/preference/PreferenceManager]
   + Utf8 [b]
   + Utf8 [c]
+  + Utf8 [d]
+  + Utf8 [edu/stanford/nicd/chroma/MyWallpaperService]
   + Utf8 [edu/stanford/nicd/chroma/f]
   + Utf8 [edu/stanford/nicd/chroma/g]
+  + Utf8 [fpsThrottle]
+  + Utf8 [getBaseContext]
+  + Utf8 [getDefaultSharedPreferences]
+  + Utf8 [getInt]
   + Utf8 [java/lang/InterruptedException]
   + Utf8 [java/lang/Thread]
   + Utf8 [printStackTrace]
   + Utf8 [run]
   + Utf8 [sleep]
 
-Fields (count = 3):
+Fields (count = 2):
   + Field:        a Z
     Access flags: 0x1
       = public boolean a
-  + Field:        c I
-    Access flags: 0x12
-      = private final int c
-    Class member attributes (count = 1):
-    + Constant value attribute:
-    + Integer [100]
   + Field:        b Ledu/stanford/nicd/chroma/f;
     Access flags: 0x1010
       = final synthetic edu.stanford.nicd.chroma.f b
@@ -2680,53 +2877,400 @@ Methods (count = 2):
     Access flags: 0x0
       = g(edu.stanford.nicd.chroma.f)
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 21, locals = 2, stack = 2):
+    + Code attribute instructions (code length = 15, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #9
+      [2] putfield #12
         + Fieldref [edu/stanford/nicd/chroma/g.b Ledu/stanford/nicd/chroma/f;]
       [5] aload_0 v0
-      [6] invokespecial #13
+      [6] invokespecial #17
         + Methodref [java/lang/Thread.<init> ()V]
       [9] aload_0 v0
       [10] iconst_0
-      [11] putfield #8
+      [11] putfield #11
         + Fieldref [edu/stanford/nicd/chroma/g.a Z]
-      [14] aload_0 v0
-      [15] bipush 100
-      [17] putfield #10
-        + Fieldref [edu/stanford/nicd/chroma/g.c I]
-      [20] return
+      [14] return
       Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
   + Method:       run()V
     Access flags: 0x1
       = public void run()
     Class member attributes (count = 1):
-    + Code attribute instructions (code length = 32, locals = 2, stack = 2):
+    + Code attribute instructions (code length = 68, locals = 3, stack = 4):
       [0] aload_0 v0
-      [1] getfield #8
+      [1] getfield #11
         + Fieldref [edu/stanford/nicd/chroma/g.a Z]
       [4] ifeq +4 (target=8)
       [7] return
       [8] aload_0 v0
-      [9] getfield #9
+      [9] getfield #12
         + Fieldref [edu/stanford/nicd/chroma/g.b Ledu/stanford/nicd/chroma/f;]
-      [12] invokevirtual #11
+      [12] invokevirtual #15
         + Methodref [edu/stanford/nicd/chroma/f.c ()V]
-      [15] ldc2_w #6
-        + Long [100]
-      [18] invokestatic #14
+      [15] aload_0 v0
+      [16] getfield #12
+        + Fieldref [edu/stanford/nicd/chroma/g.b Ledu/stanford/nicd/chroma/f;]
+      [19] getfield #10
+        + Fieldref [edu/stanford/nicd/chroma/f.d Ledu/stanford/nicd/chroma/MyWallpaperService;]
+      [22] invokevirtual #14
+        + Methodref [edu/stanford/nicd/chroma/MyWallpaperService.getBaseContext ()Landroid/content/Context;]
+      [25] invokestatic #13
+        + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+      [28] astore_1 v1
+      [29] aload_0 v0
+      [30] getfield #12
+        + Fieldref [edu/stanford/nicd/chroma/g.b Ledu/stanford/nicd/chroma/f;]
+      [33] aload_1 v1
+      [34] ldc #1
+        + String [fpsThrottle]
+      [36] bipush 40
+      [38] invokeinterface #19
+        + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+      [43] putfield #9
+        + Fieldref [edu/stanford/nicd/chroma/f.c I]
+      [46] aload_0 v0
+      [47] getfield #12
+        + Fieldref [edu/stanford/nicd/chroma/g.b Ledu/stanford/nicd/chroma/f;]
+      [50] getfield #9
+        + Fieldref [edu/stanford/nicd/chroma/f.c I]
+      [53] i2l
+      [54] invokestatic #18
         + Methodref [java/lang/Thread.sleep (J)V]
-      [21] goto -21 (target=0)
-      [24] astore_1 v1
-      [25] aload_1 v1
-      [26] invokevirtual #12
+      [57] goto +8 (target=65)
+      [60] astore_2 v2
+      [61] aload_2 v2
+      [62] invokevirtual #16
         + Methodref [java/lang/InterruptedException.printStackTrace ()V]
-      [29] goto -29 (target=0)
+      [65] goto -65 (target=0)
       Code attribute exceptions (count = 1):
-      - ExceptionInfo (15 -> 21: 24):
+      - ExceptionInfo (46 -> 57: 60):
       + Class [java/lang/InterruptedException]
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: edu/stanford/nicd/chroma/SettingsActivity
+  Superclass:    android/app/Activity
+  Major version: 0x31
+  Minor version: 0x0
+  Access flags:  0x21
+    = public class edu.stanford.nicd.chroma.SettingsActivity extends android.app.Activity
+
+Interfaces (count = 0):
+
+Constant Pool (count = 120):
+  + Integer [2130903040]
+  + Integer [2131165184]
+  + String [fpsThrottle]
+  + Class [android/app/Activity]
+  + Class [android/content/SharedPreferences]
+  + Class [android/opengl/GLSurfaceView]
+  + Class [android/preference/PreferenceManager]
+  + Class [android/view/LayoutInflater]
+  + Class [android/view/ViewGroup$LayoutParams]
+  + Class [android/widget/SeekBar]
+  + Class [edu/stanford/nicd/chroma/SettingsActivity]
+  + Class [edu/stanford/nicd/chroma/h]
+  + Class [edu/stanford/nicd/chroma/i]
+  + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+  + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.b Ledu/stanford/nicd/chroma/i;]
+  + Methodref [android/app/Activity.<init> ()V]
+  + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
+  + Methodref [android/app/Activity.onPause ()V]
+  + Methodref [android/app/Activity.onResume ()V]
+  + Methodref [android/opengl/GLSurfaceView.<init> (Landroid/content/Context;)V]
+  + Methodref [android/opengl/GLSurfaceView.onPause ()V]
+  + Methodref [android/opengl/GLSurfaceView.onResume ()V]
+  + Methodref [android/opengl/GLSurfaceView.setEGLContextClientVersion (I)V]
+  + Methodref [android/opengl/GLSurfaceView.setRenderMode (I)V]
+  + Methodref [android/opengl/GLSurfaceView.setRenderer (Landroid/opengl/GLSurfaceView$Renderer;)V]
+  + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Methodref [android/view/LayoutInflater.inflate (ILandroid/view/ViewGroup;)Landroid/view/View;]
+  + Methodref [android/view/ViewGroup$LayoutParams.<init> (II)V]
+  + Methodref [android/widget/SeekBar.setOnSeekBarChangeListener (Landroid/widget/SeekBar$OnSeekBarChangeListener;)V]
+  + Methodref [android/widget/SeekBar.setProgress (I)V]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.addContentView (Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.findViewById (I)Landroid/view/View;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getApplicationContext ()Landroid/content/Context;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getBaseContext ()Landroid/content/Context;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getLayoutInflater ()Landroid/view/LayoutInflater;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.setContentView (Landroid/view/View;)V]
+  + Methodref [edu/stanford/nicd/chroma/h.<init> (Ledu/stanford/nicd/chroma/SettingsActivity;)V]
+  + Methodref [edu/stanford/nicd/chroma/i.<init> (Ledu/stanford/nicd/chroma/SettingsActivity;Landroid/content/Context;)V]
+  + Methodref [edu/stanford/nicd/chroma/i.a ()V]
+  + Methodref [edu/stanford/nicd/chroma/i.b ()V]
+  + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+  + NameAndType [<init> ()V]
+  + NameAndType [<init> (II)V]
+  + NameAndType [<init> (Landroid/content/Context;)V]
+  + NameAndType [<init> (Ledu/stanford/nicd/chroma/SettingsActivity;)V]
+  + NameAndType [<init> (Ledu/stanford/nicd/chroma/SettingsActivity;Landroid/content/Context;)V]
+  + NameAndType [a ()V]
+  + NameAndType [a Landroid/opengl/GLSurfaceView;]
+  + NameAndType [addContentView (Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V]
+  + NameAndType [b ()V]
+  + NameAndType [b Ledu/stanford/nicd/chroma/i;]
+  + NameAndType [findViewById (I)Landroid/view/View;]
+  + NameAndType [getApplicationContext ()Landroid/content/Context;]
+  + NameAndType [getBaseContext ()Landroid/content/Context;]
+  + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + NameAndType [getInt (Ljava/lang/String;I)I]
+  + NameAndType [getLayoutInflater ()Landroid/view/LayoutInflater;]
+  + NameAndType [inflate (ILandroid/view/ViewGroup;)Landroid/view/View;]
+  + NameAndType [onCreate (Landroid/os/Bundle;)V]
+  + NameAndType [onPause ()V]
+  + NameAndType [onResume ()V]
+  + NameAndType [setContentView (Landroid/view/View;)V]
+  + NameAndType [setEGLContextClientVersion (I)V]
+  + NameAndType [setOnSeekBarChangeListener (Landroid/widget/SeekBar$OnSeekBarChangeListener;)V]
+  + NameAndType [setProgress (I)V]
+  + NameAndType [setRenderMode (I)V]
+  + NameAndType [setRenderer (Landroid/opengl/GLSurfaceView$Renderer;)V]
+  + Utf8 [()Landroid/content/Context;]
+  + Utf8 [()Landroid/view/LayoutInflater;]
+  + Utf8 [()V]
+  + Utf8 [(I)Landroid/view/View;]
+  + Utf8 [(I)V]
+  + Utf8 [(II)V]
+  + Utf8 [(ILandroid/view/ViewGroup;)Landroid/view/View;]
+  + Utf8 [(Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Utf8 [(Landroid/content/Context;)V]
+  + Utf8 [(Landroid/opengl/GLSurfaceView$Renderer;)V]
+  + Utf8 [(Landroid/os/Bundle;)V]
+  + Utf8 [(Landroid/view/View;)V]
+  + Utf8 [(Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V]
+  + Utf8 [(Landroid/widget/SeekBar$OnSeekBarChangeListener;)V]
+  + Utf8 [(Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;]
+  + Utf8 [(Ledu/stanford/nicd/chroma/SettingsActivity;)V]
+  + Utf8 [(Ledu/stanford/nicd/chroma/SettingsActivity;Landroid/content/Context;)V]
+  + Utf8 [(Ljava/lang/String;I)I]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [Landroid/opengl/GLSurfaceView;]
+  + Utf8 [Ledu/stanford/nicd/chroma/i;]
+  + Utf8 [a]
+  + Utf8 [addContentView]
+  + Utf8 [android/app/Activity]
+  + Utf8 [android/content/SharedPreferences]
+  + Utf8 [android/opengl/GLSurfaceView]
+  + Utf8 [android/preference/PreferenceManager]
+  + Utf8 [android/view/LayoutInflater]
+  + Utf8 [android/view/ViewGroup$LayoutParams]
+  + Utf8 [android/widget/SeekBar]
+  + Utf8 [b]
+  + Utf8 [edu/stanford/nicd/chroma/SettingsActivity]
+  + Utf8 [edu/stanford/nicd/chroma/h]
+  + Utf8 [edu/stanford/nicd/chroma/i]
+  + Utf8 [findViewById]
+  + Utf8 [fpsThrottle]
+  + Utf8 [getApplicationContext]
+  + Utf8 [getBaseContext]
+  + Utf8 [getDefaultSharedPreferences]
+  + Utf8 [getInt]
+  + Utf8 [getLayoutInflater]
+  + Utf8 [inflate]
+  + Utf8 [onCreate]
+  + Utf8 [onPause]
+  + Utf8 [onResume]
+  + Utf8 [setContentView]
+  + Utf8 [setEGLContextClientVersion]
+  + Utf8 [setOnSeekBarChangeListener]
+  + Utf8 [setProgress]
+  + Utf8 [setRenderMode]
+  + Utf8 [setRenderer]
+
+Fields (count = 2):
+  + Field:        a Landroid/opengl/GLSurfaceView;
+    Access flags: 0x2
+      = private android.opengl.GLSurfaceView a
+  + Field:        b Ledu/stanford/nicd/chroma/i;
+    Access flags: 0x2
+      = private edu.stanford.nicd.chroma.i b
+
+Methods (count = 5):
+  - Method:       <init>()V
+    Access flags: 0x1
+      = public SettingsActivity()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
+      [0] aload_0 v0
+      [1] invokespecial #16
+        + Methodref [android/app/Activity.<init> ()V]
+      [4] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onCreate(Landroid/os/Bundle;)V
+    Access flags: 0x1
+      = public void onCreate(android.os.Bundle)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 154, locals = 6, stack = 6):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] invokespecial #17
+        + Methodref [android/app/Activity.onCreate (Landroid/os/Bundle;)V]
+      [5] aload_0 v0
+      [6] new #6
+        + Class [android/opengl/GLSurfaceView]
+      [9] dup
+      [10] aload_0 v0
+      [11] invokespecial #20
+        + Methodref [android/opengl/GLSurfaceView.<init> (Landroid/content/Context;)V]
+      [14] putfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [17] aload_0 v0
+      [18] new #13
+        + Class [edu/stanford/nicd/chroma/i]
+      [21] dup
+      [22] aload_0 v0
+      [23] aload_0 v0
+      [24] invokevirtual #33
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getApplicationContext ()Landroid/content/Context;]
+      [27] invokespecial #38
+        + Methodref [edu/stanford/nicd/chroma/i.<init> (Ledu/stanford/nicd/chroma/SettingsActivity;Landroid/content/Context;)V]
+      [30] putfield #15
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.b Ledu/stanford/nicd/chroma/i;]
+      [33] aload_0 v0
+      [34] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [37] iconst_2
+      [38] invokevirtual #23
+        + Methodref [android/opengl/GLSurfaceView.setEGLContextClientVersion (I)V]
+      [41] aload_0 v0
+      [42] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [45] aload_0 v0
+      [46] getfield #15
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.b Ledu/stanford/nicd/chroma/i;]
+      [49] invokevirtual #25
+        + Methodref [android/opengl/GLSurfaceView.setRenderer (Landroid/opengl/GLSurfaceView$Renderer;)V]
+      [52] aload_0 v0
+      [53] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [56] iconst_0
+      [57] invokevirtual #24
+        + Methodref [android/opengl/GLSurfaceView.setRenderMode (I)V]
+      [60] aload_0 v0
+      [61] aload_0 v0
+      [62] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [65] invokevirtual #36
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.setContentView (Landroid/view/View;)V]
+      [68] aload_0 v0
+      [69] getfield #15
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.b Ledu/stanford/nicd/chroma/i;]
+      [72] invokevirtual #40
+        + Methodref [edu/stanford/nicd/chroma/i.b ()V]
+      [75] aload_0 v0
+      [76] invokevirtual #35
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getLayoutInflater ()Landroid/view/LayoutInflater;]
+      [79] ldc #1
+        + Integer [2130903040]
+      [81] aconst_null
+      [82] invokevirtual #27
+        + Methodref [android/view/LayoutInflater.inflate (ILandroid/view/ViewGroup;)Landroid/view/View;]
+      [85] astore_2 v2
+      [86] aload_0 v0
+      [87] aload_2 v2
+      [88] new #9
+        + Class [android/view/ViewGroup$LayoutParams]
+      [91] dup
+      [92] iconst_m1
+      [93] iconst_m1
+      [94] invokespecial #28
+        + Methodref [android/view/ViewGroup$LayoutParams.<init> (II)V]
+      [97] invokevirtual #31
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.addContentView (Landroid/view/View;Landroid/view/ViewGroup$LayoutParams;)V]
+      [100] aload_0 v0
+      [101] ldc #2
+        + Integer [2131165184]
+      [103] invokevirtual #32
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.findViewById (I)Landroid/view/View;]
+      [106] checkcast #10
+        + Class [android/widget/SeekBar]
+      [109] astore_3 v3
+      [110] aload_3 v3
+      [111] new #12
+        + Class [edu/stanford/nicd/chroma/h]
+      [114] dup
+      [115] aload_0 v0
+      [116] invokespecial #37
+        + Methodref [edu/stanford/nicd/chroma/h.<init> (Ledu/stanford/nicd/chroma/SettingsActivity;)V]
+      [119] invokevirtual #29
+        + Methodref [android/widget/SeekBar.setOnSeekBarChangeListener (Landroid/widget/SeekBar$OnSeekBarChangeListener;)V]
+      [122] aload_0 v0
+      [123] invokevirtual #34
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getBaseContext ()Landroid/content/Context;]
+      [126] invokestatic #26
+        + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+      [129] astore v4
+      [131] aload v4
+      [133] ldc #3
+        + String [fpsThrottle]
+      [135] bipush 40
+      [137] invokeinterface #41
+        + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+      [142] istore v5
+      [144] aload_3 v3
+      [145] bipush 100
+      [147] iload v5
+      [149] isub
+      [150] invokevirtual #30
+        + Methodref [android/widget/SeekBar.setProgress (I)V]
+      [153] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onPause()V
+    Access flags: 0x4
+      = protected void onPause()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 26, locals = 1, stack = 1):
+      [0] aload_0 v0
+      [1] invokespecial #18
+        + Methodref [android/app/Activity.onPause ()V]
+      [4] aload_0 v0
+      [5] getfield #15
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.b Ledu/stanford/nicd/chroma/i;]
+      [8] ifnull +10 (target=18)
+      [11] aload_0 v0
+      [12] getfield #15
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.b Ledu/stanford/nicd/chroma/i;]
+      [15] invokevirtual #39
+        + Methodref [edu/stanford/nicd/chroma/i.a ()V]
+      [18] aload_0 v0
+      [19] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [22] invokevirtual #21
+        + Methodref [android/opengl/GLSurfaceView.onPause ()V]
+      [25] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onResume()V
+    Access flags: 0x4
+      = protected void onResume()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 12, locals = 1, stack = 1):
+      [0] aload_0 v0
+      [1] invokespecial #19
+        + Methodref [android/app/Activity.onResume ()V]
+      [4] aload_0 v0
+      [5] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [8] invokevirtual #22
+        + Methodref [android/opengl/GLSurfaceView.onResume ()V]
+      [11] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       a(Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;
+    Access flags: 0x1008
+      = static synthetic android.opengl.GLSurfaceView a(edu.stanford.nicd.chroma.SettingsActivity)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 5, locals = 1, stack = 1):
+      [0] aload_0 v0
+      [1] getfield #14
+        + Fieldref [edu/stanford/nicd/chroma/SettingsActivity.a Landroid/opengl/GLSurfaceView;]
+      [4] areturn
+      Code attribute exceptions (count = 0):
       Code attribute attributes (attribute count = 0):
 
 Class file attributes (count = 0):
@@ -2739,10 +3283,446 @@ _____________________________________________________________________
   Access flags:  0x20
     = class edu.stanford.nicd.chroma.h extends java.lang.Object
 
+Interfaces (count = 1):
+  + Class [android/widget/SeekBar$OnSeekBarChangeListener]
+
+Constant Pool (count = 52):
+  + String [fpsThrottle]
+  + Class [android/content/SharedPreferences]
+  + Class [android/content/SharedPreferences$Editor]
+  + Class [android/preference/PreferenceManager]
+  + Class [android/widget/SeekBar$OnSeekBarChangeListener]
+  + Class [edu/stanford/nicd/chroma/SettingsActivity]
+  + Class [edu/stanford/nicd/chroma/h]
+  + Class [java/lang/Object]
+  + Fieldref [edu/stanford/nicd/chroma/h.a Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getBaseContext ()Landroid/content/Context;]
+  + Methodref [java/lang/Object.<init> ()V]
+  + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
+  + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
+  + InterfaceMethodref [android/content/SharedPreferences$Editor.putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
+  + NameAndType [<init> ()V]
+  + NameAndType [a Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + NameAndType [commit ()Z]
+  + NameAndType [edit ()Landroid/content/SharedPreferences$Editor;]
+  + NameAndType [getBaseContext ()Landroid/content/Context;]
+  + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + NameAndType [putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
+  + Utf8 [()Landroid/content/Context;]
+  + Utf8 [()Landroid/content/SharedPreferences$Editor;]
+  + Utf8 [()V]
+  + Utf8 [()Z]
+  + Utf8 [(Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Utf8 [(Landroid/widget/SeekBar;)V]
+  + Utf8 [(Landroid/widget/SeekBar;IZ)V]
+  + Utf8 [(Ledu/stanford/nicd/chroma/SettingsActivity;)V]
+  + Utf8 [(Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + Utf8 [a]
+  + Utf8 [android/content/SharedPreferences]
+  + Utf8 [android/content/SharedPreferences$Editor]
+  + Utf8 [android/preference/PreferenceManager]
+  + Utf8 [android/widget/SeekBar$OnSeekBarChangeListener]
+  + Utf8 [commit]
+  + Utf8 [edit]
+  + Utf8 [edu/stanford/nicd/chroma/SettingsActivity]
+  + Utf8 [edu/stanford/nicd/chroma/h]
+  + Utf8 [fpsThrottle]
+  + Utf8 [getBaseContext]
+  + Utf8 [getDefaultSharedPreferences]
+  + Utf8 [java/lang/Object]
+  + Utf8 [onProgressChanged]
+  + Utf8 [onStartTrackingTouch]
+  + Utf8 [onStopTrackingTouch]
+  + Utf8 [putInt]
+
+Fields (count = 1):
+  + Field:        a Ledu/stanford/nicd/chroma/SettingsActivity;
+    Access flags: 0x1010
+      = final synthetic edu.stanford.nicd.chroma.SettingsActivity a
+
+Methods (count = 4):
+  - Method:       <init>(Ledu/stanford/nicd/chroma/SettingsActivity;)V
+    Access flags: 0x0
+      = h(edu.stanford.nicd.chroma.SettingsActivity)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 10, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #9
+        + Fieldref [edu/stanford/nicd/chroma/h.a Ledu/stanford/nicd/chroma/SettingsActivity;]
+      [5] aload_0 v0
+      [6] invokespecial #12
+        + Methodref [java/lang/Object.<init> ()V]
+      [9] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onProgressChanged(Landroid/widget/SeekBar;IZ)V
+    Access flags: 0x1
+      = public void onProgressChanged(android.widget.SeekBar,int,boolean)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 44, locals = 6, stack = 4):
+      [0] aload_0 v0
+      [1] getfield #9
+        + Fieldref [edu/stanford/nicd/chroma/h.a Ledu/stanford/nicd/chroma/SettingsActivity;]
+      [4] invokevirtual #11
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getBaseContext ()Landroid/content/Context;]
+      [7] invokestatic #10
+        + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+      [10] astore v4
+      [12] aload v4
+      [14] invokeinterface #13
+        + InterfaceMethodref [android/content/SharedPreferences.edit ()Landroid/content/SharedPreferences$Editor;]
+      [19] astore v5
+      [21] aload v5
+      [23] ldc #1
+        + String [fpsThrottle]
+      [25] bipush 100
+      [27] iload_2 v2
+      [28] isub
+      [29] invokeinterface #15
+        + InterfaceMethodref [android/content/SharedPreferences$Editor.putInt (Ljava/lang/String;I)Landroid/content/SharedPreferences$Editor;]
+      [34] pop
+      [35] aload v5
+      [37] invokeinterface #14
+        + InterfaceMethodref [android/content/SharedPreferences$Editor.commit ()Z]
+      [42] pop
+      [43] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onStartTrackingTouch(Landroid/widget/SeekBar;)V
+    Access flags: 0x1
+      = public void onStartTrackingTouch(android.widget.SeekBar)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 1, locals = 2, stack = 0):
+      [0] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onStopTrackingTouch(Landroid/widget/SeekBar;)V
+    Access flags: 0x1
+      = public void onStopTrackingTouch(android.widget.SeekBar)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 1, locals = 2, stack = 0):
+      [0] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: edu/stanford/nicd/chroma/i
+  Superclass:    edu/stanford/nicd/chroma/b
+  Major version: 0x31
+  Minor version: 0x0
+  Access flags:  0x20
+    = class edu.stanford.nicd.chroma.i extends edu.stanford.nicd.chroma.b
+
+Interfaces (count = 1):
+  + Class [android/opengl/GLSurfaceView$Renderer]
+
+Constant Pool (count = 44):
+  + Class [android/opengl/GLSurfaceView$Renderer]
+  + Class [edu/stanford/nicd/chroma/a]
+  + Class [edu/stanford/nicd/chroma/b]
+  + Class [edu/stanford/nicd/chroma/i]
+  + Class [edu/stanford/nicd/chroma/j]
+  + Fieldref [edu/stanford/nicd/chroma/i.a Ledu/stanford/nicd/chroma/a;]
+  + Fieldref [edu/stanford/nicd/chroma/i.b Ledu/stanford/nicd/chroma/j;]
+  + Fieldref [edu/stanford/nicd/chroma/i.c Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + Fieldref [edu/stanford/nicd/chroma/j.a Z]
+  + Methodref [edu/stanford/nicd/chroma/a.a ()V]
+  + Methodref [edu/stanford/nicd/chroma/b.<init> (Landroid/content/Context;)V]
+  + Methodref [edu/stanford/nicd/chroma/b.a ()V]
+  + Methodref [edu/stanford/nicd/chroma/j.<init> (Ledu/stanford/nicd/chroma/i;)V]
+  + Methodref [edu/stanford/nicd/chroma/j.start ()V]
+  + NameAndType [<init> (Landroid/content/Context;)V]
+  + NameAndType [<init> (Ledu/stanford/nicd/chroma/i;)V]
+  + NameAndType [a ()V]
+  + NameAndType [a Ledu/stanford/nicd/chroma/a;]
+  + NameAndType [a Z]
+  + NameAndType [b Ledu/stanford/nicd/chroma/j;]
+  + NameAndType [c Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + NameAndType [start ()V]
+  + Utf8 [()V]
+  + Utf8 [(Landroid/content/Context;)V]
+  + Utf8 [(Ledu/stanford/nicd/chroma/SettingsActivity;Landroid/content/Context;)V]
+  + Utf8 [(Ledu/stanford/nicd/chroma/i;)V]
+  + Utf8 [(Ljavax/microedition/khronos/opengles/GL10;)V]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + Utf8 [Ledu/stanford/nicd/chroma/a;]
+  + Utf8 [Ledu/stanford/nicd/chroma/j;]
+  + Utf8 [Z]
+  + Utf8 [a]
+  + Utf8 [android/opengl/GLSurfaceView$Renderer]
+  + Utf8 [b]
+  + Utf8 [c]
+  + Utf8 [edu/stanford/nicd/chroma/a]
+  + Utf8 [edu/stanford/nicd/chroma/b]
+  + Utf8 [edu/stanford/nicd/chroma/i]
+  + Utf8 [edu/stanford/nicd/chroma/j]
+  + Utf8 [onDrawFrame]
+  + Utf8 [start]
+
+Fields (count = 2):
+  + Field:        b Ledu/stanford/nicd/chroma/j;
+    Access flags: 0x0
+      = edu.stanford.nicd.chroma.j b
+  + Field:        c Ledu/stanford/nicd/chroma/SettingsActivity;
+    Access flags: 0x1010
+      = final synthetic edu.stanford.nicd.chroma.SettingsActivity c
+
+Methods (count = 4):
+  - Method:       <init>(Ledu/stanford/nicd/chroma/SettingsActivity;Landroid/content/Context;)V
+    Access flags: 0x1
+      = public i(edu.stanford.nicd.chroma.SettingsActivity,android.content.Context)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 11, locals = 3, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #8
+        + Fieldref [edu/stanford/nicd/chroma/i.c Ledu/stanford/nicd/chroma/SettingsActivity;]
+      [5] aload_0 v0
+      [6] aload_2 v2
+      [7] invokespecial #11
+        + Methodref [edu/stanford/nicd/chroma/b.<init> (Landroid/content/Context;)V]
+      [10] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       b()V
+    Access flags: 0x1
+      = public void b()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 20, locals = 1, stack = 4):
+      [0] aload_0 v0
+      [1] new #5
+        + Class [edu/stanford/nicd/chroma/j]
+      [4] dup
+      [5] aload_0 v0
+      [6] invokespecial #13
+        + Methodref [edu/stanford/nicd/chroma/j.<init> (Ledu/stanford/nicd/chroma/i;)V]
+      [9] putfield #7
+        + Fieldref [edu/stanford/nicd/chroma/i.b Ledu/stanford/nicd/chroma/j;]
+      [12] aload_0 v0
+      [13] getfield #7
+        + Fieldref [edu/stanford/nicd/chroma/i.b Ledu/stanford/nicd/chroma/j;]
+      [16] invokevirtual #14
+        + Methodref [edu/stanford/nicd/chroma/j.start ()V]
+      [19] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       a()V
+    Access flags: 0x1
+      = public void a()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 13, locals = 1, stack = 2):
+      [0] aload_0 v0
+      [1] invokespecial #12
+        + Methodref [edu/stanford/nicd/chroma/b.a ()V]
+      [4] aload_0 v0
+      [5] getfield #7
+        + Fieldref [edu/stanford/nicd/chroma/i.b Ledu/stanford/nicd/chroma/j;]
+      [8] iconst_1
+      [9] putfield #9
+        + Fieldref [edu/stanford/nicd/chroma/j.a Z]
+      [12] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       onDrawFrame(Ljavax/microedition/khronos/opengles/GL10;)V
+    Access flags: 0x1
+      = public void onDrawFrame(javax.microedition.khronos.opengles.GL10)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 8, locals = 2, stack = 1):
+      [0] aload_0 v0
+      [1] getfield #6
+        + Fieldref [edu/stanford/nicd/chroma/i.a Ledu/stanford/nicd/chroma/a;]
+      [4] invokevirtual #10
+        + Methodref [edu/stanford/nicd/chroma/a.a ()V]
+      [7] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: edu/stanford/nicd/chroma/j
+  Superclass:    java/lang/Thread
+  Major version: 0x31
+  Minor version: 0x0
+  Access flags:  0x20
+    = class edu.stanford.nicd.chroma.j extends java.lang.Thread
+
+Interfaces (count = 0):
+
+Constant Pool (count = 63):
+  + String [fpsThrottle]
+  + Class [android/content/SharedPreferences]
+  + Class [android/opengl/GLSurfaceView]
+  + Class [android/preference/PreferenceManager]
+  + Class [edu/stanford/nicd/chroma/SettingsActivity]
+  + Class [edu/stanford/nicd/chroma/i]
+  + Class [edu/stanford/nicd/chroma/j]
+  + Class [java/lang/InterruptedException]
+  + Class [java/lang/Thread]
+  + Fieldref [edu/stanford/nicd/chroma/i.c Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + Fieldref [edu/stanford/nicd/chroma/j.a Z]
+  + Fieldref [edu/stanford/nicd/chroma/j.b Ledu/stanford/nicd/chroma/i;]
+  + Methodref [android/opengl/GLSurfaceView.requestRender ()V]
+  + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.a (Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;]
+  + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getBaseContext ()Landroid/content/Context;]
+  + Methodref [java/lang/InterruptedException.printStackTrace ()V]
+  + Methodref [java/lang/Thread.<init> ()V]
+  + Methodref [java/lang/Thread.sleep (J)V]
+  + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+  + NameAndType [<init> ()V]
+  + NameAndType [a (Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;]
+  + NameAndType [a Z]
+  + NameAndType [b Ledu/stanford/nicd/chroma/i;]
+  + NameAndType [c Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + NameAndType [getBaseContext ()Landroid/content/Context;]
+  + NameAndType [getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + NameAndType [getInt (Ljava/lang/String;I)I]
+  + NameAndType [printStackTrace ()V]
+  + NameAndType [requestRender ()V]
+  + NameAndType [sleep (J)V]
+  + Utf8 [()Landroid/content/Context;]
+  + Utf8 [()V]
+  + Utf8 [(J)V]
+  + Utf8 [(Landroid/content/Context;)Landroid/content/SharedPreferences;]
+  + Utf8 [(Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;]
+  + Utf8 [(Ledu/stanford/nicd/chroma/i;)V]
+  + Utf8 [(Ljava/lang/String;I)I]
+  + Utf8 [<init>]
+  + Utf8 [Code]
+  + Utf8 [Ledu/stanford/nicd/chroma/SettingsActivity;]
+  + Utf8 [Ledu/stanford/nicd/chroma/i;]
+  + Utf8 [Z]
+  + Utf8 [a]
+  + Utf8 [android/content/SharedPreferences]
+  + Utf8 [android/opengl/GLSurfaceView]
+  + Utf8 [android/preference/PreferenceManager]
+  + Utf8 [b]
+  + Utf8 [c]
+  + Utf8 [edu/stanford/nicd/chroma/SettingsActivity]
+  + Utf8 [edu/stanford/nicd/chroma/i]
+  + Utf8 [edu/stanford/nicd/chroma/j]
+  + Utf8 [fpsThrottle]
+  + Utf8 [getBaseContext]
+  + Utf8 [getDefaultSharedPreferences]
+  + Utf8 [getInt]
+  + Utf8 [java/lang/InterruptedException]
+  + Utf8 [java/lang/Thread]
+  + Utf8 [printStackTrace]
+  + Utf8 [requestRender]
+  + Utf8 [run]
+  + Utf8 [sleep]
+
+Fields (count = 2):
+  + Field:        a Z
+    Access flags: 0x1
+      = public boolean a
+  + Field:        b Ledu/stanford/nicd/chroma/i;
+    Access flags: 0x1010
+      = final synthetic edu.stanford.nicd.chroma.i b
+
+Methods (count = 2):
+  - Method:       <init>(Ledu/stanford/nicd/chroma/i;)V
+    Access flags: 0x0
+      = j(edu.stanford.nicd.chroma.i)
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 15, locals = 2, stack = 2):
+      [0] aload_0 v0
+      [1] aload_1 v1
+      [2] putfield #12
+        + Fieldref [edu/stanford/nicd/chroma/j.b Ledu/stanford/nicd/chroma/i;]
+      [5] aload_0 v0
+      [6] invokespecial #18
+        + Methodref [java/lang/Thread.<init> ()V]
+      [9] aload_0 v0
+      [10] iconst_0
+      [11] putfield #11
+        + Fieldref [edu/stanford/nicd/chroma/j.a Z]
+      [14] return
+      Code attribute exceptions (count = 0):
+      Code attribute attributes (attribute count = 0):
+  + Method:       run()V
+    Access flags: 0x1
+      = public void run()
+    Class member attributes (count = 1):
+    + Code attribute instructions (code length = 75, locals = 4, stack = 3):
+      [0] aload_0 v0
+      [1] getfield #11
+        + Fieldref [edu/stanford/nicd/chroma/j.a Z]
+      [4] ifeq +4 (target=8)
+      [7] return
+      [8] aload_0 v0
+      [9] getfield #12
+        + Fieldref [edu/stanford/nicd/chroma/j.b Ledu/stanford/nicd/chroma/i;]
+      [12] getfield #10
+        + Fieldref [edu/stanford/nicd/chroma/i.c Ledu/stanford/nicd/chroma/SettingsActivity;]
+      [15] invokestatic #15
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.a (Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;]
+      [18] ifnull +16 (target=34)
+      [21] aload_0 v0
+      [22] getfield #12
+        + Fieldref [edu/stanford/nicd/chroma/j.b Ledu/stanford/nicd/chroma/i;]
+      [25] getfield #10
+        + Fieldref [edu/stanford/nicd/chroma/i.c Ledu/stanford/nicd/chroma/SettingsActivity;]
+      [28] invokestatic #15
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.a (Ledu/stanford/nicd/chroma/SettingsActivity;)Landroid/opengl/GLSurfaceView;]
+      [31] invokevirtual #13
+        + Methodref [android/opengl/GLSurfaceView.requestRender ()V]
+      [34] aload_0 v0
+      [35] getfield #12
+        + Fieldref [edu/stanford/nicd/chroma/j.b Ledu/stanford/nicd/chroma/i;]
+      [38] getfield #10
+        + Fieldref [edu/stanford/nicd/chroma/i.c Ledu/stanford/nicd/chroma/SettingsActivity;]
+      [41] invokevirtual #16
+        + Methodref [edu/stanford/nicd/chroma/SettingsActivity.getBaseContext ()Landroid/content/Context;]
+      [44] invokestatic #14
+        + Methodref [android/preference/PreferenceManager.getDefaultSharedPreferences (Landroid/content/Context;)Landroid/content/SharedPreferences;]
+      [47] astore_1 v1
+      [48] aload_1 v1
+      [49] ldc #1
+        + String [fpsThrottle]
+      [51] bipush 40
+      [53] invokeinterface #20
+        + InterfaceMethodref [android/content/SharedPreferences.getInt (Ljava/lang/String;I)I]
+      [58] istore_2 v2
+      [59] iload_2 v2
+      [60] i2l
+      [61] invokestatic #19
+        + Methodref [java/lang/Thread.sleep (J)V]
+      [64] goto +8 (target=72)
+      [67] astore_3 v3
+      [68] aload_3 v3
+      [69] invokevirtual #17
+        + Methodref [java/lang/InterruptedException.printStackTrace ()V]
+      [72] goto -72 (target=0)
+      Code attribute exceptions (count = 1):
+      - ExceptionInfo (59 -> 64: 67):
+      + Class [java/lang/InterruptedException]
+      Code attribute attributes (attribute count = 0):
+
+Class file attributes (count = 0):
+
+_____________________________________________________________________
++ Program class: edu/stanford/nicd/chroma/k
+  Superclass:    java/lang/Object
+  Major version: 0x31
+  Minor version: 0x0
+  Access flags:  0x20
+    = class edu.stanford.nicd.chroma.k extends java.lang.Object
+
 Interfaces (count = 0):
 
 Constant Pool (count = 12):
-  + Class [edu/stanford/nicd/chroma/h]
+  + Class [edu/stanford/nicd/chroma/k]
   + Class [java/lang/Object]
   + Methodref [java/lang/Object.<init> ()V]
   + NameAndType [<init> ()V]
@@ -2751,7 +3731,7 @@ Constant Pool (count = 12):
   + Utf8 [<init>]
   + Utf8 [Code]
   + Utf8 [a]
-  + Utf8 [edu/stanford/nicd/chroma/h]
+  + Utf8 [edu/stanford/nicd/chroma/k]
   + Utf8 [java/lang/Object]
 
 Fields (count = 0):
@@ -2759,7 +3739,7 @@ Fields (count = 0):
 Methods (count = 2):
   - Method:       <init>(Landroid/content/Context;)V
     Access flags: 0x1
-      = public h(android.content.Context)
+      = public k(android.content.Context)
     Class member attributes (count = 1):
     + Code attribute instructions (code length = 5, locals = 2, stack = 1):
       [0] aload_0 v0
@@ -4246,7 +5226,7 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 221):
+Constant Pool (count = 224):
   + String [GLThread ]
   + String [renderMode]
   + Class [b/a/a/a/i]
@@ -4316,9 +5296,9 @@ Constant Pool (count = 221):
   + Methodref [java/util/ArrayList.<init> ()V]
   + Methodref [java/util/ArrayList.remove (I)Ljava/lang/Object;]
   + Methodref [java/util/ArrayList.size ()I]
-  + InterfaceMethodref [b/a/a/a/o.a (Ljavax/microedition/khronos/opengles/GL10;)V]
-  + InterfaceMethodref [b/a/a/a/o.a (Ljavax/microedition/khronos/opengles/GL10;II)V]
-  + InterfaceMethodref [b/a/a/a/o.a (Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
+  + InterfaceMethodref [b/a/a/a/o.onDrawFrame (Ljavax/microedition/khronos/opengles/GL10;)V]
+  + InterfaceMethodref [b/a/a/a/o.onSurfaceChanged (Ljavax/microedition/khronos/opengles/GL10;II)V]
+  + InterfaceMethodref [b/a/a/a/o.onSurfaceCreated (Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
   + InterfaceMethodref [java/lang/Runnable.run ()V]
   + NameAndType [<init> ()V]
   + NameAndType [<init> (Lb/a/a/a/f;Lb/a/a/a/g;Lb/a/a/a/h;Lb/a/a/a/p;)V]
@@ -4327,9 +5307,6 @@ Constant Pool (count = 221):
   + NameAndType [a ()V]
   + NameAndType [a (Landroid/view/SurfaceHolder;)Ljavax/microedition/khronos/opengles/GL;]
   + NameAndType [a (Lb/a/a/a/j;)V]
-  + NameAndType [a (Ljavax/microedition/khronos/opengles/GL10;)V]
-  + NameAndType [a (Ljavax/microedition/khronos/opengles/GL10;II)V]
-  + NameAndType [a (Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
   + NameAndType [a Landroid/view/SurfaceHolder;]
   + NameAndType [a Ljavax/microedition/khronos/egl/EGLConfig;]
   + NameAndType [append (J)Ljava/lang/StringBuilder;]
@@ -4363,6 +5340,9 @@ Constant Pool (count = 221):
   + NameAndType [n I]
   + NameAndType [notifyAll ()V]
   + NameAndType [o I]
+  + NameAndType [onDrawFrame (Ljavax/microedition/khronos/opengles/GL10;)V]
+  + NameAndType [onSurfaceChanged (Ljavax/microedition/khronos/opengles/GL10;II)V]
+  + NameAndType [onSurfaceCreated (Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
   + NameAndType [p I]
   + NameAndType [q Z]
   + NameAndType [r Z]
@@ -4452,6 +5432,9 @@ Constant Pool (count = 221):
   + Utf8 [n]
   + Utf8 [notifyAll]
   + Utf8 [o]
+  + Utf8 [onDrawFrame]
+  + Utf8 [onSurfaceChanged]
+  + Utf8 [onSurfaceCreated]
   + Utf8 [p]
   + Utf8 [q]
   + Utf8 [r]
@@ -4991,7 +5974,7 @@ Methods (count = 16):
       [449] getfield #17
         + Fieldref [b/a/a/a/i.a Ljavax/microedition/khronos/egl/EGLConfig;]
       [452] invokeinterface #73
-        + InterfaceMethodref [b/a/a/a/o.a (Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
+        + InterfaceMethodref [b/a/a/a/o.onSurfaceCreated (Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
       [457] iconst_0
       [458] istore_2 v2
       [459] iload_3 v3
@@ -5003,7 +5986,7 @@ Methods (count = 16):
       [468] iload v4
       [470] iload v5
       [472] invokeinterface #72
-        + InterfaceMethodref [b/a/a/a/o.a (Ljavax/microedition/khronos/opengles/GL10;II)V]
+        + InterfaceMethodref [b/a/a/a/o.onSurfaceChanged (Ljavax/microedition/khronos/opengles/GL10;II)V]
       [477] iconst_0
       [478] istore_3 v3
       [479] iload v4
@@ -5015,7 +5998,7 @@ Methods (count = 16):
         + Fieldref [b/a/a/a/j.s Lb/a/a/a/o;]
       [493] aload_1 v1
       [494] invokeinterface #71
-        + InterfaceMethodref [b/a/a/a/o.a (Ljavax/microedition/khronos/opengles/GL10;)V]
+        + InterfaceMethodref [b/a/a/a/o.onDrawFrame (Ljavax/microedition/khronos/opengles/GL10;)V]
       [499] aload_0 v0
       [500] getfield #38
         + Fieldref [b/a/a/a/j.u Lb/a/a/a/i;]
@@ -5798,8 +6781,8 @@ Constant Pool (count = 118):
   + Fieldref [b/a/a/a/n.a Lb/a/a/a/j;]
   + Fieldref [b/a/a/a/n.b Lb/a/a/a/f;]
   + Fieldref [b/a/a/a/n.c Lb/a/a/a/g;]
-  + Fieldref [b/a/a/a/n.d Lb/a/a/a/m;]
-  + Fieldref [b/a/a/a/n.e Lb/a/a/a/h;]
+  + Fieldref [b/a/a/a/n.d Lb/a/a/a/h;]
+  + Fieldref [b/a/a/a/n.e Lb/a/a/a/m;]
   + Fieldref [b/a/a/a/n.f Lb/a/a/a/p;]
   + Methodref [android/service/wallpaper/WallpaperService$Engine.<init> (Landroid/service/wallpaper/WallpaperService;)V]
   + Methodref [android/service/wallpaper/WallpaperService$Engine.onCreate (Landroid/view/SurfaceHolder;)V]
@@ -5842,9 +6825,9 @@ Constant Pool (count = 118):
   + NameAndType [c Lb/a/a/a/g;]
   + NameAndType [d ()V]
   + NameAndType [d (Ljava/lang/String;Ljava/lang/String;)I]
-  + NameAndType [d Lb/a/a/a/m;]
+  + NameAndType [d Lb/a/a/a/h;]
   + NameAndType [e ()V]
-  + NameAndType [e Lb/a/a/a/h;]
+  + NameAndType [e Lb/a/a/a/m;]
   + NameAndType [f Lb/a/a/a/p;]
   + NameAndType [onCreate (Landroid/view/SurfaceHolder;)V]
   + NameAndType [onDestroy ()V]
@@ -5911,15 +6894,15 @@ Fields (count = 6):
   + Field:        c Lb/a/a/a/g;
     Access flags: 0x2
       = private b.a.a.a.g c
-  + Field:        e Lb/a/a/a/h;
+  + Field:        d Lb/a/a/a/h;
     Access flags: 0x2
-      = private b.a.a.a.h e
+      = private b.a.a.a.h d
   + Field:        f Lb/a/a/a/p;
     Access flags: 0x2
       = private b.a.a.a.p f
-  + Field:        d Lb/a/a/a/m;
+  + Field:        e Lb/a/a/a/m;
     Access flags: 0x1010
-      = final synthetic b.a.a.a.m d
+      = final synthetic b.a.a.a.m e
 
 Methods (count = 15):
   - Method:       <init>(Lb/a/a/a/m;)V
@@ -5929,8 +6912,8 @@ Methods (count = 15):
     + Code attribute instructions (code length = 11, locals = 2, stack = 2):
       [0] aload_0 v0
       [1] aload_1 v1
-      [2] putfield #16
-        + Fieldref [b/a/a/a/n.d Lb/a/a/a/m;]
+      [2] putfield #17
+        + Fieldref [b/a/a/a/n.e Lb/a/a/a/m;]
       [5] aload_0 v0
       [6] aload_1 v1
       [7] invokespecial #19
@@ -6092,8 +7075,8 @@ Methods (count = 15):
       [38] putfield #15
         + Fieldref [b/a/a/a/n.c Lb/a/a/a/g;]
       [41] aload_0 v0
-      [42] getfield #17
-        + Fieldref [b/a/a/a/n.e Lb/a/a/a/h;]
+      [42] getfield #16
+        + Fieldref [b/a/a/a/n.d Lb/a/a/a/h;]
       [45] ifnonnull +14 (target=59)
       [48] aload_0 v0
       [49] new #9
@@ -6101,8 +7084,8 @@ Methods (count = 15):
       [52] dup
       [53] invokespecial #29
         + Methodref [b/a/a/a/e.<init> ()V]
-      [56] putfield #17
-        + Fieldref [b/a/a/a/n.e Lb/a/a/a/h;]
+      [56] putfield #16
+        + Fieldref [b/a/a/a/n.d Lb/a/a/a/h;]
       [59] aload_0 v0
       [60] new #10
         + Class [b/a/a/a/j]
@@ -6115,8 +7098,8 @@ Methods (count = 15):
       [70] getfield #15
         + Fieldref [b/a/a/a/n.c Lb/a/a/a/g;]
       [73] aload_0 v0
-      [74] getfield #17
-        + Fieldref [b/a/a/a/n.e Lb/a/a/a/h;]
+      [74] getfield #16
+        + Fieldref [b/a/a/a/n.d Lb/a/a/a/h;]
       [77] aload_0 v0
       [78] getfield #18
         + Fieldref [b/a/a/a/n.f Lb/a/a/a/p;]
@@ -6248,28 +7231,30 @@ _____________________________________________________________________
 
 Interfaces (count = 0):
 
-Constant Pool (count = 9):
+Constant Pool (count = 11):
   + Class [b/a/a/a/o]
   + Class [java/lang/Object]
   + Utf8 [(Ljavax/microedition/khronos/opengles/GL10;)V]
   + Utf8 [(Ljavax/microedition/khronos/opengles/GL10;II)V]
   + Utf8 [(Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V]
-  + Utf8 [a]
   + Utf8 [b/a/a/a/o]
   + Utf8 [java/lang/Object]
+  + Utf8 [onDrawFrame]
+  + Utf8 [onSurfaceChanged]
+  + Utf8 [onSurfaceCreated]
 
 Fields (count = 0):
 
 Methods (count = 3):
-  + Method:       a(Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V
+  + Method:       onSurfaceCreated(Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V
     Access flags: 0x401
-      = public abstract void a(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig)
-  + Method:       a(Ljavax/microedition/khronos/opengles/GL10;II)V
+      = public abstract void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig)
+  + Method:       onSurfaceChanged(Ljavax/microedition/khronos/opengles/GL10;II)V
     Access flags: 0x401
-      = public abstract void a(javax.microedition.khronos.opengles.GL10,int,int)
-  + Method:       a(Ljavax/microedition/khronos/opengles/GL10;)V
+      = public abstract void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int)
+  + Method:       onDrawFrame(Ljavax/microedition/khronos/opengles/GL10;)V
     Access flags: 0x401
-      = public abstract void a(javax.microedition.khronos.opengles.GL10)
+      = public abstract void onDrawFrame(javax.microedition.khronos.opengles.GL10)
 
 Class file attributes (count = 0):
 

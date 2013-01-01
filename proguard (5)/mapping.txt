@@ -17,21 +17,25 @@ edu.stanford.nicd.chroma.ChromaBackground -> edu.stanford.nicd.chroma.a:
     int displayWidth -> b
     int vertexCount -> j
     int vertexStride -> k
+    void close(android.content.Context) -> a
     void draw() -> a
+edu.stanford.nicd.chroma.InfoActivity -> edu.stanford.nicd.chroma.InfoActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
 edu.stanford.nicd.chroma.MyRenderer -> edu.stanford.nicd.chroma.b:
     android.content.Context context -> b
     edu.stanford.nicd.chroma.ChromaBackground mBackground -> a
     edu.stanford.nicd.chroma.Sprite mSprites -> c
-    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> a
-    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> a
-    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> a
+    void close() -> a
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
     void onTouchEvent(android.view.MotionEvent) -> a
 edu.stanford.nicd.chroma.MyWallpaperService -> edu.stanford.nicd.chroma.MyWallpaperService:
     java.lang.String TAG -> a
     void checkEglError(java.lang.String,javax.microedition.khronos.egl.EGL10) -> b
     android.service.wallpaper.WallpaperService$Engine onCreateEngine() -> onCreateEngine
-    java.lang.String access$000() -> a
-    void access$100(java.lang.String,javax.microedition.khronos.egl.EGL10) -> a
+    void access$000(java.lang.String,javax.microedition.khronos.egl.EGL10) -> a
 edu.stanford.nicd.chroma.MyWallpaperService$1 -> edu.stanford.nicd.chroma.c:
 edu.stanford.nicd.chroma.MyWallpaperService$ConfigChooser -> edu.stanford.nicd.chroma.d:
     int EGL_OPENGL_ES2_BIT -> g
@@ -53,17 +57,39 @@ edu.stanford.nicd.chroma.MyWallpaperService$ContextFactory -> edu.stanford.nicd.
 edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine -> edu.stanford.nicd.chroma.f:
     edu.stanford.nicd.chroma.MyRenderer renderer -> a
     edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine$WatcherThread watcher -> b
-    edu.stanford.nicd.chroma.MyWallpaperService this$0 -> c
+    int fpsThrottle -> c
+    edu.stanford.nicd.chroma.MyWallpaperService this$0 -> d
     void onOffsetsChanged(float,float,float,float,int,int) -> onOffsetsChanged
     void onTouchEvent(android.view.MotionEvent) -> onTouchEvent
     void onResume() -> a
     void onPause() -> b
 edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine$WatcherThread -> edu.stanford.nicd.chroma.g:
     boolean kill -> a
-    int FPS_THROTTLE -> c
     edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine this$1 -> b
     void run() -> run
-edu.stanford.nicd.chroma.Sprite -> edu.stanford.nicd.chroma.h:
+edu.stanford.nicd.chroma.SettingsActivity -> edu.stanford.nicd.chroma.SettingsActivity:
+    android.opengl.GLSurfaceView mGLView -> a
+    edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer mRenderer -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPause() -> onPause
+    void onResume() -> onResume
+    android.opengl.GLSurfaceView access$000(edu.stanford.nicd.chroma.SettingsActivity) -> a
+edu.stanford.nicd.chroma.SettingsActivity$1 -> edu.stanford.nicd.chroma.h:
+    edu.stanford.nicd.chroma.SettingsActivity this$0 -> a
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer -> edu.stanford.nicd.chroma.i:
+    edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer$WatcherThread watcher -> b
+    edu.stanford.nicd.chroma.SettingsActivity this$0 -> c
+    void start() -> b
+    void close() -> a
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer$WatcherThread -> edu.stanford.nicd.chroma.j:
+    boolean kill -> a
+    edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer this$1 -> b
+    void run() -> run
+edu.stanford.nicd.chroma.Sprite -> edu.stanford.nicd.chroma.k:
     void draw() -> a
 net.rbgrn.android.glwallpaperservice.BaseConfigChooser -> b.a.a.a.a:
     int[] mConfigSpec -> a
@@ -159,9 +185,9 @@ net.rbgrn.android.glwallpaperservice.GLWallpaperService$GLEngine -> b.a.a.a.n:
     net.rbgrn.android.glwallpaperservice.GLThread mGLThread -> a
     net.rbgrn.android.glwallpaperservice.EGLConfigChooser mEGLConfigChooser -> b
     net.rbgrn.android.glwallpaperservice.EGLContextFactory mEGLContextFactory -> c
-    net.rbgrn.android.glwallpaperservice.EGLWindowSurfaceFactory mEGLWindowSurfaceFactory -> e
+    net.rbgrn.android.glwallpaperservice.EGLWindowSurfaceFactory mEGLWindowSurfaceFactory -> d
     net.rbgrn.android.glwallpaperservice.GLWrapper mGLWrapper -> f
-    net.rbgrn.android.glwallpaperservice.GLWallpaperService this$0 -> d
+    net.rbgrn.android.glwallpaperservice.GLWallpaperService this$0 -> e
     void onVisibilityChanged(boolean) -> onVisibilityChanged
     void onCreate(android.view.SurfaceHolder) -> onCreate
     void onDestroy() -> onDestroy
@@ -177,8 +203,8 @@ net.rbgrn.android.glwallpaperservice.GLWallpaperService$GLEngine -> b.a.a.a.n:
     void onResume() -> a
     void checkRenderThreadState() -> d
 net.rbgrn.android.glwallpaperservice.GLWallpaperService$Renderer -> b.a.a.a.o:
-    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> a
-    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> a
-    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> a
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
 net.rbgrn.android.glwallpaperservice.GLWrapper -> b.a.a.a.p:
     javax.microedition.khronos.opengles.GL wrap(javax.microedition.khronos.opengles.GL) -> a

@@ -10,15 +10,14 @@ edu.stanford.nicd.chroma.ChromaBackground:
     static final int COORDS_PER_VERTEX
     static final int TESSELATION_FACTOR
     static final int BYTES_PER_FLOAT
-edu.stanford.nicd.chroma.InfoActivity
 edu.stanford.nicd.chroma.MyGLSurfaceView
 edu.stanford.nicd.chroma.MyTestRenderer
 edu.stanford.nicd.chroma.MyWallpaperService:
     private static final boolean DEBUG
-    public static final java.lang.String SHARED_PREFS_NAME
+    17:17:static synthetic java.lang.String access$100()
 edu.stanford.nicd.chroma.MyWallpaperService$ConfigChooser:
-    143:149:private void printConfigs(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[])
-    152:210:private void printConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)
+    135:141:private void printConfigs(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[])
+    144:202:private void printConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig)
 edu.stanford.nicd.chroma.R
 edu.stanford.nicd.chroma.R$attr
 edu.stanford.nicd.chroma.R$drawable
@@ -27,8 +26,6 @@ edu.stanford.nicd.chroma.R$layout
 edu.stanford.nicd.chroma.R$raw
 edu.stanford.nicd.chroma.R$string
 edu.stanford.nicd.chroma.R$xml
-edu.stanford.nicd.chroma.SettingsActivity
-edu.stanford.nicd.chroma.SettingsActivity$1
 edu.stanford.nicd.chroma.WallpaperHarness
 net.rbgrn.android.glwallpaperservice.GLThread:
     private static final boolean LOG_THREADS

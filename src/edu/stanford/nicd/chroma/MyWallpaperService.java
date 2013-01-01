@@ -5,8 +5,6 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 
-
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -19,14 +17,12 @@ import net.rbgrn.android.glwallpaperservice.*;
 public class MyWallpaperService extends GLWallpaperService {
 	private static String TAG = "ChromaLW";
 	private static final boolean DEBUG = false;
-	public static final String SHARED_PREFS_NAME = "edu.stanford.nicd"; // TODO
 
 	private static class ContextFactory implements EGLContextFactory {
 		private static int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
 
 		public EGLContext createContext(EGL10 egl, EGLDisplay display,
 				EGLConfig eglConfig) {
-			Log.w(TAG, "creating OpenGL ES 2.0 context");
 			checkEglError("Before eglCreateContext", egl);
 			int[] attrib_list = { EGL_CONTEXT_CLIENT_VERSION, 2, EGL10.EGL_NONE };
 			EGLContext context = egl.eglCreateContext(display, eglConfig,
@@ -85,19 +81,14 @@ public class MyWallpaperService extends GLWallpaperService {
 						"No configs match configSpec");
 			}
 
-			/*
-			 * Allocate then read the array of minimally matching EGL configs
-			 */
+			// Allocate then read the array of minimally matching EGL configs
 			EGLConfig[] configs = new EGLConfig[numConfigs];
 			egl.eglChooseConfig(display, s_configAttribs2, configs, numConfigs,
 					num_config);
 
-			if (DEBUG) {
+			if (DEBUG)
 				printConfigs(egl, display, configs);
-			}
-			/*
-			 * Now return the "best" one
-			 */
+			// Now return the "best" one
 			return chooseConfig(egl, display, configs);
 		}
 
@@ -226,7 +217,7 @@ public class MyWallpaperService extends GLWallpaperService {
 		WatcherThread watcher;
 		int fpsThrottle;
 
-		public WallpaperEngine(SharedPreferences preferences) {
+		public WallpaperEngine() {
 			super();
 
 			setEGLContextFactory(new ContextFactory());
@@ -235,8 +226,6 @@ public class MyWallpaperService extends GLWallpaperService {
 			renderer = new MyRenderer(getBaseContext());
 			setRenderer(renderer);
 			setRenderMode(RENDERMODE_WHEN_DIRTY);
-
-			
 		}
 
 		public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset, int yPixelOffset) {
@@ -253,15 +242,13 @@ public class MyWallpaperService extends GLWallpaperService {
 		public void onResume() {
 			super.onResume();
 			requestRender();
-			//renderer.onResume();
 			watcher = new WatcherThread();
 			watcher.start();
 		}
 
 		public void onPause() {
 			super.onPause();
-			//renderer.onPause();
-			requestRender();
+			renderer.close();
 			watcher.kill = true;
 		}
 
@@ -289,7 +276,6 @@ public class MyWallpaperService extends GLWallpaperService {
 
 	@Override
 	public Engine onCreateEngine() {
-		return new WallpaperEngine(this.getSharedPreferences(SHARED_PREFS_NAME,
-				Context.MODE_MULTI_PROCESS));
+		return new WallpaperEngine();
 	}
 }
