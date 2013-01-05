@@ -122,7 +122,7 @@ class ChromaBackground {
 		
 		// Load textures
 		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-		TextureHelper.loadTexture(context, R.drawable.chromaswath, mColorSwathHandle);
+		TextureHelper.loadTexture(context, R.drawable.swath_chroma, mColorSwathHandle);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);

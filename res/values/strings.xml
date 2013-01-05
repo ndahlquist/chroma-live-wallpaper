@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Chroma Live Wallpaper</string>
-    <string name="service_label">Chroma Live Wallpaper</string>
-    <string name="choose_this_wallpaper">Choose "Chroma Live Wallpaper"</string>
+    <string name="service_label">Chroma</string>
+    <string name="choose_this_wallpaper">Choose \"Chroma\"</string>
     <string name="wallpaper_settings">Preferences</string>
     <string name="description">A Nexus of colors.</string>
     <string name="fps">Wallpaper speed:</string>
