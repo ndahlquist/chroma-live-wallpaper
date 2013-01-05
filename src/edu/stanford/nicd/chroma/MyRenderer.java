@@ -74,51 +74,30 @@ class Sprite {
 
 class ChromaBackground {
 
-	private final FloatBuffer vertexBuffer;
 	private final int mProgramHandle;
-	private int mPositionHandle;
-	private int mTimeHandle;
-	private int mTouchHandle;
-	private int mColorSwathHandle;
-	private int mNoiseHandle;
+	private final int mPositionHandle;
+	private final int mTimeHandle;
+	private final int mTouchHandle;
+	private final int mColorSwathHandle;
+	private final int mNoiseHandle;
+	
 	public MotionEvent motionEvent;
 	private int frameNum;
 	public int displayWidth;
 
-	static final int COORDS_PER_VERTEX = 3;
-	static final int TESSELATION_FACTOR = 10;
-	static final int BYTES_PER_FLOAT = 4;
+	private final int COORDS_PER_VERTEX = 3;
+	private final int TESSELATION_FACTOR = 10;
+	private final int BYTES_PER_FLOAT = 4;
+	private final int VERTEX_STRIDE = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
 	private final int vertexCount;
-	private final int vertexStride = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
+	private final int coordinateHandle[] = new int[1];
 	
 	public ChromaBackground(Context context) throws Exception {
+	
+		// Copy the geometry to GPU memory
+		vertexCount = LoadGeometry(coordinateHandle);
 
-		float[] triangleCoords = new float[2*TESSELATION_FACTOR*COORDS_PER_VERTEX];
-		for(int i=0; i<TESSELATION_FACTOR; i++) {
-			// Bottom
-			triangleCoords[6*i+0] =  2.0f*i/(TESSELATION_FACTOR-1.0f) - 1.0f;
-			triangleCoords[6*i+1] = -1.0f;
-			triangleCoords[6*i+2] =  0.0f;
-
-			// Top
-			triangleCoords[6*i+3] =  2.0f*i/(TESSELATION_FACTOR-1.0f) - 1.0f;
-			triangleCoords[6*i+4] =  1.0f;
-			triangleCoords[6*i+5] =  0.0f;
-		}
-		vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
-		// initialize vertex byte buffer for shape coordinates
-		ByteBuffer bb = ByteBuffer.allocateDirect(triangleCoords.length * BYTES_PER_FLOAT);
-		// use the device hardware's native byte order
-		bb.order(ByteOrder.nativeOrder());
-
-		// create a floating point buffer from the ByteBuffer
-		vertexBuffer = bb.asFloatBuffer();
-		// add the coordinates to the FloatBuffer
-		vertexBuffer.put(triangleCoords);
-		// set the buffer to read the first coordinate
-		vertexBuffer.position(0);
-
-		// Compile the shader programs.
+		// Compile and link shader programs
 		final String vertexShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.chroma_v);   		
 		final int vertexShaderHandle = ShaderHelper.compileShader(GLES20.GL_VERTEX_SHADER, vertexShader);
 		if(vertexShaderHandle == 0) // Shader compilation failed.
@@ -158,6 +137,37 @@ class ChromaBackground {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		frameNum = prefs.getInt("frameNum", (int) (65535.0 * Math.random()));
 	}
+
+	private int LoadGeometry(int[] buffers) {
+		
+		float[] coordinates = new float[2*TESSELATION_FACTOR*COORDS_PER_VERTEX];
+		for(int i=0; i<TESSELATION_FACTOR; i++) {
+			// Bottom
+			coordinates[6*i+0] =  2.0f*i/(TESSELATION_FACTOR-1.0f) - 1.0f;
+			coordinates[6*i+1] = -1.0f;
+			coordinates[6*i+2] =  0.0f;
+
+			// Top
+			coordinates[6*i+3] =  2.0f*i/(TESSELATION_FACTOR-1.0f) - 1.0f;
+			coordinates[6*i+4] =  1.0f;
+			coordinates[6*i+5] =  0.0f;
+		}
+
+		final FloatBuffer mBuffer = ByteBuffer.allocateDirect(coordinates.length * BYTES_PER_FLOAT).order(ByteOrder.nativeOrder()).asFloatBuffer();
+		mBuffer.put(coordinates, 0, coordinates.length);
+		mBuffer.position(0);
+
+		GLES20.glGenBuffers(1, buffers, 0);						
+
+		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, buffers[0]);
+		GLES20.glBufferData(GLES20.GL_ARRAY_BUFFER, mBuffer.capacity() * BYTES_PER_FLOAT, mBuffer, GLES20.GL_STATIC_DRAW);			
+
+		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
+
+		mBuffer.limit(0);
+		
+		return 2 * TESSELATION_FACTOR;
+	}
 	
 	public void close(Context context) {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -174,6 +184,10 @@ class ChromaBackground {
 		// Specify rendering settings
 		GLES20.glEnable(GLES20.GL_DITHER);
 		GLES20.glEnable(GLES20.GL_TEXTURE_2D);
+		GLES20.glEnable(GLES20.GL_CULL_FACE);
+		GLES20.glFrontFace(GLES20.GL_CW);
+		GLES20.glDisable(GLES20.GL_DEPTH_TEST);
+		GLES20.glDisable(GLES20.GL_BLEND);
 
 		// Pass the current frame number
 		if(++frameNum >= 65535) // Wrap to GLSL highp int
@@ -210,14 +224,12 @@ class ChromaBackground {
 		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
 		GLES20.glUniform1i(mNoiseHandle, 1);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
-
-		// Enable a handle to the ChromaBackground vertices
+		
+		// Pass in the position information
+		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, coordinateHandle[0]);
 		GLES20.glEnableVertexAttribArray(mPositionHandle);
-
-		// Prepare the ChromaBackground coordinate data
-		GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX,
-				GLES20.GL_FLOAT, false,
-				vertexStride, vertexBuffer);
+		GLES20.glVertexAttribPointer(mPositionHandle, COORDS_PER_VERTEX, GLES20.GL_FLOAT, false, VERTEX_STRIDE, 0);
+		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
 
 		// Draw the triangles
 		GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);

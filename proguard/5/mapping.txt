@@ -1,0 +1,210 @@
+com.learnopengles.android.common.RawResourceReader -> a.a.a.a.a:
+    java.lang.String readTextFileFromRawResource(android.content.Context,int) -> a
+com.learnopengles.android.common.ShaderHelper -> a.a.a.a.b:
+    int compileShader(int,java.lang.String) -> a
+    int createAndLinkProgram(int,int,java.lang.String[]) -> a
+com.learnopengles.android.common.TextureHelper -> a.a.a.a.c:
+    void loadTexture(android.content.Context,int,int) -> a
+edu.stanford.nicd.chroma.ChromaBackground -> edu.stanford.nicd.chroma.a:
+    java.nio.FloatBuffer vertexBuffer -> c
+    int mProgramHandle -> d
+    int mPositionHandle -> e
+    int mTimeHandle -> f
+    int mColorSwathHandle -> g
+    int mNoiseHandle -> h
+    android.view.MotionEvent motionEvent -> a
+    int frameNum -> i
+    int displayWidth -> b
+    int vertexCount -> j
+    int vertexStride -> k
+    void close(android.content.Context) -> a
+    void draw() -> a
+edu.stanford.nicd.chroma.InfoActivity -> edu.stanford.nicd.chroma.InfoActivity:
+    void onCreate(android.os.Bundle) -> onCreate
+    void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+edu.stanford.nicd.chroma.MyRenderer -> edu.stanford.nicd.chroma.b:
+    android.content.Context context -> b
+    edu.stanford.nicd.chroma.ChromaBackground mBackground -> a
+    edu.stanford.nicd.chroma.Sprite mSprites -> c
+    void close() -> a
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onTouchEvent(android.view.MotionEvent) -> a
+edu.stanford.nicd.chroma.MyWallpaperService -> edu.stanford.nicd.chroma.MyWallpaperService:
+    java.lang.String TAG -> a
+    void checkEglError(java.lang.String,javax.microedition.khronos.egl.EGL10) -> b
+    android.service.wallpaper.WallpaperService$Engine onCreateEngine() -> onCreateEngine
+    void access$000(java.lang.String,javax.microedition.khronos.egl.EGL10) -> a
+edu.stanford.nicd.chroma.MyWallpaperService$1 -> edu.stanford.nicd.chroma.c:
+edu.stanford.nicd.chroma.MyWallpaperService$ConfigChooser -> edu.stanford.nicd.chroma.d:
+    int EGL_OPENGL_ES2_BIT -> g
+    int[] s_configAttribs2 -> h
+    int mRedSize -> a
+    int mGreenSize -> b
+    int mBlueSize -> c
+    int mAlphaSize -> d
+    int mDepthSize -> e
+    int mStencilSize -> f
+    int[] mValue -> i
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> a
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> a
+    int findConfigAttrib(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int,int) -> a
+edu.stanford.nicd.chroma.MyWallpaperService$ContextFactory -> edu.stanford.nicd.chroma.e:
+    int EGL_CONTEXT_CLIENT_VERSION -> a
+    javax.microedition.khronos.egl.EGLContext createContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> a
+    void destroyContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLContext) -> a
+edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine -> edu.stanford.nicd.chroma.f:
+    edu.stanford.nicd.chroma.MyRenderer renderer -> a
+    edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine$WatcherThread watcher -> b
+    int fpsThrottle -> c
+    edu.stanford.nicd.chroma.MyWallpaperService this$0 -> d
+    void onOffsetsChanged(float,float,float,float,int,int) -> onOffsetsChanged
+    void onTouchEvent(android.view.MotionEvent) -> onTouchEvent
+    void onResume() -> a
+    void onPause() -> b
+edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine$WatcherThread -> edu.stanford.nicd.chroma.g:
+    boolean kill -> a
+    edu.stanford.nicd.chroma.MyWallpaperService$WallpaperEngine this$1 -> b
+    void run() -> run
+edu.stanford.nicd.chroma.SettingsActivity -> edu.stanford.nicd.chroma.SettingsActivity:
+    android.opengl.GLSurfaceView mGLView -> a
+    edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer mRenderer -> b
+    void onCreate(android.os.Bundle) -> onCreate
+    void onPause() -> onPause
+    void onResume() -> onResume
+    android.opengl.GLSurfaceView access$000(edu.stanford.nicd.chroma.SettingsActivity) -> a
+edu.stanford.nicd.chroma.SettingsActivity$1 -> edu.stanford.nicd.chroma.h:
+    edu.stanford.nicd.chroma.SettingsActivity this$0 -> a
+    void onProgressChanged(android.widget.SeekBar,int,boolean) -> onProgressChanged
+    void onStartTrackingTouch(android.widget.SeekBar) -> onStartTrackingTouch
+    void onStopTrackingTouch(android.widget.SeekBar) -> onStopTrackingTouch
+edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer -> edu.stanford.nicd.chroma.i:
+    edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer$WatcherThread watcher -> b
+    edu.stanford.nicd.chroma.SettingsActivity this$0 -> c
+    void start() -> b
+    void close() -> a
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer$WatcherThread -> edu.stanford.nicd.chroma.j:
+    boolean kill -> a
+    edu.stanford.nicd.chroma.SettingsActivity$MyHarnessedRenderer this$1 -> b
+    void run() -> run
+edu.stanford.nicd.chroma.Sprite -> edu.stanford.nicd.chroma.k:
+    void draw() -> a
+net.rbgrn.android.glwallpaperservice.BaseConfigChooser -> b.a.a.a.a:
+    int[] mConfigSpec -> a
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> a
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> a
+net.rbgrn.android.glwallpaperservice.BaseConfigChooser$ComponentSizeChooser -> b.a.a.a.b:
+    int[] mValue -> h
+    int mRedSize -> b
+    int mGreenSize -> c
+    int mBlueSize -> d
+    int mAlphaSize -> e
+    int mDepthSize -> f
+    int mStencilSize -> g
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig[]) -> a
+    int findConfigAttrib(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,int,int) -> a
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> a
+net.rbgrn.android.glwallpaperservice.BaseConfigChooser$SimpleEGLConfigChooser -> b.a.a.a.c:
+net.rbgrn.android.glwallpaperservice.DefaultContextFactory -> b.a.a.a.d:
+    javax.microedition.khronos.egl.EGLContext createContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> a
+    void destroyContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLContext) -> a
+net.rbgrn.android.glwallpaperservice.DefaultWindowSurfaceFactory -> b.a.a.a.e:
+    javax.microedition.khronos.egl.EGLSurface createWindowSurface(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,java.lang.Object) -> a
+    void destroySurface(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLSurface) -> a
+net.rbgrn.android.glwallpaperservice.EGLConfigChooser -> b.a.a.a.f:
+    javax.microedition.khronos.egl.EGLConfig chooseConfig(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay) -> a
+net.rbgrn.android.glwallpaperservice.EGLContextFactory -> b.a.a.a.g:
+    javax.microedition.khronos.egl.EGLContext createContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig) -> a
+    void destroyContext(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLContext) -> a
+net.rbgrn.android.glwallpaperservice.EGLWindowSurfaceFactory -> b.a.a.a.h:
+    javax.microedition.khronos.egl.EGLSurface createWindowSurface(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLConfig,java.lang.Object) -> a
+    void destroySurface(javax.microedition.khronos.egl.EGL10,javax.microedition.khronos.egl.EGLDisplay,javax.microedition.khronos.egl.EGLSurface) -> a
+net.rbgrn.android.glwallpaperservice.EglHelper -> b.a.a.a.i:
+    javax.microedition.khronos.egl.EGL10 mEgl -> b
+    javax.microedition.khronos.egl.EGLDisplay mEglDisplay -> c
+    javax.microedition.khronos.egl.EGLSurface mEglSurface -> d
+    javax.microedition.khronos.egl.EGLContext mEglContext -> e
+    javax.microedition.khronos.egl.EGLConfig mEglConfig -> a
+    net.rbgrn.android.glwallpaperservice.EGLConfigChooser mEGLConfigChooser -> f
+    net.rbgrn.android.glwallpaperservice.EGLContextFactory mEGLContextFactory -> g
+    net.rbgrn.android.glwallpaperservice.EGLWindowSurfaceFactory mEGLWindowSurfaceFactory -> h
+    net.rbgrn.android.glwallpaperservice.GLWrapper mGLWrapper -> i
+    void start() -> a
+    javax.microedition.khronos.opengles.GL createSurface(android.view.SurfaceHolder) -> a
+    boolean swap() -> b
+    void destroySurface() -> c
+    void finish() -> d
+net.rbgrn.android.glwallpaperservice.GLThread -> b.a.a.a.j:
+    net.rbgrn.android.glwallpaperservice.GLThread$GLThreadManager sGLThreadManager -> c
+    net.rbgrn.android.glwallpaperservice.GLThread mEglOwner -> d
+    net.rbgrn.android.glwallpaperservice.EGLConfigChooser mEGLConfigChooser -> e
+    net.rbgrn.android.glwallpaperservice.EGLContextFactory mEGLContextFactory -> f
+    net.rbgrn.android.glwallpaperservice.EGLWindowSurfaceFactory mEGLWindowSurfaceFactory -> g
+    net.rbgrn.android.glwallpaperservice.GLWrapper mGLWrapper -> h
+    android.view.SurfaceHolder mHolder -> a
+    boolean mSizeChanged -> i
+    boolean mDone -> b
+    boolean mPaused -> j
+    boolean mHasSurface -> k
+    boolean mWaitingForSurface -> l
+    boolean mHaveEgl -> m
+    int mWidth -> n
+    int mHeight -> o
+    int mRenderMode -> p
+    boolean mRequestRender -> q
+    boolean mEventsWaiting -> r
+    net.rbgrn.android.glwallpaperservice.GLWallpaperService$Renderer mRenderer -> s
+    java.util.ArrayList mEventQueue -> t
+    net.rbgrn.android.glwallpaperservice.EglHelper mEglHelper -> u
+    void run() -> run
+    void stopEglLocked() -> f
+    void guardedRun() -> g
+    boolean isDone() -> h
+    void setRenderMode(int) -> a
+    void requestRender() -> a
+    void surfaceCreated(android.view.SurfaceHolder) -> a
+    void surfaceDestroyed() -> b
+    void onPause() -> c
+    void onResume() -> d
+    void onWindowResize(int,int) -> a
+    void requestExitAndWait() -> e
+    java.lang.Runnable getEvent() -> i
+    net.rbgrn.android.glwallpaperservice.GLThread access$100(net.rbgrn.android.glwallpaperservice.GLThread) -> a
+    net.rbgrn.android.glwallpaperservice.GLThread access$102(net.rbgrn.android.glwallpaperservice.GLThread,net.rbgrn.android.glwallpaperservice.GLThread) -> a
+net.rbgrn.android.glwallpaperservice.GLThread$1 -> b.a.a.a.k:
+net.rbgrn.android.glwallpaperservice.GLThread$GLThreadManager -> b.a.a.a.l:
+    net.rbgrn.android.glwallpaperservice.GLThread this$0 -> a
+    void threadExiting(net.rbgrn.android.glwallpaperservice.GLThread) -> a
+    boolean tryAcquireEglSurface(net.rbgrn.android.glwallpaperservice.GLThread) -> b
+    void releaseEglSurface(net.rbgrn.android.glwallpaperservice.GLThread) -> c
+net.rbgrn.android.glwallpaperservice.GLWallpaperService -> b.a.a.a.m:
+    android.service.wallpaper.WallpaperService$Engine onCreateEngine() -> onCreateEngine
+net.rbgrn.android.glwallpaperservice.GLWallpaperService$GLEngine -> b.a.a.a.n:
+    net.rbgrn.android.glwallpaperservice.GLThread mGLThread -> a
+    net.rbgrn.android.glwallpaperservice.EGLConfigChooser mEGLConfigChooser -> b
+    net.rbgrn.android.glwallpaperservice.EGLContextFactory mEGLContextFactory -> c
+    net.rbgrn.android.glwallpaperservice.EGLWindowSurfaceFactory mEGLWindowSurfaceFactory -> d
+    net.rbgrn.android.glwallpaperservice.GLWrapper mGLWrapper -> f
+    net.rbgrn.android.glwallpaperservice.GLWallpaperService this$0 -> e
+    void onVisibilityChanged(boolean) -> onVisibilityChanged
+    void onCreate(android.view.SurfaceHolder) -> onCreate
+    void onDestroy() -> onDestroy
+    void onSurfaceChanged(android.view.SurfaceHolder,int,int,int) -> onSurfaceChanged
+    void onSurfaceCreated(android.view.SurfaceHolder) -> onSurfaceCreated
+    void onSurfaceDestroyed(android.view.SurfaceHolder) -> onSurfaceDestroyed
+    void setRenderer(net.rbgrn.android.glwallpaperservice.GLWallpaperService$Renderer) -> a
+    void setEGLContextFactory(net.rbgrn.android.glwallpaperservice.EGLContextFactory) -> a
+    void setEGLConfigChooser(net.rbgrn.android.glwallpaperservice.EGLConfigChooser) -> a
+    void setRenderMode(int) -> a
+    void requestRender() -> c
+    void onPause() -> b
+    void onResume() -> a
+    void checkRenderThreadState() -> d
+net.rbgrn.android.glwallpaperservice.GLWallpaperService$Renderer -> b.a.a.a.o:
+    void onSurfaceCreated(javax.microedition.khronos.opengles.GL10,javax.microedition.khronos.egl.EGLConfig) -> onSurfaceCreated
+    void onSurfaceChanged(javax.microedition.khronos.opengles.GL10,int,int) -> onSurfaceChanged
+    void onDrawFrame(javax.microedition.khronos.opengles.GL10) -> onDrawFrame
+net.rbgrn.android.glwallpaperservice.GLWrapper -> b.a.a.a.p:
+    javax.microedition.khronos.opengles.GL wrap(javax.microedition.khronos.opengles.GL) -> a
