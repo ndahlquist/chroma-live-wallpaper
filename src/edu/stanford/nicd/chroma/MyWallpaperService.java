@@ -215,7 +215,6 @@ public class MyWallpaperService extends GLWallpaperService {
 
 		MyRenderer renderer;
 		WatcherThread watcher;
-		int fpsThrottle;
 
 		public WallpaperEngine() {
 			super();
@@ -258,12 +257,11 @@ public class MyWallpaperService extends GLWallpaperService {
 			
 			@Override
 			public void run() {
+				int fpsThrottle = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getInt("fpsThrottle", 40);
 				while(true) {
 					if(kill)
 						return;
 					requestRender();
-					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-					fpsThrottle = prefs.getInt("fpsThrottle", 40);
 					try {
 						Thread.sleep(fpsThrottle);
 					} catch (InterruptedException e) {

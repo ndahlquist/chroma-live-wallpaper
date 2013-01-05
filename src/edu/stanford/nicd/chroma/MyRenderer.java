@@ -78,6 +78,7 @@ class ChromaBackground {
 	private final int mProgramHandle;
 	private int mPositionHandle;
 	private int mTimeHandle;
+	private int mTouchHandle;
 	private int mColorSwathHandle;
 	private int mNoiseHandle;
 	public MotionEvent motionEvent;
@@ -133,20 +134,27 @@ class ChromaBackground {
 		if(mProgramHandle == 0) // Shader compilation failed.
 			throw new Exception("Shader compilation failed during linking.", null);
 		
+		// Store handles to attributes and uniforms
 		mColorSwathHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_ColorSwath");
+		mNoiseHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Noise");
+		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time");
+		mTouchHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Touch");
+		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "a_Position");
+		
+		// Load textures
 		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
 		TextureHelper.loadTexture(context, R.drawable.chromaswath, mColorSwathHandle);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-
-		mNoiseHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Noise");
+		
 		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
 		TextureHelper.loadTexture(context, R.drawable.noise, mNoiseHandle);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
 		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
+		// Initialize frameNumber to last known or random
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		frameNum = prefs.getInt("frameNum", (int) (65535.0 * Math.random()));
 	}
@@ -160,20 +168,19 @@ class ChromaBackground {
 
 	public void draw() {
 
-		GLES20.glEnable(GLES20.GL_DITHER);
-		GLES20.glEnable(GLES20.GL_TEXTURE_2D);
-
 		// Add program to OpenGL environment
 		GLES20.glUseProgram(mProgramHandle);
 
+		// Specify rendering settings
+		GLES20.glEnable(GLES20.GL_DITHER);
+		GLES20.glEnable(GLES20.GL_TEXTURE_2D);
+
 		// Pass the current frame number
-		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time"); // TODO
-		if(++frameNum >= 65535) // GLSL highp int
-		frameNum = -65535;
+		if(++frameNum >= 65535) // Wrap to GLSL highp int
+			frameNum = -65535;
 		GLES20.glUniform1i(mTimeHandle, frameNum);
 
 		// Pass in touches
-		int mTouchHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Touch");
 		if(motionEvent == null) {
 			GLES20.glUniform4f(mTouchHandle, -1.0f, -1.0f, -1.0f, -1.0f);
 		} else if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
@@ -203,9 +210,6 @@ class ChromaBackground {
 		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
 		GLES20.glUniform1i(mNoiseHandle, 1);
 		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
-
-		// get handle to vertex shader's a_Position member
-		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "a_Position"); // TODO
 
 		// Enable a handle to the ChromaBackground vertices
 		GLES20.glEnableVertexAttribArray(mPositionHandle);
