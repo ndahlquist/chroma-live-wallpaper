@@ -6,7 +6,6 @@ import java.nio.FloatBuffer;
 
 import com.learnopengles.android.common.RawResourceReader;
 import com.learnopengles.android.common.ShaderHelper;
-import com.learnopengles.android.common.TextureHelper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -18,17 +17,12 @@ class ChromaSprite {
 
 	private final int mProgramHandle;
 	private final int mPositionHandle;
-	private final int mTimeHandle;
-	private final int mTouchHandle;
-	private final int mColorSwathHandle;
-	private final int mNoiseHandle;
 	
 	public MotionEvent motionEvent;
 	private int frameNum;
 	public int displayWidth;
 
 	private final int COORDS_PER_VERTEX = 3;
-	private final int TESSELATION_FACTOR = 10;
 	private final int BYTES_PER_FLOAT = 4;
 	private final int VERTEX_STRIDE = COORDS_PER_VERTEX * BYTES_PER_FLOAT;
 	private final int vertexCount;
@@ -47,33 +41,16 @@ class ChromaSprite {
 		
 		final String fragmentShader = RawResourceReader.readTextFileFromRawResource(context, R.raw.sprite_f);
 		final int fragmentShaderHandle = ShaderHelper.compileShader(GLES20.GL_FRAGMENT_SHADER, fragmentShader);	
-		if(fragmentShaderHandle == 0) // Shader compilation failed.
+		if(fragmentShaderHandle == 0)
 			throw new Exception("Fragment shader compilation failed.", null);
 		
 		mProgramHandle = ShaderHelper.createAndLinkProgram(vertexShaderHandle, fragmentShaderHandle,
-				new String[] {"u_Time",  "a_Position", "u_ColorSwath", "u_Noise"});
-		if(mProgramHandle == 0) // Shader compilation failed.
+				new String[] {"a_Position"});
+		if(mProgramHandle == 0)
 			throw new Exception("Shader compilation failed during linking.", null);
 		
 		// Store handles to attributes and uniforms
-		mColorSwathHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_ColorSwath");
-		mNoiseHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Noise");
-		mTimeHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Time");
-		mTouchHandle = GLES20.glGetUniformLocation(mProgramHandle, "u_Touch");
 		mPositionHandle = GLES20.glGetAttribLocation(mProgramHandle, "a_Position");
-		
-		// Load textures
-		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-		TextureHelper.loadTexture(context, R.drawable.swath_chroma, mColorSwathHandle);
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
-		
-		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
-		TextureHelper.loadTexture(context, R.drawable.noise, mNoiseHandle);
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);			
-		GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
 		// Initialize frameNumber to last known or random
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
@@ -83,18 +60,7 @@ class ChromaSprite {
 	
 	private int LoadGeometry(int[] buffers) {
 		
-		float[] coordinates = new float[2*TESSELATION_FACTOR*COORDS_PER_VERTEX];
-		for(int i=0; i<TESSELATION_FACTOR; i++) {
-			// Bottom
-			coordinates[6*i+0] =  2.0f*i/(TESSELATION_FACTOR-1.0f) - 1.0f;
-			coordinates[6*i+1] = -1.0f;
-			coordinates[6*i+2] =  0.0f;
-
-			// Top
-			coordinates[6*i+3] =  2.0f*i/(TESSELATION_FACTOR-1.0f) - 1.0f;
-			coordinates[6*i+4] =  1.0f;
-			coordinates[6*i+5] =  0.0f;
-		}
+		final float[] coordinates = new float[]{-1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f};
 
 		final FloatBuffer mBuffer = ByteBuffer.allocateDirect(coordinates.length * BYTES_PER_FLOAT).order(ByteOrder.nativeOrder()).asFloatBuffer();
 		mBuffer.put(coordinates, 0, coordinates.length);
@@ -109,7 +75,7 @@ class ChromaSprite {
 
 		mBuffer.limit(0);
 		
-		return 2 * TESSELATION_FACTOR;
+		return coordinates.length;
 	}
 	
 	public void close(Context context) {
@@ -131,42 +97,6 @@ class ChromaSprite {
 		GLES20.glFrontFace(GLES20.GL_CW);
 		GLES20.glDisable(GLES20.GL_DEPTH_TEST);
 		GLES20.glDisable(GLES20.GL_BLEND);
-
-		// Pass the current frame number
-		if(++frameNum >= 65535) // Wrap to GLSL highp int
-			frameNum = -65535;
-		GLES20.glUniform1i(mTimeHandle, frameNum);
-
-		// Pass in touches
-		if(motionEvent == null) {
-			GLES20.glUniform4f(mTouchHandle, -1.0f, -1.0f, -1.0f, -1.0f);
-		} else if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
-				motionEvent = null;
-				GLES20.glUniform4f(mTouchHandle, -1.0f, -1.0f, -1.0f, -1.0f);
-		} else {
-			switch(motionEvent.getPointerCount()) {
-			case 1:	GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth, -1.0f, -1.0f, -1.0f);
-					break;
-			case 2:	GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth,
-						motionEvent.getX(1) / displayWidth, -1.0f, -1.0f);
-					break;
-			case 3: GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth,
-					motionEvent.getX(1) / displayWidth, motionEvent.getX(2) / displayWidth, -1.0f);
-				break;
-			default: GLES20.glUniform4f(mTouchHandle, motionEvent.getX(0) / displayWidth,
-					motionEvent.getX(1) / displayWidth, motionEvent.getX(2) / displayWidth,
-					motionEvent.getX(3) / displayWidth);
-			}
-		}
-
-		// Pass in the texture information
-		GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-		GLES20.glUniform1i(mColorSwathHandle, 0);
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
-
-		GLES20.glActiveTexture(GLES20.GL_TEXTURE1);
-		GLES20.glUniform1i(mNoiseHandle, 1);
-		GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mNoiseHandle);
 		
 		// Pass in the position information
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, coordinateHandle[0]);
@@ -175,7 +105,7 @@ class ChromaSprite {
 		GLES20.glBindBuffer(GLES20.GL_ARRAY_BUFFER, 0);
 
 		// Draw the triangles
-		GLES20.glDrawArrays(GLES20.GL_TRIANGLE_STRIP, 0, vertexCount);
+		GLES20.glDrawArrays(GLES20.GL_TRIANGLES, 0, vertexCount);
 
 		// Disable vertex array
 		GLES20.glDisableVertexAttribArray(mPositionHandle);
