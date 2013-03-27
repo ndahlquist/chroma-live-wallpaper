@@ -60,7 +60,7 @@ class ChromaSprite {
 	
 	private int LoadGeometry(int[] buffers) {
 		
-		final float[] coordinates = new float[]{-1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f};
+		final float[] coordinates = new float[]{-2.0f, -1.0f, 0.0f, 0.0f, (float) Math.pow(3.0f, .5f), 0.0f, 2.0f, -1.0f, 0.0f};
 
 		final FloatBuffer mBuffer = ByteBuffer.allocateDirect(coordinates.length * BYTES_PER_FLOAT).order(ByteOrder.nativeOrder()).asFloatBuffer();
 		mBuffer.put(coordinates, 0, coordinates.length);
@@ -75,7 +75,7 @@ class ChromaSprite {
 
 		mBuffer.limit(0);
 		
-		return coordinates.length;
+		return coordinates.length / 3;
 	}
 	
 	public void close(Context context) {
@@ -93,8 +93,8 @@ class ChromaSprite {
 		// Specify rendering settings
 		GLES20.glEnable(GLES20.GL_DITHER);
 		GLES20.glEnable(GLES20.GL_TEXTURE_2D);
-		GLES20.glEnable(GLES20.GL_CULL_FACE);
-		GLES20.glFrontFace(GLES20.GL_CW);
+		GLES20.glDisable(GLES20.GL_CULL_FACE);
+		//GLES20.glFrontFace(GLES20.GL_CW);
 		GLES20.glDisable(GLES20.GL_DEPTH_TEST);
 		GLES20.glDisable(GLES20.GL_BLEND);
 		
