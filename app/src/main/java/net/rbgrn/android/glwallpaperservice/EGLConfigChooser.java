@@ -21,5 +21,5 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLDisplay;
 
 public interface EGLConfigChooser {
-	EGLConfig chooseConfig(EGL10 egl, EGLDisplay display);
+    EGLConfig chooseConfig(EGL10 egl, EGLDisplay display);
 }

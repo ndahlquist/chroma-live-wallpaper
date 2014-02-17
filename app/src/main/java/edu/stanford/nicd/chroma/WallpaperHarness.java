@@ -24,7 +24,7 @@ public class WallpaperHarness extends Activity {
         super.onPause();
         mGLView.onPause();
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -43,23 +43,23 @@ class MyGLSurfaceView extends GLSurfaceView {
 }
 
 class MyTestRenderer extends MyRenderer implements GLSurfaceView.Renderer {
-	private long lastMeterTime = 0;
-	private int lastMeterFrame = 0;
-	
-	public MyTestRenderer(Context context) {
-		super(context);
-	}
+    private long lastMeterTime = 0;
+    private int lastMeterFrame = 0;
 
-	@Override
-	public void onDrawFrame(GL10 unused) {
-		lastMeterFrame++;
-		if(System.currentTimeMillis() - lastMeterTime >= 1000) {
-			float FramesPerSecond = lastMeterFrame / ((System.currentTimeMillis() - lastMeterTime) / 1000.0f);
-			Log.i("WallpaperHarness", "FPS: " + FramesPerSecond);
-			lastMeterTime = System.currentTimeMillis();
-			lastMeterFrame = 0;
-		}
-		mBackground.draw();
-	}
-	
+    public MyTestRenderer(Context context) {
+        super(context);
+    }
+
+    @Override
+    public void onDrawFrame(GL10 unused) {
+        lastMeterFrame++;
+        if (System.currentTimeMillis() - lastMeterTime >= 1000) {
+            float FramesPerSecond = lastMeterFrame / ((System.currentTimeMillis() - lastMeterTime) / 1000.0f);
+            Log.i("WallpaperHarness", "FPS: " + FramesPerSecond);
+            lastMeterTime = System.currentTimeMillis();
+            lastMeterFrame = 0;
+        }
+        mBackground.draw();
+    }
+
 }

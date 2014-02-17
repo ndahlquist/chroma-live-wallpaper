@@ -24,13 +24,13 @@ import javax.microedition.khronos.egl.EGLDisplay;
 /**
  * An interface for customizing the eglCreateContext and eglDestroyContext calls.
  *
-
+ *
  * This interface must be implemented by clients wishing to call
  * {@link GLWallpaperService#setEGLContextFactory(net.rbgrn.android.glwallpaperservice.EGLContextFactory)}
  */
 public interface EGLContextFactory {
-	EGLContext createContext(EGL10 egl, EGLDisplay display, EGLConfig eglConfig);
+    EGLContext createContext(EGL10 egl, EGLDisplay display, EGLConfig eglConfig);
 
-	void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context);
+    void destroyContext(EGL10 egl, EGLDisplay display, EGLContext context);
 }
 
