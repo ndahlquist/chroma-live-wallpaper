@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="default_gap">8dp</dimen>
+    <dimen name="default_gap_2x">16dp</dimen>
+    <dimen name="default_gap_3x">24dp</dimen>
+    <dimen name="default_gap_4x">32dp</dimen>
+    <dimen name="default_gap_half">4dp</dimen>
+    <dimen name="default_gap_quarter">2dp</dimen>
+
+</resources>

@@ -6,4 +6,11 @@
     <string name="wallpaper_settings">Preferences</string>
     <string name="description">A Nexus of colors.</string>
     <string name="fps">Wallpaper speed:</string>
+
+    <string-array name="color_choices">
+        <item>Chromatic</item>
+        <item>Holo</item>
+        <item>KitKat</item>
+    </string-array>
+
 </resources>

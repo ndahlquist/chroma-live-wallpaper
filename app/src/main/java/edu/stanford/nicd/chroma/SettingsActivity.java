@@ -10,15 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Spinner;
 
 import javax.microedition.khronos.opengles.GL10;
 
 public class SettingsActivity extends Activity  {
 
+    private static final String FPS_THROTTLE = "fpsThrottle";
+
 	private GLSurfaceView mGLView;
 	private MyHarnessedRenderer mRenderer;
+
+    SharedPreferences mSharedPrefs;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,8 @@ public class SettingsActivity extends Activity  {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 		
 		// Set the LW as background.
 		mGLView = new GLSurfaceView(this);
@@ -40,21 +48,25 @@ public class SettingsActivity extends Activity  {
 		// Inflate the xml and overlay it.
 		View overlay = getLayoutInflater().inflate(R.layout.settings_layout, null);
 		addContentView(overlay, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-		SeekBar seekBarSpeed = (SeekBar) findViewById(R.id.seekBarThrottle);
-		seekBarSpeed.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {       
-				SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-				SharedPreferences.Editor editor = prefs.edit();
-				editor.putInt("fpsThrottle", 100 - progress);
-				editor.commit();
-			}
-			public void onStartTrackingTouch(SeekBar seekBar) {}
-			public void onStopTrackingTouch(SeekBar seekBar) {}  
-		});
-		
-		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		int fpsThrottle = prefs.getInt("fpsThrottle", 40);
-		seekBarSpeed.setProgress(100 - fpsThrottle);
+
+		SeekBar speedSeekbar = (SeekBar) findViewById(R.id.seekBarThrottle);
+		speedSeekbar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                SharedPreferences.Editor editor = mSharedPrefs.edit();
+                editor.putInt(FPS_THROTTLE, 100 - progress);
+                editor.commit();
+            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+		int fpsThrottle = mSharedPrefs.getInt(FPS_THROTTLE, 40);
+		speedSeekbar.setProgress(100 - fpsThrottle);
+
+        Spinner colorSpinner = (Spinner) findViewById(R.id.color_spinner);
+        ArrayAdapter<CharSequence> colorSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.color_choices, R.layout.spinner_layout);
+        colorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorSpinner.setAdapter(colorSpinnerAdapter);
 	}
 
 	@Override
@@ -105,8 +117,7 @@ public class SettingsActivity extends Activity  {
 						return;
 					if(mGLView != null)
 						mGLView.requestRender();
-					SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-					int fpsThrottle = prefs.getInt("fpsThrottle", 40);
+					int fpsThrottle = mSharedPrefs.getInt(FPS_THROTTLE, 40);
 					try {
 						Thread.sleep(fpsThrottle);
 					} catch (InterruptedException e) {
