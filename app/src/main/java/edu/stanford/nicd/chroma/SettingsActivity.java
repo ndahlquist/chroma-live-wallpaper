@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -17,9 +18,10 @@ import android.widget.Spinner;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
     private static final String FPS_THROTTLE = "fpsThrottle";
+    public static final String COLOR_SELECTION = "COLOR_SELECTION";
 
     private GLSurfaceView mGLView;
     private MyHarnessedRenderer mRenderer;
@@ -69,6 +71,7 @@ public class SettingsActivity extends Activity {
                 .createFromResource(this, R.array.color_choices, R.layout.spinner_layout);
         colorSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colorSpinner.setAdapter(colorSpinnerAdapter);
+        colorSpinner.setOnItemSelectedListener(this);
     }
 
     @Override
@@ -83,6 +86,24 @@ public class SettingsActivity extends Activity {
         super.onResume();
         mGLView.onResume();
     }
+
+    public void onItemSelected(AdapterView<?> parent, View view,
+                               int pos, long id) {
+        int selectedColor;
+        switch (pos) {
+            case 0:
+                selectedColor = R.drawable.swath_chroma; break;
+            case 1:
+                selectedColor = R.drawable.swath_holoblue; break;
+            default:
+                selectedColor = R.drawable.swath_bw;
+        }
+        SharedPreferences.Editor editor = mSharedPrefs.edit();
+        editor.putInt(COLOR_SELECTION, selectedColor);
+        editor.commit();
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) { }
 
     class MyHarnessedRenderer extends MyRenderer implements GLSurfaceView.Renderer {
 

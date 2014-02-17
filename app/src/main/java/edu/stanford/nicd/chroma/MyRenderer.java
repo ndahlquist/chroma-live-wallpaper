@@ -122,7 +122,9 @@ class ChromaBackground {
 
         // Load textures
         GLES20.glActiveTexture(GLES20.GL_TEXTURE0);
-        TextureHelper.loadTexture(context, R.drawable.swath_chroma, mColorSwathHandle);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        int selectedColor = prefs.getInt(SettingsActivity.COLOR_SELECTION, R.drawable.swath_chroma);
+        TextureHelper.loadTexture(context, selectedColor, mColorSwathHandle);
         GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, mColorSwathHandle);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MAG_FILTER, GLES20.GL_LINEAR);
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
@@ -134,7 +136,6 @@ class ChromaBackground {
         GLES20.glTexParameteri(GLES20.GL_TEXTURE_2D, GLES20.GL_TEXTURE_MIN_FILTER, GLES20.GL_LINEAR);
 
         // Initialize frameNumber to last known or random
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         frameNum = prefs.getInt("frameNum", (int) (65535.0 * Math.random()));
     }
 
