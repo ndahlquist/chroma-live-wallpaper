@@ -1,5 +1,7 @@
 # chroma-live-wallpaper
-This is a live wallpaper inspired by the iconic "Chroma" rainbow wallpaper of Android Ice Cream Sandwich.
+[![Circle CI](https://circleci.com/gh/ndahlquist/chroma-live-wallpaper.svg?style=svg&circle-token=a6e4c4b72f8ed79762ee8cabbc16231138201733)](https://circleci.com/gh/ndahlquist/chroma-live-wallpaper)
+
+This is an Android live wallpaper inspired by the iconic "Chroma" rainbow wallpaper introduced in Ice Cream Sandwich.
 - High resolution rendering will look great on even the largest screens.
 - Rapid and energy-efficient GPU drawing, made possible by OpenGL ES 2.0. Drawing handled entirely in GLSL shaders, ensuring good performance.
 
